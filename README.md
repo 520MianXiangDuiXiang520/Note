@@ -1,3 +1,3 @@
 # Note
-<div color="RED"><hr /></ div>
+<hr />
 ## 记录美好生活
