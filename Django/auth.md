@@ -80,13 +80,16 @@ def zhuce(request):
     return render(request, "myauth/zhuce.html",表单)
 ```
 自定义表单内容
+首先要怎加数据库中表的列数
 models.py中加入自定义的内容如：
 
 ```python
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+# 重新创建一张表，叫普通会员表
 class 普通会员表(models.Model):
+    # 表中的用户信息一对一继承User表，怎加昵称和生日两个信息
     用户=models.OneToOneField(User,on_delete=models.CASCADE)
     昵称=models.CharField(blank=True,max_length=50)
     生日=models.DateField(blank=True)
@@ -94,7 +97,7 @@ class 普通会员表(models.Model):
     class Meta:
         verbose_name_plural="普通会员表"
 ```
-新建froms.py文件
+新建froms.py文件，设置注册时要求用户填写的表单
 ```python
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -108,4 +111,90 @@ class 自定义表单(UserCreationForm):
         model=User
         # 表单中显示出来的内容
         fields=('username','password1','password2','email','昵称','生日')
+```
+然后把之前注册时的UserCreationForm改为自定义的表单
+```python
+def zhuce(request):
+    if request.method == 'POST':
+        froms=自定义表单(request.POST)
+        # 如果表单填写正确
+        if froms.is_valid():
+            froms.save()
+            user=authenticate(username=froms.cleaned_data['username'],password=froms.cleaned_data['password1'])
+            user.email=froms.cleaned_data['username']
+            普通会员表(用户=user,昵称=froms.cleaned_data['昵称'],生日=froms.cleaned_data['生日']).save()
+            login(request, user)
+            return redirect('myauth:主页')
+    else:
+        froms = 自定义表单()
+    表单={'表单':froms}
+    return render(request, "myauth/zhuce.html",表单)
+```
+**自定义错误信息**
+传过来的“表单”包含一个errors 的字典，其中的键是表单名，如username,password1，等，可以通过判断某个键是否存在判断某个错误是否发生，以此实现自定义表单
+```Django
+ {% if 表单.errors.username %}
+    <p style="color: red">用户名已存在</p>
+ {% endif %}
+```
+第二=种方法：重新构造函数,在froms.py文件中重新构造init函数
+```python
+class 自定义表单(UserCreationForm):
+    昵称=forms.CharField(required=False,max_length=50)
+    生日=forms.DateField(required=False)
+
+    class Meta:
+        model=User
+        fields=('username','password1','password2','email','昵称','生日')
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.fields['username'].error_messages={'unique':'用户名已存在！！！','invalid':'用户名不合法'}
+```
+其中如 'unique','iunvalid'等是username表单的错误类型，可以查文档得到，也可以用.as_json打印查看
+```Django
+{{表单.errors.username.as_json}}
+```
+
+### 4.修改用户信息
+修改用户信息涉及到两个库
+```python
+# 修改密码
+from django.contrib.auth.forms import PasswordChangeForm
+# 修改用户信息
+from django.contrib.auth.forms import UserChangeForm
+```
+与UserCreationForm类似，不过PasswordChangeForm与UserChangeForm要求传入的参数名不同
+```python
+
+PasswordChangeForm(data=request.POST,user=request.user)
+UserChangeForm(request.POST,instance=request.user)
+```
+### 5. 验证码
+使用第三方包django-simple-captcha
+[官方文档](https://django-simple-captcha.readthedocs.io/en/latest/usage.html#adding-to-a-form)
+首先下载
+```python
+······Scripts>pip install django-simple-captcha
+```
+然后需要在setting.py中注册APP
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myauth',
+    'captcha',
+]
+```
+然后需要重新建表
+```
+python manage.py migrate
+```
+在总URL.py中加入
+```python
+path('captcha/',include('captcha.urla')),
 ```
