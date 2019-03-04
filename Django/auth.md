@@ -137,7 +137,7 @@ def zhuce(request):
     <p style="color: red">用户名已存在</p>
  {% endif %}
 ```
-第二=种方法：重新构造函数,在froms.py文件中重新构造init函数
+第二种方法：重新构造函数,在froms.py文件中重新构造init函数
 ```python
 class 自定义表单(UserCreationForm):
     昵称=forms.CharField(required=False,max_length=50)
