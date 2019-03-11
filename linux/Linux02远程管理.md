@@ -74,25 +74,6 @@ IP的别名，方便记忆
 格式：
 `ssh [-p port] user@remote`
 * user:用户名，不指定为当前默认用户
-* post： 端口号，默认为22，否则需要使用-p设置
-* remote：地址（IP地址，域名，或者别名）
+* post： 端口号，默认为22
+* remote：地址
 * exit：退出当前用户登录
-* windows使用xshell或PuTTy用SSH远程连接
-* SCP：用来进行远程拷贝文件，格式与SSH相同，只不过指定端口时要用大写P
-  * 把本地文件复制到远程：`scp -P post 本地目录 user@地址:远程目录`
-  * 远程文件拷贝到本地: `scp -P post user@地址:远程目录 本地目录`
-  * 加上`-r`可传送文件夹
-  * window不能用....
-* FileZilla,使用Ftp协议，端口号是21
-* SSH高级：
-  * 第一次连接某个远程主机时，会提示一个授权信息，授权后，再.ssh文件夹中会有一个known_hosts的文件保存授权信息，下次再连接这台主机就不需要授权了。
-  * 免密码登录：`ssh-keygen`生成SSH钥匙 .pub公钥，另一个id_rsa 私钥 非对称加密，执行`ssh-copy-id -p post user@地址`让远程服务器记住公匙，就是把id_rsa.pub给服务器，一个数据从客户端发送到服务器，在客户端对数据用私钥加密，服务器用公钥解密，服务器给客户端回传数据时，用公钥加密，客户端用私钥解密
-  * 配置别名：用户名@IP地址太麻烦，所以可以配置别名，在.ssh中config(新建)中配置
-
-```
-Host name
-    HostName ip地址
-    User 用户名
-    Port 22
-```
-之后可以使用ssh 别名代替端口号，用户名，ip地址
