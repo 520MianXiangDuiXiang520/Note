@@ -36,6 +36,10 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 
 ## 蓝桥杯
 
+* 入门
+* 基础练习
+* 算法训练
+
 ## 算法
 
 ## C/C++
