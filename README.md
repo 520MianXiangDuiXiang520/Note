@@ -42,6 +42,20 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 
 ## 算法
 
+* 蛮力法
+* 分治法
+* 减治法，变治法
+* 动态规划
+* 时空权衡
+* 贪心算法
+* 回溯法和分支限界法
+
+## Linux
+
+* 基本命令
+* 权限管理
+* vi
+
 ## C/C++
 
 ## 网络安全
