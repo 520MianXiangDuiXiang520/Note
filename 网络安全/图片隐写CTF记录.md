@@ -162,3 +162,7 @@ newimg.show()
 [4.BrainFuck](http://ctf5.shiyanbar.com/stega/doge.jpg)
 
 BrainFuck是啥，看这名字就欠揍，他估计是为了为难程序员设计的语言把，还好有工具，直接用bftools，得到一个base64的序列，解码就ok
+
+[4.欢迎来到地狱]( http://ctf5.shiyanbar.com/stega/hell/欢迎来到地狱.zip)
+
+下载压缩包后里面有三个文件，叫第一层地域，第二层地狱，快到终点了，第一层地狱是一个受损的jpeg文件，用winhex加上文件头后发现图片里是一个云盘地址，云盘里是一段音乐，是个人都能猜出来是摩尔斯电码，用一些软件调出音乐波谱，把对应摩尔斯电码写出来，解密拿到第二层文本文件的密码，根据第二层文件提示是LSB问题
