@@ -20,11 +20,8 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 
 * 网络编程
 * 线程与进程
-
-### python Web
-
-* Django
-* Flask
+* python Web
+* Web Scraping
 
 ## TCP/IP
 
