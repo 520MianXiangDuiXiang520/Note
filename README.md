@@ -55,4 +55,16 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 
 ## C/C++
 
+## Javascript
+
+* JS语法
+* JS变量
+* JS数值类型
+* JS运算符
+* JS流程控制语句
+
+## Vue.js
+
+## git
+
 ## 网络安全
