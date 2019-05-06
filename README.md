@@ -67,6 +67,7 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 * JS对象
 * JS函数
 * JS数组
+* 字符串和正则
 
 ## Vue.js
 
