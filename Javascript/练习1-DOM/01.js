@@ -37,12 +37,33 @@ Check("fanxuan", function () {
             quanxuanlist[i].checked = false;
         }
     }
+    for (var i = 0; i < quanxuanlist.length; i++) {
+        if (quanxuanlist[i].checked == false) {
+            isCheckbox.checked = false;
+            break;
+        } else if (i == quanxuanlist.length - 1) {
+            isCheckbox.checked = true;
+        }
+    };
 });
 
 //全选复选框
 Check("is",function(){
     var s = true;
     for(var i = 0;i<quanxuanlist.length;i++){
-        quanxuanlist[i].checked = isCheckbox.checked;
+        quanxuanlist[i].checked = this.checked;
     }
 })
+
+for(var i = 0; i < quanxuanlist.length; i++){
+    quanxuanlist[i].onclick = function(){
+        for (var i = 0; i < quanxuanlist.length; i++){   
+            if (quanxuanlist[i].checked == false){
+                isCheckbox.checked = false;
+                break;
+            }else if(i == quanxuanlist.length-1){
+                isCheckbox.checked = true;
+            }
+        };
+    }
+}
