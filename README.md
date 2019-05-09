@@ -58,6 +58,7 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 ## Javascript
 
 [跟着B站去学习](https://www.bilibili.com/video/av48927313)
+![JS对象](Javascript/image/JS.png)
 
 * JS语法
 * JS变量
