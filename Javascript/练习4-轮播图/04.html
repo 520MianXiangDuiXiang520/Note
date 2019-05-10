@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <!-- <script src="js/tools.js"></script> -->
+    <style type = "text/css">
+        *{
+            /*取消默认内外边距*/
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            width: 500px;
+            height: 333px;
+        }
+        #imgbox{
+            background-color: #8f8f8f;
+            width: 520px;
+            height: 333px;
+            padding: 10px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #imglist{
+             list-style: none;
+             position: absolute;
+        }
+        #imglist li{
+            float: left;
+            margin-left:10px;
+            margin-right: 10px;
+        }
+        #abox{
+            position: absolute;
+            bottom: 15px;
+            /* margin-left: 100px; */
+        }
+        #abox a{
+            float:left;
+            width: 15px;
+            height:15px;
+            background-color: #00abfa;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        #abox a:hover{
+            background-color: rgb(172, 100, 255);
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            // 修改imglist的宽度值，
+            var i=0;
+            var imgul = document.getElementById("imglist");
+            var imglis = imgul.getElementsByTagName("li");
+            imgul.style.width =  imglis.length * (500+30) + "px";
+            // setInterval(function(){
+            //     imgul.style.left = (i % (imglis.length)) * (-520) + 10 + "px";
+            //     i++;
+            // },1000)
+            var abox = document.getElementById("abox");
+            abox.style.marginLeft = ((520-25*imglis.length)/2)+"px";
+
+            //默认a显示的
+            var index = 0;
+            var alist = abox.getElementsByTagName('a');
+            alist[index].style.backgroundColor = 'rgb(172, 100, 255)';
+            for(var i = 0;i<alist.length;i++){
+                alist[i].num = i;
+                alist[i].onclick = function(){
+                    // alert(alist[i]);
+                    // alert(this.num);
+                    index = this.num;
+                    console.log(index);
+                    for(var i = 0;i<alist.length;i++){
+                        alist[i].style.backgroundColor = "#00abfa";
+                    }
+                    alist[index].style.backgroundColor = 'rgb(172, 100, 255)';
+                    // var wer = (index % (imglis.length))*(-520) + 10;
+                    // imgul.style.left = wer + "px";
+                    var wer = 0;
+                    var no = 0;
+                    // 实现向左移动一个图片后停止，520px
+                    no = setInterval(function(){
+                        if(wer<(-520 * index)){
+                            clearInterval(no);
+                        };
+                        imgul.style.left = wer + "px";
+                        wer --;
+                        console.log(wer);
+                    },10)                        
+                }
+            }
+
+            
+        }
+    </script>
+</head>
+<body>
+    <div id = "imgbox">
+        <ul id = "imglist">
+            <li><img src="img/01.jpg" alt=""></li>
+            <li><img src="img/02.jpg" alt=""></li>
+            <li><img src="img/03.jpg" alt=""></li>
+            <li><img src="img/04.jpg" alt=""></li>
+            <li><img src="img/05.jpg" alt=""></li>
+            <li><img src="img/06.jpg" alt=""></li>
+        </ul>
+        <div id="abox">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    
+</body>
+</html>
