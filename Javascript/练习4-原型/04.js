@@ -32,3 +32,23 @@ console.log(Object.prototype.__proto__) // null
 console.log(Function.prototype === Object.__proto__) // true
 console.log(Function.__proto__ === Function.prototype) // true
 console.log(Function.prototype.__proto__ === Object.prototype) // true
+
+console.log("--------------------------------------------------------")
+
+function F(){}
+Object.prototype.a = function(){
+    console.log("a()")
+}
+Function.prototype.b = function(){
+    console.log("b()")
+}
+
+var f = new F()
+
+f.a()
+// f.b() // error 
+F.a()
+F.b()
+
+console.log(f)
+console.log(Object.prototype)
