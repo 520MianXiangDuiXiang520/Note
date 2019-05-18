@@ -45,10 +45,17 @@ console.log(arr3)
 
 console.log("------------------------------------")
 
-var fun = function(){
+var fun = function(a,b){
     console.log(this)
+    console.log(a+b)
 }
 
 var fun1 = function(){
     var fun1_name = "fun1"
 }
+
+fun.call(fun1,"aa","bb")
+fun.apply(fun1,["aa","bb"])
+// 不会立即调用
+var fun3 = fun.bind(fun1,"aa","bb")
+fun3()

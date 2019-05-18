@@ -78,4 +78,23 @@ console.log(arr3)
 
 ## Call,apply,bind
 
-* call()
+* call()：直接传递参数
+* apply()：以数组形式传递参数
+* bind()：直接传递参数，不会立即调用，返回函数
+
+```js
+var fun = function(a,b){
+    console.log(this)
+    console.log(a+b)
+}
+
+var fun1 = function(){
+    var fun1_name = "fun1"
+}
+
+fun.call(fun1,"aa","bb")
+fun.apply(fun1,["aa","bb"])
+// 不会立即调用
+var fun3 = fun.bind(fun1,"aa","bb")
+fun3()
+```
