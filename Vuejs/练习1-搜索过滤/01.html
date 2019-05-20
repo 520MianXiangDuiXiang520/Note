@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索过滤</title>
+    <script src="/home/junbao/桌面/Note/Vuejs/Vue.main.js"></script>
+    
+</head>
+<body>
+    <div id='app'>
+        <input type="text" v-model='something'>
+        <li v-for="(item, index) in showinfo" :key="index">
+            <span v-if="isnone">{{item.name}}---{{item.age}}---{{item.sex}}</span>
+            <span v-else>{{item}}</span>
+        </li>
+    </div>
+    <script src="01.js"></script>
+</body>
+</html>
