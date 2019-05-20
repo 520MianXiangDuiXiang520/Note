@@ -60,16 +60,6 @@ No matter what, it’s very good to write in a foreign language, isn’t it? :oc
 [跟着B站去学习](https://www.bilibili.com/video/av48927313)
 ![JS对象](Javascript/image/JS.png)
 
-* JS语法
-* JS变量
-* JS数值类型
-* JS运算符
-* JS流程控制语句
-* JS对象
-* JS函数
-* JS数组
-* 字符串和正则
-
 ## Vue.js
 
 ## git
