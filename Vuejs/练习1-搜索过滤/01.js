@@ -1,8 +1,12 @@
+/**
+ * 代码如诗
+ */
 let vm = new Vue({
     el : '#app',
     data : {
         something : "",
         isnone : true,
+        typesort : 0,
         students : [
             {name:'zhangsan',age:18,sex:'boy'},
             {name:'zhangsi',age:20,sex:'boy'},
@@ -10,13 +14,24 @@ let vm = new Vue({
             {name:'yutujin',age:19,sex:'girl'}
         ],
     },
+    methods: {
+        ageup : function(){
+            this.typesort = 1
+        },
+        agedown : function(){
+            this.typesort = 2
+        },
+        ageover : function(){
+            this.typeof = 0
+        }
+    },
     computed: {
         showinfo(){
             // showword是筛选之后的数组
             let showword
             this.isnone = true
             // console.log(this.students)
-            let {something,isnone,students} = this
+            let {something,students,typesort} = this
             showword = students.filter(function(item){
                 isin = item.name.indexOf(something)
                 return isin >= 0
@@ -25,7 +40,18 @@ let vm = new Vue({
                 vm.$data.isnone = false
                 showword = ['can not find']
             }
+            if(typesort !== 0){
+                showword.sort(function(a,b){
+                    if(typesort == 1){
+                        // 升序排序
+                        return a.age - b.age
+                    }else{
+                        return b.age - a.age
+                    }
+                })
+            }
             return showword
-        }
+        },
+       
     },
 })
