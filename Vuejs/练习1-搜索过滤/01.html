@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>搜索过滤</title>
-    <script src="/home/junbao/桌面/Note/Vuejs/Vue.main.js"></script>
+    <script src="../Vue.main.js"></script>
     
 </head>
 <body>
@@ -15,9 +15,9 @@
             <span v-if="isnone">{{item.name}}---{{item.age}}---{{item.sex}}</span>
             <span v-else>{{item}}</span>
         </li>
-        <button @click = 'ageup'>按年龄升序排序</button>
-        <button @click = 'agedown'>按年龄降序排序</button>
-        <button @click = 'ageover'>默认排序</button>
+        <button @click = 'ageup(1)'>按年龄升序排序</button>
+        <button @click = 'ageup(2)'>按年龄降序排序</button>
+        <button @click = 'ageup(0)'>默认排序</button>
     </div>
     <script src="01.js"></script>
 </body>

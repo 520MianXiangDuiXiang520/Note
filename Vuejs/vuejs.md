@@ -14,8 +14,12 @@
    * v-if:判断
    * v-on：监听DOM事件,缩写为 `@`
    * v-model：绑定数据
+   * v-watch:监视
 5. 过滤器：`|`:将函数的执行结果赋值给第一个参数（`{{messade|function}}`）,
    * 可串联 `{{messade|function|fun2}}`
    * 可传参
-
-## 条件循环语句
+6. 计算属性：computed
+7. 事件处理
+   * 停止冒泡：`@click.stop`
+   * 阻止事件默认行为：`@click.prevent`
+   * 按键修饰符：`@keyup.13(keycode)/enter(keyname)`

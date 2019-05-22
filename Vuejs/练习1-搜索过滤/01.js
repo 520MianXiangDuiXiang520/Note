@@ -15,15 +15,9 @@ let vm = new Vue({
         ],
     },
     methods: {
-        ageup : function(){
-            this.typesort = 1
+        ageup : function(type){
+            this.typesort = type
         },
-        agedown : function(){
-            this.typesort = 2
-        },
-        ageover : function(){
-            this.typeof = 0
-        }
     },
     computed: {
         showinfo(){
