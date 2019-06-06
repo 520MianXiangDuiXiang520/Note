@@ -66,3 +66,22 @@ python manage.py startapp polls
     └── views.py
 
 ```
+
+取消Django对页面的监管
+
+```django
+{% verbatim my %}
+{% endverbatim my %}
+```
+
+配置媒体文件
+
+```python
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '../myblog/static',
+    '/wxmini/static'
+]
+```
+
+* STATIC_URL = '/static/' 是全局的
