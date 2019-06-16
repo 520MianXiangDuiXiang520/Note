@@ -31,7 +31,8 @@ struct TreeNode
     int value;
     int top = 0;                      //标记child列表中最上面元素的索引（栈顶指针）
     string last = IntToString(value); //标记根节点到当前节点的字符串
-    int No = -1;                      //标记当前节点在测试数组中的索引
+    int No = -1;                      //标记当前节点值在测试数组中的索引
+    int layer;                        // 标记节点层数
     TreeNode *child[50];              //存储子节点的指针数组
 };
 
@@ -96,6 +97,7 @@ TreeNode *AddNewNode(int **table, int n, int list[], int index, TreeNode *root)
                 newChild->top = 0;
                 newChild->last = root->last;
                 newChild->last = newChild->last.append(IntToString(list[i]));
+                newChild->layer = root->layer + 1;
                 root->child[root->top] = (TreeNode *)malloc(sizeof(TreeNode));
                 root->child[root->top] = newChild;
                 root->top++;
@@ -122,24 +124,25 @@ TreeNode CreateTree(bool isRecursion, int index, TreeNode *root, int n, int list
     root->No = index;
     root->last = IntToString(list[index]);
     root->top = 0;
+    root->layer = 1;
     AddNewNode(table, n, list, root->No, root);
     CreateChild(table, list, n, root);
     return *root;
 }
 
 // 输出树
-void PrintTree(TreeNode *root, int s = 1)
+void PrintTree(TreeNode *root)
 {
     if (root->top != 0)
     {
         for (int x = 0; x < root->top; x++)
         {
-            for (int i = 0; i < s; i++)
+            for (int i = 0; i < root->child[x]->layer; i++)
             {
-                cout << "*";
+                cout << "* ";
             }
-            cout << root->child[x]->value << "(" << root->child[x]->last << ")" << endl;
-            PrintTree(root->child[x], 2);
+            cout << root->child[x]->value << endl;
+            PrintTree(root->child[x]);
         }
     }
 }
@@ -188,7 +191,35 @@ string *GetLisKth(int k, bool isK)
     sort(LIS, LIS + top, sort_x);
     if (isK)
     {
-        cout << "第" << k << "个最大递增子序列是：" << LIS[k];
+        if (k > top - 1)
+        {
+            cout << "最长子序列只有" << top << "个，输入范围应该是（0-" << top - 1 << "),是否全部输出（y/s）";
+            string yors;
+            cin >> yors;
+            if (yors == "y" || yors == "Y")
+            {
+                cout << "所有最大递增子序列如下：" << endl;
+                for (int i = 0; i < top; i++)
+                {
+                    cout << LIS[i] << "   ";
+                }
+                cout << endl;
+            }
+            else if (yors == "n" || yors == "N")
+            {
+                cout << "请重新输入k：";
+                int k2;
+                cin >> k2;
+                if (k2 <= top)
+                    cout << "第" << k << "个最大递增子序列是：" << LIS[k2];
+                else
+                    cout << "输入有误！！！" << endl;
+            }
+            else
+                cout << "输入有误！！！" << endl;
+        }
+        else
+            cout << "第" << k << "个最大递增子序列是：" << LIS[k] << "   top=" << top;
     }
     else
     {
@@ -211,13 +242,12 @@ void Show()
          << endl;
     cout << "                                                  ** 算法课设 **" << endl
          << endl;
-    cout << "                                请选择你要进行的操作：" << endl
-         << endl;
+
     cout << "                                  1. 从文件读取数据" << endl;
     cout << "                                  2. 输入数据" << endl;
     cout << "                                  3. 退出" << endl
          << endl;
-    cout << "                          ------------------------------------------------------------------" << endl;
+    cout << "                               请选择你要进行的操作：";
 }
 
 int Return()
@@ -229,7 +259,7 @@ int Return()
     return b;
 }
 
-void Show3(int list[], int N, int **table, TreeNode *root, int k)
+void Show3(int list[], int N, int **table, TreeNode *root, int k, TreeNode TreeList[])
 {
     cout << endl;
     cout << "                          ------------------------------------------------------------------" << endl
@@ -244,7 +274,7 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k)
     cout << "                                  5. 输出第K个最长递增子序列" << endl;
     cout << "                                  6. 退出" << endl
          << endl;
-    cout << "                                请选择你要进行的操作：";
+    cout << "                              请选择你要进行的操作：";
 
     int chose3 = 0;
     cin >> chose3;
@@ -254,14 +284,16 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k)
     {
         // 输出测试数组
         system("cls");
+        cout << endl
+             << "测试数组为：" << endl;
         for (int i = 0; i < N; i++)
         {
-            cout << list[i];
+            cout << list[i] << "   ";
         }
         if (Return())
         {
             system("cls");
-            Show3(list, N, table, root, 1);
+            Show3(list, N, table, root, 1, TreeList);
         }
     };
     break;
@@ -269,19 +301,29 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k)
     {
         // 输出邻接矩阵
         system("cls");
-        cout << endl;
+        cout << endl
+             << "邻接矩阵为：" << endl
+             << endl;
+        cout << "  | ";
         for (int i = 0; i < N; i++)
         {
+            cout << list[i] << "   ";
+        }
+        cout << endl
+             << "--+------------------------------" << endl;
+        for (int i = 0; i < N; i++)
+        {
+            cout << list[i] << " | ";
             for (int j = 0; j < N; j++)
             {
-                cout << table[i][j];
+                cout << table[i][j] << "   ";
             }
             cout << endl;
         }
         if (Return())
         {
             system("cls");
-            Show3(list, N, table, root, 1);
+            Show3(list, N, table, root, 1, TreeList);
         }
     };
     break;
@@ -289,11 +331,17 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k)
     {
         // 显示树结构
         system("cls");
-        PrintTree(root, 1);
+        cout << root->value << endl;
+        for (int i = 0; i < N; i++)
+        {
+            cout << "以第" << i << "个元素建立的树为：" << endl
+                 << "-" << TreeList[i].value << endl;
+            PrintTree(&TreeList[i]);
+        }
         if (Return())
         {
             system("cls");
-            Show3(list, N, table, root, 1);
+            Show3(list, N, table, root, 1, TreeList);
         }
     };
     break;
@@ -305,7 +353,7 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k)
         if (Return())
         {
             system("cls");
-            Show3(list, N, table, root, 1);
+            Show3(list, N, table, root, 1, TreeList);
         }
     };
     break;
@@ -313,11 +361,14 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k)
     {
         // 输出第K个最长递增子序列
         system("cls");
-        GetLisKth(k, true);
+        cout << "请输入K：";
+        int ik;
+        cin >> ik;
+        GetLisKth(ik, true);
         if (Return())
         {
             system("cls");
-            Show3(list, N, table, root, 1);
+            Show3(list, N, table, root, 1, TreeList);
         }
     };
     break;
@@ -334,13 +385,17 @@ void ShowLis(int list[], int n)
     int **table;
     TreeNode Root;
     TreeNode pp;
+    TreeNode TreeList[501];
+    int TreeNum = 0;
     table = CreateTable(n, list);
     for (int index = 0; index < n; index++)
     {
         pp = CreateTree(false, index, &Root, n, list, table);
+        TreeList[TreeNum] = pp;
+        TreeNum++;
         GetAllIS(&pp);
     }
-    Show3(list, n, table, &pp, 1);
+    Show3(list, n, table, &pp, 1, TreeList);
 }
 
 void CinShow()
@@ -352,9 +407,9 @@ void CinShow()
          << endl;
     cout << "                                                  ** 输入数据 **" << endl
          << endl;
-    cout << "                                请输入要测试的数组长度：" << endl;
+    cout << "  请输入要测试的数组长度：";
     cin >> N;
-    cout << "                                请输入测试数组，按空格隔开：" << endl;
+    cout << "  请输入测试数组，按空格隔开：" << endl;
     for (int i = 0; i < N; i++)
     {
         cin >> list[i];
@@ -377,10 +432,6 @@ void File()
     for (int i = 1; i < N + 1; i++)
     {
         examplefile >> list[i - 1];
-    }
-    for (int i = 0; i < N; i++)
-    {
-        cout << list[i] << "   ";
     }
     ShowLis(list, N);
 }
