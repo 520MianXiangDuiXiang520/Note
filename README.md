@@ -1,6 +1,6 @@
 # Dog planing Notes
 
-No matter what, it’s very good to write in a foreign language, isn’t it? :octocat:
+To Love,To Attempt :octocat:
 
 ---
 

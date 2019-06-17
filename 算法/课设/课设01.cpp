@@ -43,15 +43,50 @@ struct LisStack
     int top = 0;
 };
 
+struct MyList
+{
+    int value;
+    int power;
+};
+
 // 自定义排序规则
 bool sort_x(string a, string b)
 {
     return a < b;
 }
 
+// 求出以每一个元素为根节点后的树的最大深度
+int TOP = 0;
+MyList mylist[501];
+int MAXLAYER = 1;
 // 创建邻接矩阵，返回一个二维数组
 int **CreateTable(const int N, const int list[])
 {
+    int index;
+    int power[501] = {1};
+    for (int i = 0; i < N; i++)
+    {
+        power[i] = 1;
+    }
+    for (index = N - 1; index >= 0; index--)
+    {
+        // 判断在该元素后面如果有比他大的，就加一
+        for (int j = index; j < N; j++)
+        {
+            if (list[j] > list[index])
+            {
+                power[index] = power[j] + 1;
+                if (power[index] > MAXLAYER)
+                    MAXLAYER = power[index];
+                break;
+            }
+        }
+        MyList newvalue;
+        newvalue.value = list[index];
+        newvalue.power = power[index];
+        mylist[TOP] = newvalue;
+        TOP++;
+    }
     int **table;
     table = (int **)malloc(N * sizeof(int **));
     for (int i = 0; i < N + 1; i++)
@@ -66,7 +101,7 @@ int **CreateTable(const int N, const int list[])
             if (table)
             {
                 if (list[j] > list[i])
-                    table[i][j] = 1;
+                    table[i][j] = power[i];
                 else
                     table[i][j] = 0;
             }
@@ -82,11 +117,12 @@ int **CreateTable(const int N, const int list[])
 }
 
 // 创建节点
+
 TreeNode *AddNewNode(int **table, int n, int list[], int index, TreeNode *root)
 {
     for (int i = 0; i < n; i++)
     {
-        if (table[index][i] == 1)
+        if (table[index][i] >= 1)
         {
             // 创建一个新节点，值是该节点的值
             TreeNode *newChild = new TreeNode();
@@ -332,7 +368,7 @@ void Show3(int list[], int N, int **table, TreeNode *root, int k, TreeNode TreeL
         // 显示树结构
         system("cls");
         cout << root->value << endl;
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N - MAXLAYER; i++)
         {
             cout << "以第" << i << "个元素建立的树为：" << endl
                  << "-" << TreeList[i].value << endl;
@@ -390,10 +426,13 @@ void ShowLis(int list[], int n)
     table = CreateTable(n, list);
     for (int index = 0; index < n; index++)
     {
-        pp = CreateTree(false, index, &Root, n, list, table);
-        TreeList[TreeNum] = pp;
-        TreeNum++;
-        GetAllIS(&pp);
+        if (mylist[n - index - 1].power == MAXLAYER)
+        {
+            pp = CreateTree(false, index, &Root, n, list, table);
+            TreeList[TreeNum] = pp;
+            TreeNum++;
+            GetAllIS(&pp);
+        }
     }
     Show3(list, n, table, &pp, 1, TreeList);
 }
@@ -463,6 +502,5 @@ int main()
     };
     break;
     }
-    /*File();*/
     return 0;
 }
