@@ -1,6 +1,6 @@
 # Dog planing Notes
 
-![to love to attempt](./image/attempt.png)
+![to love to attempt](/image/attempt.png)
 
 ---
 
