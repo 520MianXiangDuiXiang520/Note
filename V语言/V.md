@@ -443,3 +443,116 @@ fn main() {
 * 不允许循环导入。
 * 您可以在任何地方创建模块。
 * 所有模块都被静态地编译成一个可执行文件。
+
+## 接口 Interfaces
+
+```go
+
+// 这里定义了两个结构体类型，Dog和Cat
+struct Dog {}
+struct Cat {}
+
+// 下面为每个结构体绑定了speak这个方法
+fn (d Dog) speak() string {
+	return 'woof'
+}
+
+fn (c Cat) speak() string {
+	return 'meow'
+}
+
+// 定义一个接口，相当于把两个结构体进一步封装
+interface Speaker {
+	speak() string
+}
+
+fn perform(s Speaker) {
+	println(s.speak())
+}
+
+dog := Dog{}
+cat := Cat{}
+perform(dog) // ==> "woof"
+perform(cat) // ==> "meow"
+```
+
+关于接口，文档写的很少，就给了一个示例和一句解释
+>A type implements an interface by implementing its methods. There is no explicit declaration of intent, no "implements" keyword.
+
+看的也不太懂，可能会go的人能理解吧，我是不懂，
+
+## 枚举
+
+```v
+enum Color {
+	red green blue 
+} 
+
+mut color := Color.red
+// V knows that `color` is a `Color`. No need to use `Color.green` here.
+color = .green 
+println(color) // ==> "1"  TODO: print "green"?  
+```
+
+emmmm, TODO
+
+## Option/Result types & error handling
+
+TODO: 完了假期再看。。。
+
+## 关键字
+V has 22 keywords:
+break 
+const  
+continue 
+defer 
+else 
+enum 
+fn
+for
+go
+goto
+if
+import
+in 
+interface 
+match 
+module 
+mut 
+or 
+pub 
+return
+struct
+type 
+
+## 运算符
+
+```txt
+Appendix II: Operators
++    sum                    integers, floats, strings
+-    difference             integers, floats 
+*    product                integers, floats 
+/    quotient               integers, floats 
+%    remainder              integers
+
+&    bitwise AND            integers
+|    bitwise OR             integers
+^    bitwise XOR            integers
+
+<<   left shift             integer << unsigned integer
+>>   right shift            integer >> unsigned integer 
+
+
+Precedence    Operator
+    5             *  /  %  <<  >>  & 
+    4             +  -  |  ^
+    3             ==  !=  <  <=  >  >=
+    2             &&
+    1             || 
+
+
+Assignment Operators 
++=   -=   *=   /=   %=
+&=   |=   ^=
+>>=  <<= 
+```
