@@ -1,6 +1,6 @@
 # Dog planing Notes
 
-To Love,To Attempt :octocat:
+![to love to attempt](./image/love.png)
 
 ---
 
@@ -8,13 +8,13 @@ To Love,To Attempt :octocat:
 
 ### python基础
 
-* 数据类型：整形，浮点型，复数，字符串（正则），列表（列表推导式），元组（生成器推导式），字典（字典推导式），集合（集合推导式）
-* 流程控制：条件，循环
-* 函数：函数，修饰器，lambda表达式
+* 数据类型
+* 流程控制
+* 函数
 * 文件操作
-* 异常处理：捕捉异常，抛出异常，Exception
-* 面向对象：类，类对象，单例模式，魔术方法
-* 数据库：关系型，非关系型
+* 异常处理
+* 面向对象
+* 数据库
 
 ### python进阶
 
@@ -25,11 +25,11 @@ To Love,To Attempt :octocat:
 
 ## TCP/IP
 
-* 物理层：双绞线，无线，光纤...
-* 链路层:以太网，无线LAN，PPP...
-* 网络层：IP，ICMP，ARP...
-* 传输层：TCP，UDP，SCTP...
-* 应用层：HTTP，SMTP，FTP...
+* 物理层
+* 链路层
+* 网络层
+* 传输层
+* 应用层
 
 ## 蓝桥杯
 
@@ -46,21 +46,64 @@ To Love,To Attempt :octocat:
 * 时空权衡
 * 贪心算法
 * 回溯法和分支限界法
+* 课设：第k个最长子序列
 
 ## Linux
 
 * 基本命令
-* 权限管理
-* vi
+* 远程管理
+* 用户和组管理
+* 系统信息
+* vi/vim
 
 ## C/C++
 
 ## Javascript
 
-[跟着B站去学习](https://www.bilibili.com/video/av48927313)
-![JS对象](Javascript/image/JS.png)
+### js基础
+
+* js语法
+* js变量和数据类型
+* js运算符
+* js流程控制
+* js对象和函数
+* 工厂方法和构造函数
+* js垃圾回收机制
+* js字符串和正则
+* js数组
+
+### js进阶
+
+* DOM
+* DOM Event
+* BOM
+* JSON
+
+### JS高级
+
+* 数据与内存分配
+* 事件和线程机制
+  * 线程与进程
+  * 浏览器内核
+  * 事件循环机制
+  * Web Wokers
+* 函数高级
+  * 作用域与作用域链
+  * 执行上下文和执行上下文栈
+  * 原型与原型链
+  * 闭包
+  * this指针
+* ECMAScript
+  * ES5
+  * ES6
 
 ## Vue.js
+
+## 微信小程序
+
+## V语言
+
+仅仅学着玩呢。。
 
 ## git
 
