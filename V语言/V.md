@@ -2,6 +2,8 @@
 
 我听说V语言看文档半小时就能完全掌握？？？？以我的智商一小时掌握不了我就给各位科普一下广告法？？？
 
+>以下内容大都是官方文档的翻译和极少量的解释
+
 ## 宇宙惯例hello world
 
 ```v
@@ -501,29 +503,51 @@ emmmm, TODO
 TODO: 完了假期再看。。。
 
 ## 关键字
+
 V has 22 keywords:
-break 
-const  
-continue 
-defer 
-else 
-enum 
+break
+
+const
+
+continue
+
+defer
+
+else
+
+enum
+
 fn
+
 for
+
 go
+
 goto
+
 if
+
 import
-in 
-interface 
-match 
-module 
-mut 
-or 
-pub 
+
+in
+
+interface
+
+match
+
+module
+
+mut
+
+or
+
+pub
+
 return
+
 struct
-type 
+
+type
 
 ## 运算符
 
