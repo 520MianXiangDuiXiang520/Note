@@ -1,0 +1,545 @@
+<!DOCTYPE html><html><head>
+      <title>Model&#x8BBE;&#x8BA1;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\lenovo\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.4.2\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="django-model-%E8%AE%BE%E8%AE%A1">Django Model &#x8BBE;&#x8BA1;</h1>
+
+<p>Django Model&#x8BBE;&#x8BA1;&#x662F;Django&#x4E94;&#x9879;&#x57FA;&#x7840;&#x6838;&#x5FC3;&#x8BBE;&#x8BA1;&#x4E4B;&#x4E00;&#xFF08;Model&#x8BBE;&#x8BA1;&#xFF0C;URL&#x914D;&#x7F6E;&#xFF0C;View&#x7F16;&#x5199;&#xFF0C;Template&#x8BBE;&#x8BA1;&#xFF0C;From&#x4F7F;&#x7528;&#xFF09;&#xFF0C;&#x4E5F;&#x662F;MVC&#x6A21;&#x5F0F;&#x4E2D;&#x91CD;&#x8981;&#x7684;&#x73AF;&#x8282;&#x3002;</p>
+<p>Model&#x662F;&#x6570;&#x636E;&#x6A21;&#x578B;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5B83;&#x63CF;&#x8FF0;&#x4E86;&#x6570;&#x636E;&#x7684;&#x6784;&#x6210;&#x548C;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x903B;&#x8F91;&#x5173;&#x7CFB;&#xFF0C;&#x5728;Django&#x4E2D;&#xFF0C;Model&#x8BBE;&#x8BA1;&#x5B9E;&#x8D28;&#x4E0A;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7AD9;&#x5728;&#x7C7B;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x770B;Model&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x4E00;&#x4E9B;&#x6666;&#x6DA9;&#x7684;&#x6982;&#x5FF5;&#x5F71;&#x54CD;&#x7406;&#x89E3;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;python&#x4E2D;&#x4E00;&#x4E2A;&#x57FA;&#x672C;&#x7C7B;&#x7684;&#x6784;&#x6210;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">ClassName</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># &#x5C5E;&#x6027;&#xFF08;&#x7C7B;&#x5C5E;&#x6027;&#xFF09;</span>
+    Attribute <span class="token operator">=</span> <span class="token string">&quot;&quot;</span>
+    <span class="token comment"># &#x65B9;&#x6CD5;</span>
+    <span class="token keyword">def</span> <span class="token function">Method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+</pre><p>&#x6839;&#x636E;&#x4E0A;&#x9762;python&#x4E2D;&#x7684;&#x7C7B;&#xFF0C;&#x6211;&#x4EEC;&#x4F9D;&#x6B21;&#x7814;&#x7A76;Django Model</p>
+<ul>
+<li>&#x57FA;&#x7C7B;&#xFF1A;&#x5B9A;&#x4E49;Django Model&#x7684;&#x7C7B;&#x5FC5;&#x987B;&#x7EE7;&#x627F;&#x81EA;models.Model</li>
+<li>&#x7C7B;&#x540D;&#xFF1A;&#x5728;Django Model&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x7C7B;&#x540D;&#x4F1A;&#x88AB;&#x5F53;&#x4F5C;&#x662F;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x6A21;&#x578B;&#x7684;&#x540D;&#x79F0;&#x3002;</li>
+<li>&#x7C7B;&#x5C5E;&#x6027;&#xFF1A;Django Model&#x8BBE;&#x8BA1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x7C7B;&#x5C5E;&#x6027;&#x6709;&#x4E24;&#x65B9;&#x9762;&#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x4E00;&#x662F;&#x7533;&#x660E;&#x5B57;&#x6BB5;&#xFF0C;&#x4E8C;&#x662F;&#x7533;&#x660E;&#x5173;&#x7CFB;&#xFF08;&#x4E00;&#x5BF9;&#x591A;&#xFF0C;&#x591A;&#x5BF9;&#x591A;&#xFF0C;&#x4E00;&#x5BF9;&#x4E00;&#xFF09;</li>
+<li>&#x65B9;&#x6CD5;&#xFF1A;&#x7531;&#x4E8E;&#x662F;&#x6D3E;&#x751F;&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x5F88;&#x591A;&#x65B9;&#x6CD5;&#xFF0C;Model&#x57FA;&#x7C7B;&#x5DF2;&#x7ECF;&#x505A;&#x7684;&#x8DB3;&#x591F;&#x5B8C;&#x5584;&#x4E86;&#xFF0C;&#x53EA;&#x662F;&#x5728;&#x6709;&#x5FC5;&#x8981;&#x7684;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x91CD;&#x5199;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x5E38;&#x89C1;&#x7684;<code>__str__</code>&#x7B49;</li>
+<li>&#x5185;&#x5D4C;&#x7C7B;Meta&#xFF1A;Django Model&#x8BBE;&#x8BA1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5185;&#x5D4C;&#x7C7B;Meta&#x7528;&#x6765;&#x5B9A;&#x4E49;&#x5143;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x8C13;&#x5143;&#x6570;&#x636E;&#x5C31;&#x662F;&#x4E0D;&#x662F;&#x5B57;&#x6BB5;&#x7684;&#x4EFB;&#x4F55;&#x6570;&#x636E;&#xFF0C;&#x6BD4;&#x5982;&#x5B9A;&#x4E49;&#x6392;&#x5E8F;&#x89C4;&#x5219;&#x7B49;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x4F9D;&#x6B21;&#x4ECB;&#x7ECD;&#x5B57;&#x6BB5;&#xFF0C;&#x5173;&#x7CFB;&#xFF0C;&#x91CD;&#x5199;&#x65B9;&#x6CD5;&#xFF0C;Meta</p>
+<h2 class="mume-header" id="1%E5%AD%97%E6%AE%B5-field">1.&#x5B57;&#x6BB5; Field</h2>
+
+<p>&#x90FD;&#x8BF4;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x624D;&#x662F;&#x5B66;&#x4E60;&#x4E00;&#x95E8;&#x8BED;&#x8A00;&#x6700;&#x597D;&#x7684;&#x6559;&#x7A0B;&#xFF0C;<a href="https://docs.djangoproject.com/zh-hans/2.1/ref/models/fields/">&#x8BBF;&#x95EE;&#x5B98;&#x65B9;&#x6587;&#x6863;</a></p>
+<h3 class="mume-header" id="11-%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8Bfield-types">1.1 &#x5B57;&#x6BB5;&#x7C7B;&#x578B;&#xFF08;Field types&#xFF09;</h3>
+
+<p>&#x5B57;&#x9762;&#x610F;&#x601D;&#xFF0C;&#x7528;&#x6765;&#x7533;&#x660E;&#x8BE5;&#x5B57;&#x6BB5;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x5E38;&#x89C1;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x6570;&#x5B57;&#xFF0C;&#x65E5;&#x671F;&#xFF0C;&#x90AE;&#x7BB1;&#x7B49;&#x5F85;&#xFF0C;&#x4E0B;&#x9762;&#x5217;&#x4E3E;&#x5E38;&#x89C1;&#x7684;&#x5B57;&#x6BB5;&#x7C7B;&#x578B;</p>
+<h4 class="mume-header" id="autofield%E4%B8%BB%E9%94%AE">AutoField&#xFF08;&#x4E3B;&#x952E;&#xFF09;</h4>
+
+<p>&#x8FD9;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x4E00;&#x822C;&#x4E0D;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x5B9A;&#x4E49;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;ID&#x7684;&#x81EA;&#x52A8;&#x9012;&#x589E;&#xFF0C;Django&#x4F1A;&#x9ED8;&#x8BA4;&#x4E3A;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<code>id</code></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># &#x6BCF;&#x4E00;&#x4E2A;Model Django&#x90FD;&#x4F1A;&#x4E3A;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;</span>
+<span class="token builtin">id</span> <span class="token operator">=</span> models<span class="token punctuation">.</span>AutoField<span class="token punctuation">(</span>primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</pre><p>&#x5982;&#x679C;&#x60F3;&#x628A;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7684;&#x5B57;&#x6BB5;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E3B;&#x952E;&#xFF0C;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x53C2;&#x6570;primary_key&#xFF0C;&#x8FD9;&#x65F6;&#xFF08;&#x663E;&#x5F0F;&#x8BBE;&#x7F6E;&#x4E3B;&#x952E;&#xFF09;Django&#x5C06;&#x4E0D;&#x4F1A;&#x4E3A;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;ID&#x5B57;&#x6BB5;</p>
+<p>&#x4E0E;&#x4E4B;&#x7C7B;&#x4F3C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;BigAutoField&#xFF0C;&#x5B83;&#x652F;&#x6301;&#x66F4;&#x5927;&#x7684;&#x8303;&#x56F4;&#xFF0C;&#x6700;&#x5927;&#x5230;9223372036854775807&#xFF08;&#x4E5D;&#x767E;&#x4E8C;&#x5341;&#x4EBF;&#x4EBF;&#xFF09;&#x8DB3;&#x591F;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x7684;&#x4F7F;&#x7528;</p>
+<h4 class="mume-header" id="integerfield%E6%95%B4%E6%95%B0%E5%AD%97%E6%AE%B5">IntegerField&#xFF08;&#x6574;&#x6570;&#x5B57;&#x6BB5;&#xFF09;</h4>
+
+<p>&#x5B57;&#x9762;&#x610F;&#x601D;&#xFF0C;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x6574;&#x6570;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x652F;&#x6301; -2147483648 &#x5230; 2147483647 &#x7684;&#x6570;&#x5B57;</p>
+<p>&#x540C;&#x6837;&#x4E0E;&#x4E4B;&#x7C7B;&#x4F3C;&#x6709;BigIntegerField &#x652F;&#x6301;-9223372036854775808 &#x5230; 9223372036854775807 &#x7684;&#x6570;&#x5B57;</p>
+<p>&#x7C7B;&#x4F3C;&#x8FD8;&#x6709;FloatField&#xFF0C;&#x652F;&#x6301;&#x6D6E;&#x70B9;&#x6570;</p>
+<h4 class="mume-header" id="booleanfield%E5%B8%83%E5%B0%94%E5%AD%97%E6%AE%B5">BooleanField&#xFF08;&#x5E03;&#x5C14;&#x5B57;&#x6BB5;&#xFF09;</h4>
+
+<p>&#x7528;&#x6765;&#x5B58;&#x50A8;&#x5E03;&#x5C14;&#x503C;&#xFF0C;&#x4E0E;&#x4E4B;&#x7C7B;&#x4F3C;&#x7684;&#x8FD8;&#x6709;NullBooleanField&#xFF0C;NullBooleanField&#x76F8;&#x5F53;&#x4E8E;BooleanField(null=true),&#x4E0D;&#x8FC7;&#x5728;Django 2.1 &#x4E4B;&#x540E;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x540E;&#x8005;&#xFF0C;&#x5E94;&#x4E3A;&#x5B83;&#x6709;&#x53EF;&#x80FD;&#x5728;&#x672A;&#x6765;&#x7248;&#x672C;&#x88AB;&#x5F03;&#x7528;</p>
+<h4 class="mume-header" id="charfield%E5%AD%97%E7%AC%A6%E5%AD%97%E6%AE%B5">CharField&#xFF08;&#x5B57;&#x7B26;&#x5B57;&#x6BB5;&#xFF09;</h4>
+
+<p>&#x8FD9;&#x5E94;&#x8BE5;&#x662F;&#x6700;&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x4E86;&#x5427;&#xFF0C;&#x7528;&#x4E8E;&#x5C11;&#x91CF;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x50A8;&#x5B58;&#xFF08;&#x5927;&#x91CF;&#x5B57;&#x7B26;&#x4E32;&#x8BF7;&#x4F7F;&#x7528;TextField&#xFF09;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x6709;&#x4E00;&#x4E2A;<strong>&#x5FC5;&#x987B;&#x53C2;&#x6570;max_length</strong>&#x7528;&#x6765;&#x7533;&#x660E;&#x5141;&#x8BB8;&#x50A8;&#x5B58;&#x7684;&#x6700;&#x5927;&#x957F;&#x5EA6;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"> <span class="token keyword">class</span> <span class="token class-name">CharField</span><span class="token punctuation">(</span>Field<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    description <span class="token operator">=</span> _<span class="token punctuation">(</span><span class="token string">&quot;String (up to %(max_length)s)&quot;</span><span class="token punctuation">)</span>
+    <span class="token comment"># ...</span>
+    <span class="token keyword">def</span> <span class="token function">_check_max_length_attribute</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>max_length <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span>
+                checks<span class="token punctuation">.</span>Error<span class="token punctuation">(</span>
+                    <span class="token string">&quot;CharFields must define a &apos;max_length&apos; attribute.&quot;</span><span class="token punctuation">,</span>
+                    obj<span class="token operator">=</span>self<span class="token punctuation">,</span>
+                    <span class="token builtin">id</span><span class="token operator">=</span><span class="token string">&apos;fields.E120&apos;</span><span class="token punctuation">,</span>
+                <span class="token punctuation">)</span>
+            <span class="token punctuation">]</span>
+</pre><p>&#x6839;&#x636E;&#x6E90;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;max_length&#x4F1A;&#x76F4;&#x63A5;&#x62A5;&quot;CharFields must define a &apos;max_length&apos; attribute.&quot;</p>
+<h4 class="mume-header" id="datefield%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%AD%97%E6%AE%B5">DateField&#xFF08;&#x65F6;&#x95F4;&#x65E5;&#x671F;&#x5B57;&#x6BB5;&#xFF09;</h4>
+
+<p>&#x8BE5;&#x5B57;&#x6BB5;&#x6709;&#x4E24;&#x4E2A;&#x5E38;&#x7528;&#x53C2;&#x6570; auto_now &#x548C; auto_now_add</p>
+<ul>
+<li>auto_now &#xFF1A;&#x6307;&#x5B9A;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6BCF;&#x6B21;&#x8C03;&#x7528;save()&#x65F6;&#x5C06;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x4F5C;&#x4E3A;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#xFF08;&#x4F1A;&#x8986;&#x76D6;&#x9ED8;&#x8BA4;&#x503C;&#x6216;&#x4E4B;&#x524D;&#x7684;&#x503C;&#xFF09;&#xFF0C;&#x4F46;&#x4F7F;&#x7528;QuerySet.update()&#x7B49;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x8DDF;&#x65B0;&#x503C;</li>
+<li>auto_now_add : &#x5728;&#x521D;&#x59CB;&#x5316;&#x4F1A;&#x4EE5;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x6233;&#x4F5C;&#x4E3A;&#x503C;&#x7ED9;&#x5B57;&#x6BB5;&#x8D4B;&#x503C;&#xFF0C;&#x4E0D;&#x7BA1;&#x4F60;&#x6709;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5B9A;&#x4E49;&#x4E86;&#x4E5F;&#x4F1A;&#x88AB;&#x8986;&#x76D6;</li>
+<li>&#x533A;&#x522B;&#xFF1A;&#x4F7F;&#x7528;auto_now&#x4F1A;&#x5728;&#x6BCF;&#x6B21;save()&#x65F6;&#x4FEE;&#x6539;&#x5B57;&#x6BB5;&#x503C;&#xFF0C;&#x800C;auto_now_add&#x53EA;&#x662F;&#x5728;&#x9996;&#x6B21;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x65F6;&#x624D;&#x4F1A;&#x628A;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x7ED9;&#x5B57;&#x6BB5;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x80FD;&#x591F;&#x4FEE;&#x6539;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;<code>default=date.today</code>&#x9700;&#x8981;&#x5F15;&#x5165;<code>from datetime.date.today()</code></li>
+<li>auto_now,auto_now_add&#x4E0E;default&#x662F;&#x4E92;&#x65A5;&#x7684;&#xFF0C;&#x4EFB;&#x4F55;&#x4E00;&#x79CD;&#x7EC4;&#x5408;&#x90FD;&#x4F1A;&#x51FA;&#x9519;</li>
+<li>&#x5C06;auto_now&#x6216;auto_now_add&#x8BBE;&#x7F6E;&#x4E3A;True&#x7684;&#x7ED3;&#x679C;&#x4E0E;editable = False&#x548C;blank = True&#x7684;&#x6548;&#x679C;&#x4E00;&#x6837;</li>
+</ul>
+<p>&#x4E0E;DateField&#x7C7B;&#x4F3C;&#x7684;&#x8FD8;&#x6709;<strong>DateTimeField</strong></p>
+<ul>
+<li>&#x5982;&#x679C;&#x4F7F;&#x7528;DateTimeField&#x60F3;&#x8981;&#x4FEE;&#x6539;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>default=timezone.now</code> &#x540C;&#x6837;&#x9700;&#x8981;&#x5F15;&#x5165;<code>from django.utils.timezone.now()</code></li>
+<li>&#x53E6;&#x5916;&#x8FD8;&#x6709;<strong>TimeField</strong>,&#x7528;&#x6765;&#x8868;&#x793A;&#x65F6;&#x95F4;&#xFF0C;&#x63A5;&#x53D7;&#x7684;&#x53C2;&#x6570;&#x4E0E;DateField&#x4E00;&#x6837;</li>
+</ul>
+<p><img src="../image/DjangoModel_01.png" alt="django-model-1"></p>
+<h4 class="mume-header" id="emailfield">EmailField</h4>
+
+<p>&#x5B9E;&#x8D28;&#x4E0A;&#x662F;CharField&#xFF0C;&#x4E0D;&#x8FC7;&#x4F7F;&#x7528;EmailValidator&#x68C0;&#x67E5;&#x4E86;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x662F;&#x6709;&#x6548;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x800C;&#x5DF2;&#xFF0C;&#x9ED8;&#x8BA4;max_length=254</p>
+<h4 class="mume-header" id="textfield">TextField</h4>
+
+<p>&#x5B9E;&#x8D28;&#x4E0A;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;CharField&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x6587;&#x672C;&#x5B57;&#x6BB5;</p>
+<h4 class="mume-header" id="filefield">FileField</h4>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">FileField</span><span class="token punctuation">(</span>upload_to<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token operator">**</span>options<span class="token punctuation">)</span>
+</pre><p>&#x6B63;&#x5982;&#x6587;&#x6863;&#x6240;&#x8BF4;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x5B57;&#x6BB5;&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x53EF;&#x9009;&#x53C2;&#x6570;upload_to&#x548C;max_length,&#x540E;&#x8005;&#x9ED8;&#x8BA4;100</p>
+<h5 class="mume-header" id="upload_to">upload_to</h5>
+
+<p>&#x89C1;&#x540D;&#x77E5;&#x610F;&#xFF0C;upload_to&#x7528;&#x6765;&#x7533;&#x660E;&#x4E0A;&#x4F20;&#x76EE;&#x5F55;&#xFF0C;&#x5982;&#x679C;&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;&#x521D;&#x503C;&#xFF0C;Django&#x4F1A;&#x5728;&#x4ED6;&#x540E;&#x9762;&#x6DFB;&#x52A0;&#x65F6;&#x95F4;&#xFF08;&#x5C31;&#x662F;&#x4EE5;&#x4E0A;&#x4F20;&#x65F6;&#x95F4;&#x5206;&#x7C7B;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x7528;&#x6237;&#x4E0A;&#x4F20;&#x6587;&#x4EF6;&#x4E00;&#x822C;&#x4FDD;&#x5B58;&#x5230;media&#x76EE;&#x5F55;&#x4E2D;&#xFF0C;media&#x76EE;&#x5F55;&#x8DEF;&#x5F84;&#x9700;&#x8981;&#x5728;setting.py&#x91CC;&#x5B9A;&#x4E49;</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">MEDIA_ROOT <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span> <span class="token string">&quot;media&quot;</span><span class="token punctuation">)</span>
+</pre><p>&#x8FD9;&#x4E2A;media&#x6587;&#x4EF6;&#x5939;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5EFA;&#x7ACB;&#xFF0C;&#x4FDD;&#x5B58;&#x6587;&#x4EF6;&#x65F6;Django&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyModel</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># file will be uploaded to MEDIA_ROOT/uploads</span>
+    upload <span class="token operator">=</span> models<span class="token punctuation">.</span>FileField<span class="token punctuation">(</span>upload_to<span class="token operator">=</span><span class="token string">&apos;uploads/&apos;</span><span class="token punctuation">)</span>
+    <span class="token comment"># or...</span>
+    <span class="token comment"># file will be saved to MEDIA_ROOT/uploads/2015/01/30</span>
+    upload <span class="token operator">=</span> models<span class="token punctuation">.</span>FileField<span class="token punctuation">(</span>upload_to<span class="token operator">=</span><span class="token string">&apos;uploads/%Y/%m/%d/&apos;</span><span class="token punctuation">)</span>
+</pre><p>&#x5982;&#x679C;&#x9700;&#x8981;&#x52A8;&#x6001;&#x5B58;&#x50A8;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x6309;&#x7528;&#x6237;&#x5B58;&#x50A8;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4F5C;&#x4E3A;upload_to&#x7684;&#x503C;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5FC5;&#x987B;&#x63A5;&#x53D7;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;instance&#xFF08;&#x4E3B;&#x952E;&#xFF0C;&#x4F20;&#x7ED9;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x7684;&#x552F;&#x4E00;&#x5B9E;&#x4F8B;&#xFF09;&#x548C;filename&#xFF08;&#x6587;&#x4EF6;&#x540D;&#xFF09;&#xFF0C;&#x5982;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">user_directory_path</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># file will be uploaded to MEDIA_ROOT/user_&lt;id&gt;/&lt;filename&gt;</span>
+    <span class="token keyword">return</span> <span class="token string">&apos;user_{0}/{1}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token builtin">id</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyModel</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    upload <span class="token operator">=</span> models<span class="token punctuation">.</span>FileField<span class="token punctuation">(</span>upload_to<span class="token operator">=</span>user_directory_path<span class="token punctuation">)</span>
+</pre><p>&#x8FD9;&#x91CC;&#x770B;&#x7740;&#x6709;&#x70B9;&#x590D;&#x6742;&#xFF0C;&#x5176;&#x5B9E;&#x4E5F;&#x4E0D;&#x96BE;&#xFF0C;instance&#x662F;&#x5F53;&#x524D;FileField&#x7684;&#x6A21;&#x578B;&#x5B9E;&#x4F8B;&#x7684;&#x6A21;&#x578B;&#x5B9E;&#x4F8B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x662F;&#x7684;user&#x662F;&#x548C;User&#x8868;&#x5BF9;&#x5E94;&#x7684;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x662F;user&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">user_directory_path</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># &#x6211;&#x6CA1;&#x6709;&#x7528;user&#xFF0C;&#x800C;&#x662F;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;name&#x5B57;&#x6BB5;</span>
+    <span class="token keyword">return</span> <span class="token string">&apos;user_{0}/{1}&apos;</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>name<span class="token punctuation">,</span> filename<span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Diary</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+    creat_time <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now_add<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    time <span class="token operator">=</span> models<span class="token punctuation">.</span>TimeField<span class="token punctuation">(</span>auto_now<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    upload <span class="token operator">=</span> models<span class="token punctuation">.</span>FileField<span class="token punctuation">(</span>upload_to<span class="token operator">=</span>user_directory_path<span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        verbose_name <span class="token operator">=</span> <span class="token string">&quot;Diary&quot;</span>
+        verbose_name_plural <span class="token operator">=</span> <span class="token string">&quot;Diarys&quot;</span>
+</pre><p><img src="../image/DjangoModel_02.png" alt="DjangoModel_02.png"></p>
+<p>&#x4FDD;&#x5B58;&#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x4E86;</p>
+<p><img src="../image/DjangoModel_03.png" alt="DjangoModel_03.png"></p>
+<p>&#x4F7F;&#x7528;&#x65F6;&#x95F4;&#x4E5F;&#x662F;&#x4E00;&#x6837;&#x7684;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Diary</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+    creat_time <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now_add<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    time <span class="token operator">=</span> models<span class="token punctuation">.</span>TimeField<span class="token punctuation">(</span>auto_now<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token comment"># upload = models.FileField(upload_to=user_directory_path,default=&quot;&quot;)</span>
+    upload <span class="token operator">=</span> models<span class="token punctuation">.</span>FileField<span class="token punctuation">(</span>upload_to<span class="token operator">=</span><span class="token string">&apos;user_123/%Y/%m/%d/&apos;</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        verbose_name <span class="token operator">=</span> <span class="token string">&quot;Diary&quot;</span>
+        verbose_name_plural <span class="token operator">=</span> <span class="token string">&quot;Diarys&quot;</span>
+
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>name
+</pre><p><img src="../image/DjangoModel_04.png" alt="DjangoModel_04.png"></p>
+<h5 class="mume-header" id="filefield-%E5%92%8C-fieldfile">FileField &#x548C; FieldFile</h5>
+
+<p>&#x5F53;&#x60A8;&#x8BBF;&#x95EE;model&#x4E0A;&#x7684;FileField&#x65F6;&#xFF0C;&#x4F1A;&#x83B7;&#x5F97;&#x4E00;&#x4E2A;FieldFile&#x7684;&#x5B9E;&#x4F8B;&#x4F5C;&#x4E3A;&#x8BBF;&#x95EE;&#x57FA;&#x7840;&#x6587;&#x4EF6;&#x7684;&#x4EE3;&#x7406;&#x3002;&#x5B83;&#x662F;&#x7EE7;&#x627F;&#x81EA;python&#x7684;File&#x7684;&#xFF0C;&#x6709;read(),write()&#x7B49;&#xFF0C;&#x8FD8;&#x81EA;&#x5DF1;&#x5C01;&#x88C5;&#x4E86;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;url&#xFF0C;name&#x7B49;&#xFF0C;&#x770B;<a href="https://docs.djangoproject.com/zh-hans/2.1/ref/models/fields/#django.db.models.FileField">&#x5B98;&#x7F51;</a></p>
+<h4 class="mume-header" id="imagefield">ImageField</h4>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">ImageField</span><span class="token punctuation">(</span>FileField<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    attr_class <span class="token operator">=</span> ImageFieldFile
+    descriptor_class <span class="token operator">=</span> ImageFileDescriptor
+    description <span class="token operator">=</span> _<span class="token punctuation">(</span><span class="token string">&quot;Image&quot;</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> verbose_name<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> width_field<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> height_field<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>width_field<span class="token punctuation">,</span> self<span class="token punctuation">.</span>height_field <span class="token operator">=</span> width_field<span class="token punctuation">,</span> height_field
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>verbose_name<span class="token punctuation">,</span> name<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+</pre><p>&#x7531;&#x6E90;&#x7801;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;ImageField&#x662F;&#x7EE7;&#x627F;&#x81EA;FileField&#x7684;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x9664;&#x4E86;FileField&#x4E2D;&#x7684;&#x7279;&#x6B8A;&#x5C5E;&#x6027;&#x5916;&#xFF0C;&#x5B83;&#x989D;&#x5916;&#x6DFB;&#x52A0;&#x4E86;width_field, height_field&#x4E24;&#x4E2A;&#x5C5E;&#x6027;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x56FE;&#x7247;&#x5927;&#x5C0F;&#xFF0C;&#x5B83;&#x4F1A;&#x68C0;&#x67E5;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x662F;&#x56FE;&#x7247;&#xFF0C;&#x5176;&#x4ED6;&#x7528;&#x6CD5;&#x4E0E;FileField&#x4E00;&#x6837;&#x3002;</p>
+<h4 class="mume-header" id="%E5%85%B6%E4%BB%96">&#x5176;&#x4ED6;</h4>
+
+<p>&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x5E38;&#x89C1;&#x7684;&#x8FD9;&#x4E9B;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5B57;&#x6BB5;&#xFF0C;&#x8BF8;&#x5982;&#x7528;&#x4F5C;URL&#x7684;<strong>URLField</strong>&#xFF0C;&#x8FD8;&#x6709;&#x4E0D;&#x540C;&#x5927;&#x5C0F;&#x7684;IntField&#xFF0C;&#x5982;<strong>PositiveSmallIntegerField</strong>&#xFF0C;<strong>PositiveIntegerField</strong>&#xFF0C;<strong>SmallIntegerField</strong>&#xFF0C;&#x7528;&#x4F5C;IP&#x5730;&#x5740;&#x7684;<strong>GenericIPAddressField</strong>&#x7B49;&#x5F85;&#xFF0C;&#x6B64;&#x5916;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x5B57;&#x6BB5;&#xFF0C;&#x770B;&#x6587;&#x6863;&#x5C31;&#x597D;&#x3002;</p>
+<h3 class="mume-header" id="12-%E5%8F%82%E6%95%B0%E6%80%BB%E7%BB%93">1.2 &#x53C2;&#x6570;&#x603B;&#x7ED3;</h3>
+
+<p>&#x4E4B;&#x524D;&#x9047;&#x5230;&#x5F88;&#x591A;&#x53C2;&#x6570;&#xFF0C;&#x5982;max_length&#xFF0C;default&#x7B49;&#xFF0C;&#x8FD9;&#x91CC;&#x518D;&#x505A;&#x603B;&#x7ED3;</p>
+<h4 class="mume-header" id="null">null</h4>
+
+<p>&#x5982;&#x679C;&#x4E3A;True&#xFF0C;Django&#x5C06;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5C06;&#x7A7A;&#x503C;&#x5B58;&#x50A8;&#x4E3A;NULL&#x3002; &#x9ED8;&#x8BA4;&#x503C;&#x4E3A;False&#x3002;</p>
+<p>&#x907F;&#x514D;&#x5728;&#x57FA;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B57;&#x6BB5;&#xFF08;&#x5982;CharField&#x548C;TextField&#xFF09;&#x4E0A;&#x4F7F;&#x7528;null&#x3002; &#x5982;&#x679C;&#x57FA;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B57;&#x6BB5;&#x5177;&#x6709;null = True&#xFF0C;&#x5219;&#x8868;&#x793A;&#x5B83;&#x5177;&#x6709;&#x201C;&#x65E0;&#x6570;&#x636E;&#x201D;&#x7684;&#x4E24;&#x4E2A;&#x53EF;&#x80FD;&#x503C;&#xFF1A;NULL&#x548C;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#x3002; &#x5728;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E3A;&#x201C;&#x65E0;&#x6570;&#x636E;&#x201D;&#x63D0;&#x4F9B;&#x4E24;&#x4E2A;&#x53EF;&#x80FD;&#x7684;&#x503C;&#x662F;&#x591A;&#x4F59;&#x7684;; Django&#x7EA6;&#x5B9A;&#x662F;&#x4F7F;&#x7528;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x800C;&#x4E0D;&#x662F;NULL&#x3002;</p>
+<h4 class="mume-header" id="blank">blank</h4>
+
+<p>&#x5982;&#x679C;&#x4E3A;&#x771F;&#xFF0C;&#x5219;&#x5141;&#x8BB8;&#x8BE5;&#x5B57;&#x6BB5;&#x4E3A;&#x7A7A;&#x3002;&#x9ED8;&#x8BA4;&#x662F;&#x5047;&#x7684;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x4E0E;null&#x4E0D;&#x540C;&#x3002;null&#x7EAF;&#x7CB9;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x76F8;&#x5173;&#xFF0C;&#x800C;blank&#x5219;&#x4E0E;&#x9A8C;&#x8BC1;&#x76F8;&#x5173;&#x3002;&#x5982;&#x679C;&#x5B57;&#x6BB5;&#x4E3A;blank=True&#xFF0C;&#x8868;&#x5355;&#x9A8C;&#x8BC1;&#x5C06;&#x5141;&#x8BB8;&#x8F93;&#x5165;&#x7A7A;&#x503C;&#x3002;&#x5982;&#x679C;&#x5B57;&#x6BB5;&#x4E3A;&#x7A7A;=False&#xFF0C;&#x5219;&#x9700;&#x8981;&#x8BE5;&#x5B57;&#x6BB5;&#x3002;</p>
+<h4 class="mume-header" id="choices">choices</h4>
+
+<p>&#x4E3A;&#x5B57;&#x6BB5;&#x63D0;&#x4F9B;&#x9009;&#x9879;&#xFF0C;&#x9996;&#x5148;&#x4ED6;&#x7684;&#x503C;&#x5E94;&#x8BE5;&#x662F;&#x4E00;&#x4E2A;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#x5217;&#x8868;&#x6216;&#x5143;&#x7EC4;&#xFF0C;&#x5176;&#x6B21;&#x6BCF;&#x4E00;&#x9879;&#x4E2D;&#x90FD;&#x5E94;&#x8BE5;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x662F;&#x8981;&#x5B58;&#x50A8;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x771F;&#x5B9E;&#x503C;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x662F;&#x5C55;&#x793A;&#x7ED9;&#x4EBA;&#x7684;&#x503C;&#xFF0C;&#x6BD4;&#x5982;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Diary</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    SEX_CHOICES <span class="token operator">=</span> <span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token string">&apos;boy&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;BOY&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">&apos;girl&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;GIRL&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">&apos;else&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ELSE&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    sex <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>choices<span class="token operator">=</span>SEX_CHOICES<span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+</pre><p>&#x8FD9;&#x4E2A;Model&#x5C55;&#x793A;&#x5728;admin&#x9875;&#x9762;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x8BF7;&#x5FFD;&#x7565;&#x5176;&#x4ED6;&#x5B57;&#x6BB5;&#xFF0C;&#x90A3;&#x662F;&#x4E4B;&#x524D;&#x5199;&#x7684;</p>
+<p><img src="../image/DjangoModel_05.png" alt="DjangoModel_05.png"></p>
+<p>&#x5728;&#x968F;&#x4FBF;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x503C;&#x540E;&#xFF0C;&#x5728;MySQL&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF08;&#x6700;&#x540E;&#x4E00;&#x9879;&#xFF09;</p>
+<p><img src="../image/DjangoModel_06.png" alt="DjangoModel_06.png"></p>
+<p>&#x5C55;&#x793A;&#x7ED9;&#x6211;&#x4EEC;&#x7684;&#x662F;&#x540E;&#x9762;&#x5927;&#x5199;&#x7684;&#xFF0C;&#x800C;&#x5B58;&#x50A8;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x5219;&#x662F;&#x524D;&#x9762;&#x5C0F;&#x5199;&#x7684;</p>
+<p>&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x5982;&#x679C;Model&#x4E2D;&#x6709;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x9700;&#x8981;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E9B;&#x9009;&#x9879;&#x5206;&#x7C7B;&#x653E;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#x4E2D;&#xFF0C;&#x5982;</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">MEDIA_CHOICES <span class="token operator">=</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token string">&apos;Audio&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>
+            <span class="token punctuation">(</span><span class="token string">&apos;vinyl&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Vinyl&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">(</span><span class="token string">&apos;cd&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;CD&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&apos;Video&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>
+            <span class="token punctuation">(</span><span class="token string">&apos;vhs&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;VHS Tape&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">(</span><span class="token string">&apos;dvd&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;DVD&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&apos;unknown&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Unknown&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+</pre><h4 class="mume-header" id="default">default</h4>
+
+<p>&#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x9ED8;&#x8BA4;&#x5B57;&#x7B26;&#x4E32;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;</p>
+<h4 class="mume-header" id="db_column">db_column</h4>
+
+<p>&#x7528;&#x4E8E;&#x6B64;&#x5B57;&#x6BB5;&#x7684;&#x6570;&#x636E;&#x5E93;&#x5217;&#x7684;&#x540D;&#x79F0;&#x3002; &#x5982;&#x679C;&#x6CA1;&#x6709;&#x7ED9;&#x51FA;&#xFF0C;Django&#x5C06;&#x4F7F;&#x7528;&#x8BE5;&#x5B57;&#x6BB5;&#x7684;&#x540D;&#x79F0;&#x3002;</p>
+<h4 class="mume-header" id="db_index">db_index</h4>
+
+<p>&#x5982;&#x679C;&#x4E3A;True&#xFF0C;&#x5219;&#x5C06;&#x4E3A;&#x6B64;&#x5B57;&#x6BB5;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;&#x3002;</p>
+<h4 class="mume-header" id="db_tablespace">db_tablespace</h4>
+
+<p>&#x5982;&#x679C;&#x6B64;&#x5B57;&#x6BB5;&#x5DF2;&#x7F16;&#x5236;&#x7D22;&#x5F15;&#xFF0C;&#x5219;&#x7528;&#x4E8E;&#x6B64;&#x5B57;&#x6BB5;&#x7D22;&#x5F15;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7A7A;&#x95F4;&#x7684;&#x540D;&#x79F0;&#x3002; &#x9ED8;&#x8BA4;&#x503C;&#x4E3A;&#x9879;&#x76EE;&#x7684;DEFAULT_INDEX_TABLESPACE&#x8BBE;&#x7F6E;&#xFF08;&#x5982;&#x679C;&#x5DF2;&#x8BBE;&#x7F6E;&#xFF09;&#x6216;&#x6A21;&#x578B;&#x7684;db_tablespace&#xFF08;&#x5982;&#x679C;&#x6709;&#xFF09;&#x3002; &#x5982;&#x679C;&#x540E;&#x7AEF;&#x4E0D;&#x652F;&#x6301;&#x7D22;&#x5F15;&#x7684;&#x8868;&#x7A7A;&#x95F4;&#xFF0C;&#x5219;&#x5FFD;&#x7565;&#x6B64;&#x9009;&#x9879;&#x3002;</p>
+<h4 class="mume-header" id="editable">editable</h4>
+
+<p>&#x5982;&#x679C;&#x4E3A;False&#xFF0C;&#x5219;&#x8BE5;&#x5B57;&#x6BB5;&#x4E0D;&#x4F1A;&#x663E;&#x793A;&#x5728;admin&#x6216;&#x4EFB;&#x4F55;&#x5176;&#x4ED6;ModelForm&#x4E2D;&#x3002; &#x5728;&#x6A21;&#x578B;&#x9A8C;&#x8BC1;&#x671F;&#x95F4;&#x4E5F;&#x4F1A;&#x8DF3;&#x8FC7;&#x5B83;&#x4EEC;&#x3002; &#x9ED8;&#x8BA4;&#x4E3A;True&#x3002;</p>
+<h4 class="mume-header" id="error_messages">error_messages</h4>
+
+<blockquote>
+<p>error_messages&#x53C2;&#x6570;&#x5141;&#x8BB8;&#x60A8;&#x8986;&#x76D6;&#x5B57;&#x6BB5;&#x5C06;&#x5F15;&#x53D1;&#x7684;&#x9ED8;&#x8BA4;&#x6D88;&#x606F;&#x3002;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x5B57;&#x4E0E;&#x60A8;&#x8981;&#x8986;&#x76D6;&#x7684;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#x76F8;&#x5339;&#x914D;&#x3002;</p>
+<p>&#x5728; &#x8868;&#x5355;&#x5B57;&#x6BB5; &#x7EA7;&#x522B;&#x6216;&#x8005; &#x8868;&#x5355; Meta &#x7EA7;&#x522B;&#x5B9A;&#x4E49;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x4F18;&#x5148;&#x7EA7;&#x603B;&#x662F;&#x9AD8;&#x4E8E;&#x5728; &#x6A21;&#x578B;&#x5B57;&#x6BB5; &#x7EA7;&#x522B;&#x5B9A;&#x4E49;&#x7684;&#x3002;</p>
+<p>&#x5728; &#x6A21;&#x578B;&#x5B57;&#x6BB5; &#x4E0A;&#x5B9A;&#x4E49;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x53EA;&#x6709;&#x5728; &#x6A21;&#x578B;&#x9A8C;&#x8BC1; &#x6B65;&#x9AA4;&#x5F15;&#x53D1; ValidationError &#x65F6;&#x624D;&#x4F1A;&#x4F7F;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x5728;&#x8868;&#x5355;&#x7EA7;&#x5B9A;&#x4E49;&#x76F8;&#x5E94;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6DFB;&#x52A0; NON_FIELD_ERRORS &#x952E;&#x5230; ModelForm &#x5185;&#x90E8;&#x7684; Meta &#x7C7B;&#x7684; error_messages &#x4E2D;&#x6765;&#x8986;&#x76D6;&#x6A21;&#x578B;&#x9A8C;&#x8BC1;&#x5F15;&#x53D1;&#x7684; NON_FIELD_ERRORS &#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
+</blockquote>
+<h4 class="mume-header" id="help_text">help_text</h4>
+
+<blockquote>
+<p>&#x4F7F;&#x7528;&#x8868;&#x5355;&#x5C0F;&#x90E8;&#x4EF6;&#x663E;&#x793A;&#x7684;&#x989D;&#x5916;&#x201C;&#x5E2E;&#x52A9;&#x201D;&#x6587;&#x672C;&#x3002; &#x5373;&#x4F7F;&#x60A8;&#x7684;&#x5B57;&#x6BB5;&#x672A;&#x5728;&#x8868;&#x5355;&#x4E0A;&#x4F7F;&#x7528;&#xFF0C;&#x5B83;&#x4E5F;&#x5BF9;&#x6587;&#x6863;&#x5F88;&#x6709;&#x7528;&#x3002;</p>
+<p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6B64;&#x503C;&#x4E0D;&#x4F1A;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x8868;&#x5355;&#x4E2D;&#x8FDB;&#x884C;HTML&#x8F6C;&#x4E49;&#x3002; &#x5982;&#x679C;&#x60A8;&#x613F;&#x610F;&#xFF0C;&#x8FD9;&#x53EF;&#x4EE5;&#x8BA9;&#x60A8;&#x5728;help_text&#x4E2D;&#x5305;&#x542B;HTML&#x3002; &#x4F8B;&#x5982;&#xFF1A;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python">help_text<span class="token operator">=</span><span class="token string">&quot;Please use the following format: &lt;em&gt;YYYY-MM-DD&lt;/em&gt;.&quot;</span>
+</pre><h4 class="mume-header" id="primary_key">primary_key</h4>
+
+<p>&#x5982;&#x679C;&#x4E3A;True&#xFF0C;&#x5219;&#x6B64;&#x5B57;&#x6BB5;&#x5C06;&#x4F5C;&#x4E3A;Model&#x7684;&#x4E3B;&#x952E;</p>
+<h4 class="mume-header" id="unique">unique</h4>
+
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x8BE5;&#x5B57;&#x6BB5;&#x503C;&#x552F;&#x4E00;&#xFF0C;&#x9700;&#x8981;&#x628A;unique&#x8BBE;&#x7F6E;&#x4E3A;True&#xFF0C;&#x5982;&#x679C;&#x5C1D;&#x8BD5;&#x4FDD;&#x5B58;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x503C;&#xFF0C;&#x5C06;&#x4F1A;&#x5F15;&#x53D1;django.db.IntegrityError&#x5F02;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6355;&#x6349;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C;&#x7528;&#x4E8E;&#x8BF8;&#x5982;&#x7528;&#x6237;&#x540D;&#x7B49;&#x65B9;&#x9762;</p>
+<h4 class="mume-header" id="%E6%80%BB%E7%BB%93">&#x603B;&#x7ED3;</h4>
+
+<p>&#x5E38;&#x7528;&#x7684;&#x4E3B;&#x8981;&#x8FD9;&#x51E0;&#x4E2A;</p>
+<ul>
+<li>blank:&#x5141;&#x8BB8;&#x4E3A;&#x7A7A;</li>
+<li>choices:&#x63D0;&#x4F9B;&#x9009;&#x62E9;</li>
+<li>default:&#x63D0;&#x4F9B;&#x9ED8;&#x8BA4;&#x503C;</li>
+<li>db_column:&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x8868;&#x5217;&#x540D;</li>
+<li>unique:&#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x552F;&#x4E00;</li>
+</ul>
+<h2 class="mume-header" id="2%E5%85%B3%E7%B3%BB%E5%AD%97%E6%AE%B5">2.&#x5173;&#x7CFB;&#x5B57;&#x6BB5;</h2>
+
+<p>&#x5173;&#x7CFB;&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x5B57;&#x6BB5;&#xFF0C;&#x53EA;&#x662F;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#x662F;&#x522B;&#x7684;&#x67D0;&#x4E2A;&#x6216;&#x591A;&#x4E2A;Model&#xFF0C;&#x53EA;&#x6709;&#x4E09;&#x79CD;&#x5173;&#x7CFB;&#x5B57;&#x6BB5; ForeignKey&#xFF0C;ManyToManyField &#x548C; OneToOneField</p>
+<h3 class="mume-header" id="21-foreignkey">2.1 ForeignKey</h3>
+
+<p>&#x8FD9;&#x662F;&#x4E00;&#x79CD;<strong>&#x591A;&#x5BF9;&#x4E00;</strong>&#x7684;&#x5173;&#x7CFB;&#x3002; &#x9700;&#x8981;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;&#x8981;&#x5173;&#x8054;&#x7684;&#x6A21;&#x578B;&#x7C7B;&#x548C;on_delete&#x9009;&#x9879;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x521B;&#x5EFA;&#x9012;&#x5F52;&#x5173;&#x7CFB; &#xFF08; &#x4E0E;&#x81EA;&#x8EAB;&#x5177;&#x6709;&#x591A;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;&#x7684;&#x5BF9;&#x8C61; &#xFF09;&#x8BF7;&#x4F7F;&#x7528;</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">models<span class="token punctuation">.</span>ForeignKey&#xFF08;<span class="token string">&apos;self&apos;</span>&#xFF0C;on_delete <span class="token operator">=</span> models<span class="token punctuation">.</span>CASCADE&#xFF09;&#x3002;
+</pre><p>&#x5982;&#x679C;&#x9700;&#x8981;&#x5728;&#x5C1A;&#x672A;&#x5B9A;&#x4E49;&#x7684;&#x6A21;&#x578B;&#x4E0A;&#x521B;&#x5EFA;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6A21;&#x578B;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6A21;&#x578B;&#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Diary</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    Ordinary_user <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span><span class="token string">&apos;Demo2&apos;</span><span class="token punctuation">,</span>on_delete<span class="token operator">=</span>models<span class="token punctuation">.</span>CASCADE<span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Demo2</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    email<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> models<span class="token punctuation">.</span>EmailField<span class="token punctuation">(</span>blank<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>db_column<span class="token operator">=</span><span class="token string">&quot;&#x90AE;&#x7BB1;&quot;</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    Tel_Num <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span>blank<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>db_column<span class="token operator">=</span><span class="token string">&quot;&#x8054;&#x7CFB;&#x7535;&#x8BDD;&quot;</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    address<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span>blank<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>db_column<span class="token operator">=</span><span class="token string">&quot;&#x4F4F;&#x5740;&quot;</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    ID_card <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> db_column<span class="token operator">=</span><span class="token string">&quot;&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;&quot;</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+</pre><p>&#x8FD9;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x5EFA;&#x7ACB;&#x4E86;&#x4E24;&#x5F20;&#x8868;&#xFF0C;Diary&#x8868;&#x4E2D;Ordinary_user&#x5B57;&#x6BB5;&#x4E0E;Demo2&#x662F;&#x4E00;&#x4E2A;&#x591A;&#x5BF9;&#x4E00;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x5148;&#x770B;&#x4E00;&#x4E0B;&#x4E24;&#x5F20;&#x8868;&#x5728;MySQL&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6837;&#x5B50;</p>
+<p>&#x5148;&#x662F;diary&#x8868;,&#x540C;&#x6837;&#x8BF7;&#x5FFD;&#x7565;&#x5176;&#x4ED6;&#x5B57;&#x6BB5;&#xFF0C;&#x8868;&#x540D;&#x662F;<code>app&#x540D;_&#x7C7B;&#x540D;</code></p>
+<p><img src="../image/DjangoModel_07.png" alt="DjangoModel_07.png"></p>
+<p>&#x5176;&#x6B21;&#x662F;Demo2&#x8868;</p>
+<p><img src="../image/DjangoModel_08.png" alt="DjangoModel_08.png"></p>
+<p>&#x53D1;&#x73B0;Django&#x628A;ForeignKey&#x5B57;&#x6BB5;&#x7684;&#x5217;&#x540D;&#x547D;&#x540D;&#x4E3A;<code>&#x76EE;&#x6807;Model&#x540D;_id</code>&#x8FD9;&#x91CC;&#x4E4B;&#x6240;&#x4EE5;&#x662F;<code>_id</code>&#x662F;&#x5E94;&#x4E3A;id&#x662F;&#x8FD9;&#x4E2A;&#x8868;&#x7684;&#x4E3B;&#x952E;&#xFF0C;&#x800C;&#x91CC;&#x9762;&#x5B58;&#x50A8;&#x7684;&#x4E5F;&#x662F;&#x5BF9;&#x5E94;&#x7684;id&#x5E8F;&#x53F7;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x4FDD;&#x5B58;&#x4E3B;&#x952E;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E0B;&#x518D;admin&#x754C;&#x9762;&#x7684;&#x6837;&#x5B50;&#x628A;</p>
+<p><img src="../image/DjangoModel_09.png" alt="DjangoModel_09.png"></p>
+<p>&#x70B9;&#x52A0;&#x53F7;&#x4F1A;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x65B0;&#x7A97;&#x53E3;&#x8BA9;&#x4F60;&#x6DFB;&#x52A0;Dome&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5E94;&#x8BE5;&#x633A;&#x65B9;&#x4FBF;</p>
+<p><img src="../image/DjangoModel_10.png" alt="DjangoModel_10.png"></p>
+<h4 class="mume-header" id="%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3">&#x53C2;&#x6570;&#x8BE6;&#x89E3;</h4>
+
+<h5 class="mume-header" id="1on_delete">(1).on_delete</h5>
+
+<p>&#x8FD9;&#x662F;&#x5FC5;&#x9009;&#x53C2;&#x6570;&#xFF0C;&#x5F53;&#x5220;&#x9664;ForeignKey&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;Django&#x5C06;&#x6A21;&#x62DF;on_delete&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7684;SQL&#x7EA6;&#x675F;&#x7684;&#x884C;&#x4E3A;&#x3002;&#x603B;&#x5171;&#x6709;&#x516D;&#x79CD;&#x9009;&#x62E9;</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
