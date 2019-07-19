@@ -681,3 +681,431 @@ True
 [Python自省](https://www.jianshu.com/p/5166427002a8)
 
 [菜鸟教程](https://www.runoob.com/python/python-tutorial.html)
+
+## DAY 6. 生成式,迭代器，生成器
+
+### 6.1 生成式
+
+#### 6.1.1 列表生成式
+
+```python
+list = [index for index in range(10)]
+```
+
+#### 6.1.2 字典生成式
+
+```python
+dict = {
+    'zhangsan': 10,
+    'lisi': 12,
+    'wangwu': 18
+}
+# 实现键值互换
+dict = {k:v for v,k in dict.items() if k >= 12}
+```
+
+#### 6.1.3 集合生成式
+
+```python
+# 100以内的质数
+set = {i for i in range(100) if i % 2 != 0}
+```
+
+### 6.2 生成器
+
+生成式会创建一个列表（字典或集合），但无论是字典，列表还是集合，都不能保存一个无限长的序列，比如说全体自然数，当然我们一般不会用到这种序列，但哪怕是万位的序列，保存为列表或集合也是很占用空间的，加上一般情况下我们对一个序列的操作是一次性的，根本不需要保存，那有没有一种办法只有我们需要时才给我们数据，我们不需要时程序只保留“算法”呢？这就用到了生成器
+
+创建生成器有两种办法，一种是类似于推导式，把列表推导式的中括号改为小括号就行，会返回一个生成器对象，可以使用next()或for循环遍历
+
+```py
+t = (i for i in range(100) if i % 2 == 0)
+for i in t:
+    print(i)
+```
+
+举个栗子，斐波那契数列，每一项是前两项之和
+
+一般情况
+
+```py
+feibo = [1, 1]
+for i in range(2,10000):
+    feibo.append(feibo[i - 1] + feibo[i - 2])
+print(feibo)
+```
+
+我们要做的只是要打印出来而已，没必要保存这么大的数组，这时我们可以用生成器
+
+```python
+def feb(f, s, max):
+    i = 0
+    while i < max:
+        f, s = s, f + s
+        i += 1
+        yield s
+
+for i in feb(1, 1, 100):
+    print(i)
+```
+
+生成器长得和函数一样，只不过return 变成了yield ，每当运行到yield后，程序就会阻塞，只有在调用该生成器的next()方法时才会从上次暂停的地方继续
+
+```py
+def Demo():
+    print(1)
+    yield 1
+    print(2)
+    yield 2
+    print(3)
+    yield 3
+
+demo = Demo()
+next(demo)
+next(demo)
+next(demo)
+next(demo)
+
+# 1
+# 2
+# 3
+# Traceback (most recent call last):
+#   File "E:/xxxx/DAY6_1.py", line 45, in <module>
+#     next(demo)
+# StopIteration
+```
+
+当超出生成器范围时会抛出StopIteration异常，我们一般也不会使用next,for就是捕捉StopIteration异常遍历生成器的
+
+```py
+for i in Demo():
+    i
+
+# 等价于
+
+while(True):
+    try:
+        next(demo)
+    except StopIteration:
+        break
+```
+
+### 6.3 迭代器
+
+#### 6.3.1 可迭代对象
+
+可以直接作用于for循环的对象统称为可迭代对象：Iterable，主要有两类，列表，元组，字典，集合等数据类型和生成器，可以使用isinstance()判断一个对象是否是Iterable对象。
+
+#### 6.3.2 迭代器
+
+可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator。可以使用isinstance()判断一个对象是否是Iterator对象
+
+生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。把list、dict、str等Iterable变成Iterator可以使用iter()函数
+
+>你可能会问，为什么list、dict、str等数据类型不是Iterator？
+>
+>这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的，只有在需要返回下一个数据时它才会计算。
+>
+>Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。
+
+### 6.4 总结
+
+* 生成式
+
+|生成式|语法|
+|---|---|
+|列表生成式|`L = [i for i in range(100) if i % 2 ==0]`|
+|字典生成式|`k:v for k, v in dict.items() if k < 10`|
+|集合生成式|`S = {i for i in range(100) if i % 2 ==0}`|
+
+* 生成器
+
+创建：
+生成式方式和生成器函数
+读取：
+next()或for
+
+* 迭代器
+
+|可迭代对象|能被for直接作用的对象|
+|------------|---|
+|迭代器|能用next()执行的可迭代对象|
+
+参考文章：
+
+[GitHub python面试题](https://github.com/taizilongxu/interview_python#6-%E5%AD%97%E5%85%B8%E6%8E%A8%E5%AF%BC%E5%BC%8F)
+
+[廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/1016959663602400/1017323698112640)
+
+[python 生成器和迭代器有这篇就够了](https://www.cnblogs.com/wj-1314/p/8490822.html)
+
+## DAY 7. 格式化字符串
+
+到目前为止，我所知道的，python格式化字符串有三种方法，第一是早期就有的%，其次是2.5之后的format(),还有就是3.6添加的f字符串调试
+
+### 7.1 %格式化字符串
+
+%格式化字符串是python最早的，也是能兼容所有版本的一种字符串格式化方法，在一些python早期的库中，建议使用%格式化方式，他会把字符串中的格式化符按顺序后面参数替换，格式是
+
+```py
+"xxxxxx %s xxxxxx" % (value1, value2)
+```
+
+* 其中 `%s`就是格式化符，意思是把后面的值格式化为字符类型，类似的格式化符还有`%d`,`%f`等，具体参考文章[Python字符串格式化](https://www.cnblogs.com/vitrox/p/4504899.html)
+* 后面的`value1`,`value2`就是要格式化的值，不论是字符还是数值，都会被格式化为格式化符对应的类型
+* 当然可以不用以元组的形式传值，你可以直接写这样：`"xxxxx %s" % value`，不过不建议这样写，一是应为这样只能传递一个参数，二是如果value是元组或列表等类型，这样会触发TypeErrer
+* 如果只传一个参数，并且很确定参数类型不会触发异常，可以使用上面的写法，否则，我建议你提供一个单元素元组，就像`"xxxx %s " % (value,)`
+
+```py
+value1 = (7, 8)
+value2 = [9, 0]
+print("DAY %s 格式化字符串 %s " % (value1,value2))
+value3 = 1
+s = "xxxix %s" % value3  # 不推荐
+print(s)
+s1 = "xxxx %s " % value1
+print(s1)  # TypeError: not all arguments converted during string formatting
+```
+
+### 7.2 format()
+
+%虽然强大，但用起来难免有些麻烦，代码也不是特别美观，因此，在python 2.5 之后，提供了更加优雅的`str.format()`方法。
+
+```py
+    def format(self, *args, **kwargs): # known special case of str.format
+        """
+        S.format(*args, **kwargs) -> str
+
+        Return a formatted version of S, using substitutions from args and kwargs.
+        The substitutions are identified by braces ('{' and '}').
+        """
+        pass
+```
+
+* format()的常用用法
+
+```py
+# 使用名称占位符
+s2 = "xxxx {age} xxxx {name}".format(age=18, name="hangman")
+print(s2)  # xxxx 18 xxxx hangman
+
+# 使用序号占位符，为空默认从左到右01234.。。
+s3 = "xxxx {1} xxx{0}".format(value1,value2)
+print(s3)  # xxxx [9, 0] xxx(7, 8)
+
+# 也可以混合使用
+s4 = "xxxx {} XXX {name} xxx {}".format(value2,value1,name="s4")
+print(s4)  # xxxx [9, 0] XXX s4 xxx (7, 8)
+```
+
+### 7.3 f-string
+
+f-string是2015年python 3.6 根据PEP 498新添加的一种字符串格式化方法，f-string实际上是在运行时计算的表达式，而不是常量值。在Python源代码中，f-string是一个文字字符串，前缀为'f'，其中包含大括号内的表达式。表达式会将大括号中的内容替换为其值。例如
+
+```py
+import datetime
+name = "zings"
+age = 17
+date = datetime.date(2019,7,18)
+print(f'my name is {name}, this year is {date:%Y},Next year, I\'m {age+1}')  # my name is zings, this year is 2019,Next year, I'm 18
+```
+
+#### 7.3.2 格式规范迷你语言
+
+“格式规范”用于格式字符串中包含的替换字段中，以定义各个值的显示方式
+
+标准格式说明符的一般形式是：
+
+```py
+format_spec     ::=  [[fill]align][sign][#][0][width][grouping_option][.precision][type]
+fill            ::=  <any character>
+align           ::=  "<" | ">" | "=" | "^"
+sign            ::=  "+" | "-" | " "
+width           ::=  digit+
+grouping_option ::=  "_" | ","
+precision       ::=  digit+
+type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
+```
+
+##### (1) 对齐 align
+
+|align（对齐方式）|作用|
+|------|---|
+|`<`|左对齐（字符串默认对齐方式）|
+|`>`|右对齐（数值默认对齐方式）|
+|`=`|填充时强制在正负号与数字之间进行填充，只支持对数字的填充|
+|`^`|居中|
+
+* 除非定义了最小字段宽度，否则字段宽度将始终与填充它的数据大小相同，因此在这种情况下，对齐选项没有意义。
+* 如果指定了align值，则可以在其前面加上可以是任何字符的填充字符，如果省略则默认为空格。 无法使用文字大括号（“{”或“}”）作为格式化字符串文字中的填充字符或使用str.format（）方法。 但是，可以插入带有嵌套替换字段的大括号。
+
+```python
+print(f'{name:^18}')  # |      zings     |
+```
+
+##### (2) sign
+
+sign只对数字起作用
+
+|sign|作用|
+|-----|---|
+|`+`|强制对数字使用正负号|
+|`-`|仅对负数使用前导负号(默认)|
+|`空格`|对正数使用一个' '作前导，负数仍以'-'为前导|
+
+```py
+print(f'{money:+}')  # +19999999877
+```
+
+##### (3) #选项
+
+>'＃'选项使“替代形式”用于转换。 对于不同类型，替代形式的定义不同。 此选项仅对integer，float，complex和Decimal类型有效。 对于整数，当使用二进制，八进制或十六进制输出时，此选项将前缀“0b”，“0o”或“0x”添加到输出值。 对于浮点数，复数和十进制，替换形式会导致转换结果始终包含小数点字符，即使后面没有数字也是如此。 通常，只有在跟随数字的情况下，这些转换的结果中才会出现小数点字符。 此外，对于“g”和“G”转换，不会从结果中删除尾随零。
+
+##### (4) ,选项
+
+','被用来对数字整数部分进行千分位分隔
+
+|描述符|作用|
+|------|----|
+|,|使用,作为千位分隔符|
+|_|使用_作为千位分隔符|
+
+>
+* `,` 仅适用于浮点数、复数与十进制整数：对于浮点数和复数，, 只分隔小数点前的数位。
+* `_` 适用于浮点数、复数与二、八、十、十六进制整数：对于浮点数和复数，_ 只分隔小数点前的数位；对于二、八、十六进制整数，固定从低位到高位每隔四位插入一个 _（十进制整数是每隔三位插入一个 _）。
+
+```py
+print(f'{money:,}')  # 19,999,999,877
+```
+
+##### (5) width
+
+width是定义最小字段宽度的十进制整数。 如果未指定，则字段宽度将由内容确定。
+
+当然，format还有很多彪悍的特性，还可以看这位大佬的文章：[Python字符串格式化](https://www.cnblogs.com/vitrox/p/4504899.html)
+
+##### (6) .precision
+
+.precision对于数字对象，用来指定数字的小数位数，如果有小数；对于非数字对象，用来指定最终返回的格式化字符的最大长度，即格式化完成后，以这个precision参数对结果进行截取
+
+##### (7) type
+
+![python_总结_01.png](../../image/python_总结_01.png)
+
+**注意：**格式规范迷你语言对format一样适用（本来就是format的）
+
+### 7.4 总结
+
+python最先的格式化字符串方法是%，但他的致命缺点是支持的类型有限，只支持int,str,double,其他所有类型只能转换为这几个类型，还有如果传递的是元组，那么必须还要传入一个单值元组，为此，添加了str.format（）以解决％-formatting中的一些问题，特别是，它使用普通函数调用语法（并因此支持多个参数），并且可以通过__format __（）方法在被转换为字符串的对象上进行扩展。但str.format（）又存在代码冗余的问题，例如
+
+```py
+v = 6*8
+print("the value is {}".format(v))
+```
+
+而使用f-string只需要
+
+```py
+print(f'the value is{6*8}')
+```
+
+F字符串提供了一种简洁易读的方式，可以在字符串中包含Python表达式的值。包括lambda表达式（要放在括号里）
+
+参考文章
+
+[PEP 498](https://www.python.org/dev/peps/pep-0498/)
+
+[python doc](https://docs.python.org/3/library/string.html#string.Formatter)
+
+[Python字符串格式化](https://www.cnblogs.com/vitrox/p/4504899.html)
+
+[Python格式化字符串f-string概览](https://blog.csdn.net/sunxb10/article/details/81036693)
+
+[GitHub python 面试题](https://github.com/taizilongxu/interview_python#8-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%92%8Cformat)
+
+## DAY 8. *args和**kwargs
+
+`*args`：多值元组，`**kwargs`多值字典，他们是python函数传参时两个特殊的参数，args和kwargs并不是强制的，但习惯使用这两个，如果在函数参数列表中声明了`*args`，则允许传递任意多的参数，多余的参数会被以元组的形式赋给args变量，而`**kwargs`允许你使用没有定义的变量名，会把显式传递的参数打包成字典
+
+```py
+def output(*args, **kwargs):
+    print(args)
+    print(kwargs)
+
+output('zhangsan', 'lisi', 5, 6,a=1,b=2,c=3)
+
+# ('zhangsan', 'lisi', 5, 6)
+# {'a': 1, 'b': 2, 'c': 3}
+```
+
+如果函数还有别的参数，传递参数时会从左到右依次对照赋值，所以请务必把`*args`和`**kwargs`放在函数参数列表的最后，否则会抛出TypeError异常，并且`*args`必须放在`**kwargs`前面，正确的参数顺序应该是
+
+```py
+def fun(arg, *args, **kwargs):
+    pass
+```
+
+在调用函数时也可以使用`*`和`**`
+
+```py
+def put(a, b, c):
+    print(f'a={a},b={b},c={c}')
+
+put(*mylist)  # a=aardvark,b=baboon,c=cat
+
+s = {'a': 1, 'b': 2, 'c': 3}
+put(**s)  # a=1,b=2,c=3
+```
+
+之所以能实现这样的功能，原理是序列解包，下面简单介绍序列解包
+
+```py
+>>> s = "ABCDE"
+>>> a,b,c,d,e = s
+>>> a,c
+('A', 'C')
+
+>>> t = (1,2,3,4,5)
+>>> a1,b1,c1,d1,e1 = t
+>>> a1,c1
+(1, 3)
+```
+
+上面就是用到了序列解包，左右两端的元素个数必须相等，否则会抛出ValueError异常
+
+```py
+>>> a2,b2 = s
+Traceback (most recent call last):
+  File "<pyshell#6>", line 1, in <module>
+    a2,b2 = s
+ValueError: too many values to unpack (expected 2)
+```
+
+但总不能所有序列都一一对应把，如果序列有很多位或不确定有多少位时使用序列解包就显得很不方便了，这时候就可以使用`*`和了
+
+```py
+>>> a3,*a4 = s
+>>> a3,a4
+('A', ['B', 'C', 'D', 'E'])
+```
+
+```py
+>>> while s:
+        f,*s = s
+        print(f,s)
+
+A ['B', 'C', 'D', 'E']
+B ['C', 'D', 'E']
+C ['D', 'E']
+D ['E']
+E []
+```
+
+参考文章：
+
+[详解Python序列解包（4）](https://cloud.tencent.com/developer/article/1098734)
+
+[stack overflow](https://stackoverflow.com/questions/3394835/use-of-args-and-kwargs)
+
+[从一个例子看Python3.x中序列解包](https://blog.csdn.net/Jerry_1126/article/details/78510847)
+
+[GitHub python面试题](https://github.com/taizilongxu/interview_python#10-args-and-kwargs)
