@@ -1,5 +1,25 @@
 # python 重要知识点总结
 
+## 目录
+
+[函数的参数传递](#day-1-%e5%87%bd%e6%95%b0%e7%9a%84%e5%8f%82%e6%95%b0%e4%bc%a0%e9%80%92)
+
+[元类](#day-2-%e5%85%83%e7%b1%bb)
+
+[静态方法和类方法](#day-3-%e9%9d%99%e6%80%81%e6%96%b9%e6%b3%95%e5%92%8c%e7%b1%bb%e6%96%b9%e6%b3%95)
+
+[python自省](#day-5-python%e8%87%aa%e7%9c%81)
+
+[生成式，迭代器，生成器](#day-6-%e7%94%9f%e6%88%90%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8%e7%94%9f%e6%88%90%e5%99%a8)
+
+[格式化字符串的三种方法](#day-7-%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%ad%97%e7%ac%a6%e4%b8%b2)
+
+[*args和**kwargs](#day-8-args%e5%92%8ckwargs)
+
+[闭包和装饰器](#day-9-%e9%97%ad%e5%8c%85%e5%92%8c%e8%a3%85%e9%a5%b0%e5%99%a8)
+
+[python鸭子类型](#day-10-%e9%b8%ad%e5%ad%90%e7%b1%bb%e5%9e%8b)
+
 ## DAY 1. 函数的参数传递
 
 函数参数传递有两种方式，传值和传引用，传值只是把变量的值复制一份给了实参，函数内部的操作不会改变函数外部变量的值，而传引用传递的是外部变量的地址，函数内部直接操作函数外部变量的储存空间，在调用函数之后，函数外部变量的值一般会改变
@@ -1109,3 +1129,436 @@ E []
 [从一个例子看Python3.x中序列解包](https://blog.csdn.net/Jerry_1126/article/details/78510847)
 
 [GitHub python面试题](https://github.com/taizilongxu/interview_python#10-args-and-kwargs)
+
+## DAY 9. 闭包和装饰器
+
+### 9.1 闭包
+
+> 闭包就是内部函数对外部函数作用域内变量的引用
+
+可以看出
+
+* 闭包是针对函数的，还有两个函数，内部函数和外部函数
+* 闭包是为了让内部函数引用外部函数作用域内的变量的
+
+我们先写两个函数
+
+```py
+def fun1():
+    print("我是fun1")
+
+    def fun2():
+        print("我是fun2")
+```
+
+这样fun2就作为fun1的内部函数，此时在函数外部是无法调用Fun2的，因为
+
+1. fun2实际上相当于fun1的一个属性(方法)，作用域是fun1的块作用域，全局作用域中无法找到，
+2. 函数内属性的生命周期是在函数运行期间，在fun1中只是定义了fun2，并没有调用它
+
+为了让fun2跳出fun1的生命周期，我们需要返回fun2，这样在外部获取到的fun1的返回值就是fun2，这样调用fun1的返回值就是调用了fun2,如：
+
+```py
+def fun1():
+    print("我是fun1")
+    def fun2():
+        print("我是fun2")
+    return fun2
+
+var = fun1()
+var()
+# 我是fun1
+# 我是fun2
+```
+
+当然，这还不是一个闭包，闭包是引用了自由变量的函数，所谓自由变量可以理解为局部变量，如果fun2调用了fun1中的变量，那么fun2就是一个闭包了。如
+
+```py
+def fun1(var1):
+    def fun2():
+        print(f"var1 = {var1}")
+    return fun2
+
+var = fun1(1)
+var()  # var1 = 1
+```
+
+#### 闭包的作用
+
+闭包私有化了变量，实现了数据的封装，类似于面向对象
+
+```py
+def fun1(obj):
+    def fun2():
+        obj[0] += 1
+        print(obj)
+    return fun2
+
+
+if __name__ == '__main__':
+    mylist = [i for i in range(5)]
+    var = fun1(mylist)
+    var()
+    var()
+    var()
+    # [1, 1, 2, 3, 4]
+    # [2, 1, 2, 3, 4]
+    # [3, 1, 2, 3, 4]
+```
+
+### 9.2 装饰器
+
+闭包在python中有一个重要的用途就是装饰器，装饰器接受被装饰的函数作为参数并执行一次调用，装饰器的本质还是一个闭包
+
+```py
+def func1(func):
+    def func2():
+        print("func2")
+        return func()
+    return func2
+
+
+@func1
+def Demo():
+    print("Demo")
+
+
+if __name__ == '__main__':
+    Demo()
+    # func2
+    # Demo
+```
+
+* 首先，`@func1`是一颗语法糖，等价于`func1(Demo)()`
+* 外部函数必须能接收一个参数，也只能接受一个参数，如果有多个参数，必须再套一个函数，因为在使用`@`语法糖时，会自动把被修饰函数作为参数传递给装饰器
+* 内部函数必须返回被装饰函数的调用
+
+运行流程：
+
+1. 把被修饰函数作为参数传递给装饰器,这时函数返回的是闭包函数func2
+2. 隐式地调用func2,相当于`func2()`，执行函数体，输出func2,这时函数返回值是`func()`,返回的直接是被修饰函数的调用，相当于直接执行被修饰函数，输出Demo
+
+相当于：
+
+```py
+def func1(func):
+    def func2():
+        print("func2")
+        return func()
+    return func2
+
+
+# @func1
+def Demo():
+    print("Demo")
+
+
+if __name__ == '__main__':
+    # s = Demo()
+    # 先把被修饰函数作为参数传递给修饰器，这里的s就是func2
+    s = func1(Demo)
+    # 调用闭包函数
+    s()
+    print(s)
+
+    # func2
+    # Demo
+    # <function func1.<locals>.func2 at 0x00000117F163AD90>
+
+```
+
+#### 9.2.1 装饰器带参数
+
+```py
+def func1(num):
+    def func2(func):
+        def func3():
+            if num >10:
+                print("大于10")
+            else:
+                print("小于10")
+            return func()
+        return func3
+    return func2
+
+
+@func1(num=12)
+def Demo():
+    print("Demo")
+
+
+if __name__ == '__main__':
+    Demo()b
+```
+
+执行流程
+
+1. 将装饰器的参数传递给第一层函数，并返回第二层函数func2
+2. 将被修饰函数作为参数传递给第二层函数func2,隐式调用func2，返回闭包函数
+3. 执行闭包函数，并返回被修饰函数的调用（执行被修饰函数）
+
+#### 9.2.2 被修饰函数带参数
+
+如果被修饰函数带有参数，需要把参数传递给内层闭包函数,返回被修饰函数的调用时记得加参数
+
+```py
+def func1(func):
+    def func2(arg):
+        arg += 1
+        # 记得加参数
+        return func(arg)
+    return func2
+
+@func1
+def Demo(arg):
+    print(arg)
+
+if __name__ == '__main__':
+    Demo(11)  # 12
+```
+
+#### 9.2.3 例
+
+1. 求斐波那契数列任意一项的值
+
+```py
+import time
+
+def code_time(func):
+    '''
+    修饰器，用来打印函数运行时间
+    :param func: 被修饰函数
+    :return: func
+    '''
+    start_time = time.time()
+    def closer(*args,**kwargs):
+        result = func(*args,**kwargs)
+        codeTime = time.time() - start_time
+        print(f"This code runs at:{codeTime}")
+        return result
+    return closer
+
+def _Fibonacci(n):
+    if n <= 1:
+        return 1
+    else:
+        return _Fibonacci(n-1) + _Fibonacci(n-2)
+
+@code_time
+def Fibonacci(n):
+    return _Fibonacci(n)
+
+
+if __name__ == '__main__':
+    var = Fibonacci(40)
+    print(var)
+    # This code runs at:61.738335609436035
+    # 165580141
+```
+
+发现代码效率非常低，输出第四十个值需要一分多钟，这是应为每计算一个值，需要计算前两个值，这里有很多重复的，如
+
+```txt
+            10
+            |
+    |-----------------|
+    9                 8
+|--------|       |--------|
+8        7       7        6
+
+7，8被重复计算多次
+```
+
+所以需要把已经计算过的储存起来，计算之前先判断有没有计算过，没计算过再计算，修改程序为：
+
+```py
+import time
+
+def code_time(func):
+    '''
+    修饰器，用来打印函数运行时间
+    :param func:
+    :return:
+    '''
+    start_time = time.time()
+    def closer(*args,**kwargs):
+        result = func(*args,**kwargs)
+        codeTime = time.time() - start_time
+        print(f"This code runs at:{codeTime}")
+        return result
+    return closer
+resultList = {0:1,1:1}
+def _Fibonacci(n):
+    if n <= 1:
+        return 1
+    else:
+        if n-1 in resultList:
+            a = resultList[n-1]
+        else:
+            a = _Fibonacci(n-1)
+            resultList[n-1] = a
+        if n-2 in resultList:
+            b = resultList[n-2]
+        else:
+            b = _Fibonacci(n-2)
+            resultList[n-2] = b
+        return a + b
+
+@code_time
+def Fibonacci(n):
+    return _Fibonacci(n)
+
+
+if __name__ == '__main__':
+    var = Fibonacci(40)
+    print(var)
+
+    # This code runs at:0.0
+    # 165580141
+```
+
+速度快了很多，但重复的代码是不能忍受的，使用修饰器重新一下：
+
+```py
+import time
+
+
+def code_time(func):
+    start_time = time.time()
+
+    def closer(*args, **kwargs):
+        result = func(*args, **kwargs)
+        codeTime = time.time() - start_time
+        print(f"This code runs at:{codeTime}")
+        return result
+
+    return closer
+
+
+def modify(func):
+    catch = {0: 1, 1: 1}
+
+    def closer(*args):
+        if args not in catch:
+            catch[args] = func(*args)
+        return catch[args]
+    return closer
+
+
+@modify
+def _Fibonacci(n):
+    if n <= 1:
+        return 1
+    else:
+        return _Fibonacci(n - 1) + _Fibonacci(n - 2)
+
+
+@code_time
+def Fibonacci(n):
+    return _Fibonacci(n)
+
+
+if __name__ == '__main__':
+    var = Fibonacci(40)
+    print(var)
+
+```
+
+有20节楼梯，一次可以走1，2，3，4级，总共有多少种走法
+
+```py
+from my_python_package import code_time
+
+
+def Modify(c = None):
+    if c == None:
+        c = {}
+    def modify(func):
+        catch = c
+        def closer(*args):
+            if args[0] not in catch:
+                catch[args[0]] = func(*args)
+            return catch[args[0]]
+        return closer
+    return modify
+
+@Modify()
+def _Stairs(num, steps):
+    count = 0
+    if num == 0:
+        count = 1
+    elif num > 0:
+        for step in steps:
+            count += _Stairs(num-step,steps)
+    return count
+
+@code_time
+def Stairs(num,steps):
+   count = _Stairs(num,steps)
+   return count
+
+if __name__ == '__main__':
+    num = 20
+    steps = [step for step in range(1,5)]
+    count = Stairs(num, steps)
+    print(count)
+
+    # Stairs runs at: 0.0 s
+    # 283953
+```
+
+### 9.3 总结
+
+* 闭包：内部函数调用了外部函数作用域内的变量
+  * 针对函数
+  * 要有自由变量（私有变量）
+  * 要点：内部函数要跳出外部函数的生命周期，需要外部函数把他return出来
+
+* 装饰器：
+  * 基础：闭包
+  * 作用：不修改原来代码的基础上拓展原函数功能
+  * 用处：修改API功能，AOP编程
+  * 要点：@语法糖，函数执行顺序
+
+* 参考链接
+
+[Python高级编程技巧（进阶）(已完结)](https://www.bilibili.com/video/av56768464/?p=38&t=447)
+
+[Python的闭包与装饰器](https://www.bilibili.com/video/av18586448?t=1917)
+
+## DAY 10. 鸭子类型
+
+这个概念来源于美国印第安纳州的诗人詹姆斯·惠特科姆·莱利（James Whitcomb Riley,1849-1916）的诗句：”When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.”
+
+> 当我看到一只像鸭子一样走路，像鸭子一样游泳，像鸭子一样嘎嘎叫的鸟，我就叫它鸭子。
+
+鸭子类型在动态编译语言如python，go中经常使用，意思是程序只关心对象行为而不关心对象类型，如
+
+```py
+class Duck:
+    def __init__(self, name):
+        self._name = name
+
+    def call(self):
+        print("gua gua gua")
+
+class Frog:
+    def __init__(self, name):
+        self._name = name
+
+    def call(self):
+        print("gua gua gua")
+
+def quack(duck):
+    duck.call()
+
+if __name__ == '__main__':
+    duck = Duck('Duck')
+    frog = Frog('Frog')
+    quack(duck)
+    quack(frog)
+```
+
+虽然duck和frog不是同一个类型，但他们都有相同的方法call，那就可以把他们“当作同一种类型——鸭子类型”
+
+## 前十天总结
