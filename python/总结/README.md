@@ -2,25 +2,14 @@
 
 ## 目录
 
-[函数的参数传递](#day-1-%e5%87%bd%e6%95%b0%e7%9a%84%e5%8f%82%e6%95%b0%e4%bc%a0%e9%80%92)
-
-[元类](#day-2-%e5%85%83%e7%b1%bb)
-
-[静态方法和类方法](#day-3-%e9%9d%99%e6%80%81%e6%96%b9%e6%b3%95%e5%92%8c%e7%b1%bb%e6%96%b9%e6%b3%95)
-
-[python自省](#day-5-python%e8%87%aa%e7%9c%81)
-
-[生成式，迭代器，生成器](#day-6-%e7%94%9f%e6%88%90%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8%e7%94%9f%e6%88%90%e5%99%a8)
-
-[格式化字符串的三种方法](#day-7-%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%ad%97%e7%ac%a6%e4%b8%b2)
-
-[*args和**kwargs](#day-8-args%e5%92%8ckwargs)
-
-[闭包和装饰器](#day-9-%e9%97%ad%e5%8c%85%e5%92%8c%e8%a3%85%e9%a5%b0%e5%99%a8)
-
-[python鸭子类型](#day-10-%e9%b8%ad%e5%ad%90%e7%b1%bb%e5%9e%8b)
-
-[前十天总结](#%e5%89%8d%e5%8d%81%e5%a4%a9%e6%80%bb%e7%bb%93)
+|DAY|CODE|DAY|CODE|
+|---|----|----|----|
+|DAY1|[函数的参数传递](#day-1-%e5%87%bd%e6%95%b0%e7%9a%84%e5%8f%82%e6%95%b0%e4%bc%a0%e9%80%92)|DAY2|[元类](#day-2-%e5%85%83%e7%b1%bb)|
+|DAY3|[静态方法和类方法](#day-3-%e9%9d%99%e6%80%81%e6%96%b9%e6%b3%95%e5%92%8c%e7%b1%bb%e6%96%b9%e6%b3%95)|DAY4|[类变量和实例变量](#day-4-%e7%b1%bb%e5%8f%98%e9%87%8f%e5%b1%9e%e6%80%a7%e5%92%8c%e5%ae%9e%e4%be%8b%e5%8f%98%e9%87%8f%e5%b1%9e%e6%80%a7)|
+|DAY5|[python自省](#day-5-python%e8%87%aa%e7%9c%81)|DAY6|[生成式，迭代器，生成器](#day-6-%e7%94%9f%e6%88%90%e5%bc%8f%e8%bf%ad%e4%bb%a3%e5%99%a8%e7%94%9f%e6%88%90%e5%99%a8)|
+|DAY7|[格式化字符串的三种方法](#day-7-%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%ad%97%e7%ac%a6%e4%b8%b2)|DAY8|[*args和**kwargs](#day-8-args%e5%92%8ckwargs)|
+|DAY9|[闭包和装饰器](#day-9-%e9%97%ad%e5%8c%85%e5%92%8c%e8%a3%85%e9%a5%b0%e5%99%a8)|总结|[前十天总结](#%e5%89%8d%e5%8d%81%e5%a4%a9%e6%80%bb%e7%bb%93)|
+|DAY10|[python鸭子类型](#day-10-%e9%b8%ad%e5%ad%90%e7%b1%bb%e5%9e%8b)|DAY11|[python 重载（single-dispatch generic function）](#day-11-python-%e9%87%8d%e8%bd%bd)|
 
 ## DAY 1. 函数的参数传递
 
@@ -1644,3 +1633,108 @@ if __name__ == '__main__':
     * 修饰器函数的执行顺序：注意隐式的调用
 * 鸭子类型
   * 只关心对象的行为而不关心对象类型
+
+## DAY 11. python 重载
+
+函数重载是指允许定义参数数量或类型不同的同名函数，程序在运行时会根据所传递的参数类型选择应该调用的函数
+，但在默认情况下，python是不支持函数重载的，定义同名函数会发生覆盖
+
+```py
+def foo(a:int):
+    print(f'int {a}')
+
+def foo(b:list):
+    print(f'list{b}')
+
+foo(3)
+foo([i for i in range(3)])
+
+# list3
+# list[0, 1, 2]
+```
+
+至于不支持的原因，我想大概是没必要，首先，只在两种情况下可能发生函数重载，一是参数类型不同，二是参数个数不同，对于第一种情况，鸭子类型的存在使得函数不在乎参数类型而只关心参数的行为，所以你可以传递任何类型的参数，对于第二种情况，缺省参数的使用使得可以传递任意多个参数，因此函数的重载在python中就显得很鸡肋了，但如果非要实现函数重载，可以使用3.4中增加的转发机制即单分派泛型函数（single-dispatch generic function）来实现重载
+
+### 11.2 单分派泛型函数
+
+* 泛型函数 generic function ：由多个函数组成的函数，可以根据不同的参数类型决定调用那个函数
+* 单分派，single-dispatch：一种泛型函数分派形式，其中实现是根据单个参数的类型选择的。
+
+所以，单分派泛型函数就是根据函数的第一个参数类型决定使用哪个函数的泛型函数
+
+将一个函数声明为泛型函数可以使用修饰器`@singledispatch`,需要从`functools`模块导入，singledispatch有两个常用方法，register和dispatch
+
+```py
+from functools import singledispatch
+
+@singledispatch
+def Foo(arg,*args):
+    print(arg)
+```
+
+这样就实现了一个泛型函数，他的分派发生在第一个参数类型上，如果想要基于此实现重载，需要使用他的register方法，
+
+```py
+from functools import singledispatch
+
+@singledispatch
+def Foo(arg,*args):
+    print(arg)
+
+# 使用了类型注释
+@Foo.register
+def _1(arg:int,*args):
+    print(f'int - {arg}')
+
+# 没有使用类型注释，显式传递给修饰器
+@Foo.register(list)
+def _2(arg,*args):
+    print(f'list - {arg}')
+
+if __name__ == '__main__':
+    Foo(3)  # int - 3
+    Foo([i for i in range(10)])  # list - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+对于使用了类型注释的变量，singledispatch会自动推断第一个参数的类型，如上面int的那个，对于没有使用类型注释的变量，可以显式传递类型给singledispatch，如下面list的那个
+
+register属性还可以以函数的形式调用，这可以用在lambdas表达式上，如
+
+```py
+>>> def nothing(arg, verbose=False):
+...     print("Nothing.")
+...
+>>> fun.register(type(None), nothing)
+```
+
+如果没有实现针对特定类型的注册，那么就会使用被@singledispatch修饰的函数
+
+```py
+Foo("string")  # string
+```
+
+要检查泛型函数将为给定类型选择哪个实现，请使用dispatch()属性
+
+```py
+print(Foo.dispatch(int))  # <function _1 at 0x000001D7C2724B70>
+print(Foo.dispatch(list))  # <function _2 at 0x000001D7C2792E18>
+print(Foo.dispatch(str))  # <function Foo at 0x000001FB456FC268>
+```
+
+要访问所有已注册的实现，请使用只读的registry属性
+
+### 11.3 总结
+
+python默认不支持重载，但可以使用单分派泛型函数实现，声明泛型函数需要使用修饰器@singledispatch，它有三个属性，register用来注册针对特定类型的“重载函数”,这里必须指明针对的是哪一个特定的类型，可以给第一个参数类型注释，也可以给register传入一个显式类型，否则会抛出TypeError异常;dispatch属性用来查看特定的类型将要选择的函数;registry用来访问所有已注册的实现。
+
+参考链接：
+
+[functools.singledispatch](https://docs.python.org/3.7/library/functools.html#functools.singledispatch)
+
+[single dispatch](https://docs.python.org/3.7/glossary.html#term-single-dispatch)
+
+[generic function](https://docs.python.org/3.7/glossary.html#term-generic-function)
+
+[python中的重载](https://blog.csdn.net/qq_37049781/article/details/83959365)
+
+[为什么 Python 不支持函数重载？其他函数大部分都支持的？](https://www.zhihu.com/question/20053359)
