@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980e5474-444e-4257-adb5-138b6085926b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DAY11/DAY11_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAY11/DAY11_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAY12/DAY12_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -15,24 +14,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DAY9/DAY9_4.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DAY9/DAY9_5.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DAY9/DAY9_6.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -96,11 +77,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/functools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="811" column="13" lean-forward="true" selection-start-line="811" selection-start-column="13" selection-end-line="811" selection-end-column="13" />
+            <state relative-caret-position="215">
+              <caret line="797" column="48" lean-forward="true" selection-start-line="797" selection-start-column="48" selection-end-line="797" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DAY12/DAY12_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-483542633/builtins.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3028">
+              <caret line="832" column="4" lean-forward="true" selection-start-line="832" selection-start-column="4" selection-end-line="832" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -148,6 +147,7 @@
         <option value="$PROJECT_DIR$/DAY3/DAY3_2.py" />
         <option value="$PROJECT_DIR$/DAY11/DAY11_1.py" />
         <option value="$PROJECT_DIR$/DAY11/DAY11_2.py" />
+        <option value="$PROJECT_DIR$/DAY12/DAY12_1.py" />
       </list>
     </option>
   </component>
@@ -175,7 +175,7 @@
             <path>
               <item name="code" type="b2602c69:ProjectViewProjectNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
-              <item name="DAY11" type="462c0819:PsiDirectoryNode" />
+              <item name="DAY12" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -215,7 +215,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DAY11_2">
+  <component name="RunManager" selected="Python.DAY12_1">
     <configuration name="DAY10_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -282,6 +282,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="DAY12_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DAY12" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DAY12/DAY12_1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DAY3_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -304,35 +326,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DAY9_7" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DAY9" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DAY9/DAY9_7.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.DAY12_1" />
         <item itemvalue="Python.DAY11_2" />
         <item itemvalue="Python.DAY11_1" />
         <item itemvalue="Python.DAY3_2" />
         <item itemvalue="Python.DAY10_1" />
-        <item itemvalue="Python.DAY9_7" />
       </list>
     </recent_temporary>
   </component>
@@ -358,16 +358,15 @@
       <workItem from="1563699408885" duration="6375000" />
       <workItem from="1563791256375" duration="9823000" />
       <workItem from="1563872300865" duration="1979000" />
-      <workItem from="1563958864114" duration="5193000" />
+      <workItem from="1563958864114" duration="7672000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71804000" />
+    <option name="totallyTimeSpent" value="74283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14304812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -406,29 +405,30 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/code$DAY1_01.coverage" NAME="DAY1_01 Coverage Results" MODIFIED="1562853815475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY1" />
-    <SUITE FILE_PATH="coverage/code$DAY9_5.coverage" NAME="DAY9_5 Coverage Results" MODIFIED="1563796321151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
     <SUITE FILE_PATH="coverage/code$DAY5_3.coverage" NAME="DAY5_3 Coverage Results" MODIFIED="1563201538048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY5" />
-    <SUITE FILE_PATH="coverage/code$DAY10_1.coverage" NAME="DAY10_1 Coverage Results" MODIFIED="1563872682617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY10" />
-    <SUITE FILE_PATH="coverage/code$DAY9_2.coverage" NAME="DAY9_2 Coverage Results" MODIFIED="1563706831564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
-    <SUITE FILE_PATH="coverage/code$DAY8_1.coverage" NAME="DAY8_1 Coverage Results" MODIFIED="1563549576590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY8" />
     <SUITE FILE_PATH="coverage/code$DAY3_1.coverage" NAME="DAY3_1 Coverage Results" MODIFIED="1563014636673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY3" />
     <SUITE FILE_PATH="coverage/code$DAY6_1.coverage" NAME="DAY6_1 Coverage Results" MODIFIED="1563287816750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY6" />
-    <SUITE FILE_PATH="coverage/code$DAY11_2.coverage" NAME="DAY11_2 Coverage Results" MODIFIED="1563963928591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY11" />
-    <SUITE FILE_PATH="coverage/code$DAY4_1.coverage" NAME="DAY4_1 Coverage Results" MODIFIED="1563113527984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY4" />
     <SUITE FILE_PATH="coverage/code$DAY9_1.coverage" NAME="DAY9_1 Coverage Results" MODIFIED="1563702434871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
     <SUITE FILE_PATH="coverage/code$DAY7_2.coverage" NAME="DAY7_2 Coverage Results" MODIFIED="1563462620142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY7" />
-    <SUITE FILE_PATH="coverage/code$DAY5_2.coverage" NAME="DAY5_2 Coverage Results" MODIFIED="1563199880268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY5" />
     <SUITE FILE_PATH="coverage/code$DAY3_2.coverage" NAME="DAY3_2 Coverage Results" MODIFIED="1563887451916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY3" />
+    <SUITE FILE_PATH="coverage/code$DAY12_1.coverage" NAME="DAY12_1 Coverage Results" MODIFIED="1564150204792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY12" />
     <SUITE FILE_PATH="coverage/code$DAY_2.coverage" NAME="DAY_2 Coverage Results" MODIFIED="1562929811205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$DAY7_1.coverage" NAME="DAY7_1 Coverage Results" MODIFIED="1563455237806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY7" />
     <SUITE FILE_PATH="coverage/code$DAY5_1.coverage" NAME="DAY5_1 Coverage Results" MODIFIED="1563198945831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY5" />
-    <SUITE FILE_PATH="coverage/code$DAY9_6.coverage" NAME="DAY9_6 Coverage Results" MODIFIED="1563804166472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
-    <SUITE FILE_PATH="coverage/code$DAY2_3.coverage" NAME="DAY2_3 Coverage Results" MODIFIED="1562938350348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY2" />
     <SUITE FILE_PATH="coverage/code$DAY9_4.coverage" NAME="DAY9_4 Coverage Results" MODIFIED="1563791567200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
-    <SUITE FILE_PATH="coverage/code$DAY9_3.coverage" NAME="DAY9_3 Coverage Results" MODIFIED="1563720573282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
     <SUITE FILE_PATH="coverage/code$DAY11_1.coverage" NAME="DAY11_1 Coverage Results" MODIFIED="1563959270282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY11" />
     <SUITE FILE_PATH="coverage/code$DAY9_7.coverage" NAME="DAY9_7 Coverage Results" MODIFIED="1563804247607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
     <SUITE FILE_PATH="coverage/code$DAY2_2.coverage" NAME="DAY2_2 Coverage Results" MODIFIED="1562931764761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY2" />
+    <SUITE FILE_PATH="coverage/code$DAY9_5.coverage" NAME="DAY9_5 Coverage Results" MODIFIED="1563796321151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
+    <SUITE FILE_PATH="coverage/code$DAY10_1.coverage" NAME="DAY10_1 Coverage Results" MODIFIED="1563872682617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY10" />
+    <SUITE FILE_PATH="coverage/code$DAY9_2.coverage" NAME="DAY9_2 Coverage Results" MODIFIED="1563706831564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
+    <SUITE FILE_PATH="coverage/code$DAY8_1.coverage" NAME="DAY8_1 Coverage Results" MODIFIED="1563549576590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY8" />
+    <SUITE FILE_PATH="coverage/code$DAY11_2.coverage" NAME="DAY11_2 Coverage Results" MODIFIED="1563963928591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY11" />
+    <SUITE FILE_PATH="coverage/code$DAY4_1.coverage" NAME="DAY4_1 Coverage Results" MODIFIED="1563113527984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY4" />
+    <SUITE FILE_PATH="coverage/code$DAY5_2.coverage" NAME="DAY5_2 Coverage Results" MODIFIED="1563199880268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY5" />
+    <SUITE FILE_PATH="coverage/code$DAY7_1.coverage" NAME="DAY7_1 Coverage Results" MODIFIED="1563455237806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY7" />
+    <SUITE FILE_PATH="coverage/code$DAY9_6.coverage" NAME="DAY9_6 Coverage Results" MODIFIED="1563804166472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
+    <SUITE FILE_PATH="coverage/code$DAY2_3.coverage" NAME="DAY2_3 Coverage Results" MODIFIED="1562938350348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY2" />
+    <SUITE FILE_PATH="coverage/code$DAY9_3.coverage" NAME="DAY9_3 Coverage Results" MODIFIED="1563720573282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DAY9" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/DAY1/DAY1_01.py">
@@ -512,13 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-483542633/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143640">
-          <caret line="4788" column="4" selection-start-line="4788" selection-start-column="4" selection-end-line="4795" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -635,8 +628,22 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/functools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="811" column="13" lean-forward="true" selection-start-line="811" selection-start-column="13" selection-end-line="811" selection-end-column="13" />
+        <state relative-caret-position="215">
+          <caret line="797" column="48" lean-forward="true" selection-start-line="797" selection-start-column="48" selection-end-line="797" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-483542633/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3028">
+          <caret line="832" column="4" lean-forward="true" selection-start-line="832" selection-start-column="4" selection-end-line="832" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAY12/DAY12_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>

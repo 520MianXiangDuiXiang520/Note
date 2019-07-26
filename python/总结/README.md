@@ -10,6 +10,7 @@
 |DAY7|[格式化字符串的三种方法](#day-7-%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%ad%97%e7%ac%a6%e4%b8%b2)|DAY8|[*args和**kwargs](#day-8-args%e5%92%8ckwargs)|
 |DAY9|[闭包和装饰器](#day-9-%e9%97%ad%e5%8c%85%e5%92%8c%e8%a3%85%e9%a5%b0%e5%99%a8)|总结|[前十天总结](#%e5%89%8d%e5%8d%81%e5%a4%a9%e6%80%bb%e7%bb%93)|
 |DAY10|[python鸭子类型](#day-10-%e9%b8%ad%e5%ad%90%e7%b1%bb%e5%9e%8b)|DAY11|[python 重载（single-dispatch generic function）](#day-11-python-%e9%87%8d%e8%bd%bd)|
+|DAY12|[python 新式类和旧式类](#day-12-python%e6%96%b0%e5%bc%8f%e7%b1%bb%e5%92%8c%e6%97%a7%e5%bc%8f%e7%b1%bb)|||
 
 ## DAY 1. 函数的参数传递
 
@@ -1738,3 +1739,50 @@ python默认不支持重载，但可以使用单分派泛型函数实现，声�
 [python中的重载](https://blog.csdn.net/qq_37049781/article/details/83959365)
 
 [为什么 Python 不支持函数重载？其他函数大部分都支持的？](https://www.zhihu.com/question/20053359)
+
+## DAY 12. python新式类和旧式类
+
+继承自object基类的类叫做新式类，否则叫做旧式类，python3中的类默认是新式类，之前版本默认是旧式类
+
+```python
+root@kail:~# python
+python 2.7.15 (default,Jul 28 2018,11:29:29)
+[GCC 8.1.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> class A():
+...     pass
+...
+>>> a=A()
+>>> dir(a)
+['__doc__','__module__']
+```
+
+如上，在python2中定义一个类，不继承任何基类，内建属性只有两个，这就是旧式类，如果想要创建一个新式类，需要显式的继承object基类，如：
+
+```python
+root@kail:~# python
+python 2.7.15 (default,Jul 28 2018,11:29:29)
+[GCC 8.1.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> class A(object):
+...     pass
+...
+>>> dir(A)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__']
+```
+
+新式类默认有很多属性，都是从object基类中继承过来的，而在python3中所有类默认继承object基类
+
+```py
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> class A:
+        pass
+>>> dir(A)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__']
+>>>
+```
+
+每个属性的具体用法参见[Python——特殊属性与方法](https://www.cnblogs.com/Security-Darren/p/4604942.html)
+
+### C3算法
