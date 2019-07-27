@@ -1785,4 +1785,134 @@ Type "copyright", "credits" or "license()" for more information.
 
 每个属性的具体用法参见[Python——特殊属性与方法](https://www.cnblogs.com/Security-Darren/p/4604942.html)
 
-### C3算法
+### 12.1 新式类和旧式类的区别
+
+1. 根本区别：新式类继承自object基类,旧式类不继承任何基类
+2. MRO不同：新式类和经典类的方法解析顺序（MRO）不同，经典类使用DFS，新式类使用C3算法
+
+python 2.7
+
+```py
+class A():
+    name = 'A'
+    age = 12
+
+class B():
+    name = 'B'
+
+class C():
+    name = 'C'
+
+class D(A,B):
+    name = 'D'
+
+class E(A,C):
+    name = 'E'
+    age = 13
+
+class F(D,E):
+    pass
+
+print F.name  # D
+print F.age  # 12
+```
+
+上面的继承关系是：
+
+```mermaid
+    graph TD
+        A,age=12 ==> D
+        B ==> D
+        A ==> E,age=13
+        C ==> E,age=13
+        D ==> F
+        E,age=13 ==> F
+```
+
+显然在age的继承上，2.7使用了DFS，我们再看3.7
+
+python 3.7
+
+```py
+class A():
+    name = 'A'
+    age = 12
+
+class B():
+    name = 'B'
+
+class C():
+    name = 'C'
+
+class D(A,B):
+    name = 'D'
+
+class E(A,C):
+    name = 'E'
+    age = 13
+
+class F(D,E):
+    pass
+
+print(F.name)  # D
+print(F.age)  # 13
+```
+
+显然3.7没有使用DFS，而是在每一次寻找入度为零的节点，加入mro列表后删除这条边，再次寻找，以上面的代码为例，第一个入读为0的节点就是F，所以mro表的第一项就是F，删除F及相连的边，入度为0的就是DE，按照书写代码的顺序第二项为D，第三项为E，依次，最终所有新式类继承自object，所以最后一项就是object,继承顺序就是按mro列表的顺序来的，可以使用mro()查看mro列表
+
+```py
+print(F.mro())
+# [<class '__main__.F'>, <class '__main__.D'>, <class '__main__.E'>, <class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class 'object'>]
+```
+
+也就是说，C3是先在水平方向上查找，再往上查找
+
+### 12.2 总结
+
+||基类|MRO|备注|
+|-|---|---|----|
+|经典类|None|DFS|python2默认经典类|
+|新式类|object|C3|python3默认新式类|
+
+我尝试在python3中通过重写type元类写出经典类，但发现这样写出的类似乎不是真的经典类，只是默认属性和经典类差不多，MRO行为依旧和新式类一样，可能是我代码有问题，请各位大佬赐教
+
+```py
+class Type(type):
+    __bases__ = ()
+    __base__ = None
+    __mro__ = (None,)
+
+
+
+Foo1 = Type('Foo1',() ,{})
+Foo2 = Type('Foo2', (), {})
+Foo3 = Type('Foo3', (), {})
+Foo4 = Type('Foo4', (Foo1, Foo2), {})
+Foo5 = Type('Foo5', (Foo1, Foo3), {})
+Foo6 = Type('Foo6', (Foo4, Foo5), {})
+
+if __name__ == '__main__':
+    
+    # base 为空时会多出两个属性，第一个与类描述有关，第二个与弱拷贝有关
+    print(dir(Foo1))  # ['__dict__', '__doc__', '__module__', '__weakref__']
+    print(dir(Foo2))  # ['__dict__', '__doc__', '__module__', '__weakref__']
+    print(dir(Foo3))  # ['__dict__', '__doc__', '__module__', '__weakref__']
+    
+    # base 不为空时，默认属性表现的和经典类一样
+    print(dir(Foo4))  # ['__doc__', '__module__']
+    print(dir(Foo5))  # ['__doc__', '__module__']
+    print(dir(Foo6))  # ['__doc__', '__module__']
+    
+    # 假如定义的是经典类，这里应该不能调用mro方法，但这里调用了，说明本身就不对，并且mro列表最后是object，进一步说明这还是一个新式类
+    print(Foo1.mro())  # [<class '__main__.Foo1'>, <class 'object'>]
+    print(Foo2.mro())  # [<class '__main__.Foo1'>, <class 'object'>]
+    print(Foo3.mro())  # [<class '__main__.Foo1'>, <class 'object'>]
+    print(Foo4.mro())  # [<class '__main__.Foo4'>, <class '__main__.Foo1'>, <class '__main__.Foo2'>, <class 'object'>]
+    print(Foo5.mro())  # [<class '__main__.Foo5'>, <class '__main__.Foo1'>, <class '__main__.Foo3'>, <class 'object'>]
+    
+    # 清楚的看到MRO使用的是C3算法
+    print(Foo6.mro())  # [<class '__main__.Foo6'>, <class '__main__.Foo4'>, <class '__main__.Foo5'>, <class '__main__.Foo1'>, <class '__main__.Foo2'>, <class '__main__.Foo3'>, <class 'object'>]
+    
+    # TODO: 如何在python3中定义经典类，还是根本不能定义，抛砖引玉，请赐教
+
+```
