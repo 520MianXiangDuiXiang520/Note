@@ -1916,3 +1916,195 @@ if __name__ == '__main__':
     # TODO: 如何在python3中定义经典类，还是根本不能定义，抛砖引玉，请赐教
 
 ```
+
+## DAY 13. 单例设计
+
+### 13.1 什么是单例设计
+
+一个类每次实例化返回的都是同一个对象，这种设计模式叫做单例设计，这个类叫做单例类
+
+### 13.2 实现单例设计的方法
+
+#### 13.2.1 重写__new__()
+
+```py
+class Foo:
+    def __new__(cls,*args, **kwargs):
+        # 如果是第一次实例化，返回一个新对象
+        if not hasattr(cls, '_object'):
+            cls._object = super().__new__(cls)
+        return cls._object
+
+    def __init__(self, name):
+            self.name = name
+
+    def Print(self):
+        print(f'The name of this object is: {self.name}')
+
+if __name__ == '__main__':
+    foo1 = Foo('foo1')
+    foo2 = Foo('foo2')
+    foo3 = Foo('foo3')
+    foo1.Print()  # The name of this object is: foo3
+    foo2.Print()  # The name of this object is: foo3
+    foo3.Print()  # The name of this object is: foo3
+
+```
+
+#### 13.2.2 使用装饰器
+
+```py
+def singleton(cls):
+    singleton_dict = {}
+    def close(*args, **kwargs):
+        # 利用字典的setdefault()方法，如果第一次实例化就加入字典，以后每次都返回这个对象
+        return singleton_dict.setdefault('obj',cls(*args, **kwargs))
+    return close
+
+@singleton
+class MyClass:
+    pass
+
+if __name__ == '__main__':
+    foo1 = MyClass()
+    foo2 = MyClass()
+    print(foo1)  # <__main__.MyClass object at 0x000001DF618C8940>
+    print(foo2)  # <__main__.MyClass object at 0x000001DF618C8940>
+```
+
+#### 13.2.3 使用模块
+
+用import导入的模块就是天然的单例模式，如果想要实现一个单例类，不妨把它作为一个独立的模块,使用时导入由他实例化出来的对象
+
+```py
+# mysingleton.py
+class My_Singleton(object):
+    def foo(self):
+        pass
+
+my_singleton = My_Singleton()
+
+# to use
+from mysingleton import my_singleton
+
+my_singleton.foo()
+```
+
+#### 13.2.4 共享属性
+
+共享属性是指所有由“单例类”实例化出来的对象都共享“同一份属性”，也就是所有对象的`__dict__`都指向同一个字典，但这样严格来说并不算真的单例模式，因为这样还是有多个实例对象，但其行为确实和单例模式一样
+
+```py
+class Foo:
+    _mydict = {}
+    def __new__(cls, *args, **kwargs):
+        ob = super().__new__(cls)
+        ob.__dict__ = cls._mydict
+        return ob
+
+if __name__ == '__main__':
+    foo1 = Foo()
+    foo2 = Foo()
+    foo1.name = 'foo1'
+    print(foo2.name)  # foo1
+    # foo1 和 foo2 并不是同一个对象，只不过他们的方法和属性公用同一块内存
+    print(foo1)  # <__main__.Foo object at 0x0000023ADA4A8A90>
+    print(foo2)  # <__main__.Foo object at 0x0000023ADA4A8AC8>
+```
+
+### 13.3 总结
+
+* 什么是单例模式
+  * 单例，即单个实例，一个类在实例化的过程中始终返回同一个实例
+* 实现单例模式的四种方法
+  * 重写`__new__(cls)`方法，该方法是一个类方法，用来为实例开辟内存空间，返回值是实例化对象，通过重写该方法，可以使每次实例化都返回同一个对象
+  * 修饰器方法：与之前修饰器那一节的斐波那契数列类似，判断字典中有没有对象，有的话就直接返回，没有才实例化
+  * 模块：这是最简单的方法，直接导入实例化对象
+  * 共享属性：通过把所有对象的`__dict__`指向同一块内存空间来实现，虽然不是“一个实例”，但其行为与“一个实例”一样
+
+## DAY 14. python多线程
+
+### 14.1 计算机多任务的实现
+
+* 什么是线程  
+  线程是计算机处理事务的最小单位，比如每打开一个网页就是一个独立的线程
+* CPU单核与多核架构  
+  CPU核心数是指CPU在物理上存在几个运算核心，计算机执行每一个线程都要占用一个核心，多核CPU意味着可以同时运行多个线程
+* 并行与并发的概念  
+  因为计算机核数有限，所以我们看到的多任务并不是真的多任务，是操作系统调度的结果，具体就是在快速切换线程，每个都执行很短的时间，这样在人的感觉上就是多个任务同时执行了，类似于电影，快速切换帧，视觉上造成了动画的错觉。
+  * 并发：像上面所说的 “时间片轮转” 也就是假的多线程，就叫做并发
+  * 并行：如果你的电脑是四核，而你只运行四个线程，那这四个线程就是并行运行的，并行就是真的多线程，但一般都是并发
+
+### 14.2 python多线程
+
+python多线程的实现都依靠threading模块
+
+* 创建线程
+
+```py
+import threading
+import time
+
+def Foo1():
+    for i in range(5):
+        print('********* 01 *********')
+        time.sleep(1)
+
+
+def Foo2():
+    for i in range(5):
+        print('******** 02 **********')
+        time.sleep(1)
+
+
+def main():
+
+    # 使用threading模块中的Thread类实例化出来一个对象，但这仅仅只是普通的实例化，并没有创建线程，自然也没有运行线程
+    t1 = threading.Thread(target=Foo1)
+    t2 = threading.Thread(target=Foo2)
+
+    # 只有调用对象的start方法才会真正创建线程，并运行
+    # start方法会自动调用一个run方法，来实现运行线程
+    t1.start()
+    t2.start()
+
+if __name__ == '__main__':
+    main()
+```
+
+也可以使用继承Thread类的方法，不过一定要实现run方法
+
+```py
+import threading
+
+class Foo:
+    def __init__(self):
+        pass
+
+    def One(self):
+       pass
+
+    def Two(self):
+        pass
+
+class MyThread(threading.Thread):
+    def __init__(self,foo:object):
+        super().__init__()
+        self.foo = foo
+
+    def run(self):
+        self.foo.One()
+        self.foo.Two()
+
+def main(obj:object):
+    t = MyThread(obj)
+    t.start()
+
+if __name__ == '__main__':
+    foo = Foo()
+    main(foo)
+
+```
+
+* 查看线程
+* 生命周期
