@@ -27,9 +27,9 @@ def Receive(udp_socket):
 def main():
     # 建立套接字
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    udp_socket.bind(('', 1231))
+    udp_socket.bind(('', 5000))
     # 接收端套接字
-    receive_addr = ('192.168.1.8', 5000)
+    receive_addr = ('192.168.1.6', 1231)
     t1 = threading.Thread(target=Send, args=(udp_socket, receive_addr))
     t2 = threading.Thread(target=Receive,args=(udp_socket, ))
     t1.start()
