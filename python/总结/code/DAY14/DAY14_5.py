@@ -1,6 +1,8 @@
 import socket
 import threading
 
+lock = threading.Lock()
+
 # 建立套接字
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -14,8 +16,10 @@ send_socket = ('', 12315)
 
 def Send():
     while True:
+        lock.acquire()
         message = str(input("请输入发送内容："))
         s.sendto(message.encode('utf-8'), receive_socket)
+        lock.release()
 
 def Receive():
     """
@@ -23,8 +27,10 @@ def Receive():
     :return:
     """
     while True:
+        lock.acquire()
         data, addr = s.recvfrom(1024)
         print(f'接收到来自 {addr[0]}({addr[1]}) 的消息： {data.decode()}')
+        lock.release()
 
 
 def main():
@@ -32,3 +38,6 @@ def main():
     t2 = threading.Thread(target=Receive)
     t1.start()
     t2.start()
+
+if __name__ == '__main__':
+    main()
