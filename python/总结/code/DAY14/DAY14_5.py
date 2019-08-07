@@ -1,15 +1,11 @@
 import socket
 import threading
 
-# lock = threading.Lock()
 
 def Send(udp_socket, receive_addr):
     while True:
-        # lock.acquire()
         info = str(input('请输入：')).encode()
         udp_socket.sendto(info, receive_addr)
-        # udp_socket.close()
-        # lock.release()
 
 def Receive(udp_socket):
     """
@@ -17,11 +13,9 @@ def Receive(udp_socket):
     :return:
     """
     while True:
-        # lock.acquire()
         data, addr = udp_socket.recvfrom(1024)
         print(f'接收到来自 {addr[0]}({addr[1]}) 的消息： {data.decode()}')
-        # udp_socket.close()
-        # lock.release()
+
 
 
 def main():
