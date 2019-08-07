@@ -1,41 +1,37 @@
 import socket
 import threading
 
-lock = threading.Lock()
+# lock = threading.Lock()
 
-# 建立套接字
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-# 接收端套接字
-# 192.168.1.7
-# 192.168.1.6
-receive_socket = ('192.168.1.7', 12315)
-
-# 发送端套接字
-send_socket = ('', 12315)
-
-def Send():
+def Send(udp_socket, receive_addr):
     while True:
-        lock.acquire()
-        message = str(input("请输入发送内容："))
-        s.sendto(message.encode('utf-8'), receive_socket)
-        lock.release()
+        # lock.acquire()
+        info = str(input('请输入：')).encode()
+        udp_socket.sendto(info, receive_addr)
+        # udp_socket.close()
+        # lock.release()
 
-def Receive():
+def Receive(udp_socket):
     """
     接受端函数
     :return:
     """
     while True:
-        lock.acquire()
-        data, addr = s.recvfrom(1024)
+        # lock.acquire()
+        data, addr = udp_socket.recvfrom(1024)
         print(f'接收到来自 {addr[0]}({addr[1]}) 的消息： {data.decode()}')
-        lock.release()
+        # udp_socket.close()
+        # lock.release()
 
 
 def main():
-    t1 = threading.Thread(target=Send)
-    t2 = threading.Thread(target=Receive)
+    # 建立套接字
+    udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    udp_socket.bind(('', 1231))
+    # 接收端套接字
+    receive_addr = ('192.168.1.8', 5000)
+    t1 = threading.Thread(target=Send, args=(udp_socket, receive_addr))
+    t2 = threading.Thread(target=Receive,args=(udp_socket, ))
     t1.start()
     t2.start()
 
