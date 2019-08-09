@@ -2106,5 +2106,250 @@ if __name__ == '__main__':
 
 ```
 
-* 查看线程
-* 生命周期
+#### 14.2.1 线程间共享全局变量
+
+两个线程之间可以共享全局变量实现线程间通信，但操作系统执行线程的顺序是不确定的，这会造成资源竞争的问题，解决资源竞争首先需要在算法层面尽量避免（银行家算法），其次可以使用互斥锁来解决
+
+```py
+import threading
+import time
+
+NUM = 0
+# 互斥锁
+lock = threading.Lock()
+
+def Foo1(num: int):
+    global NUM
+    for i in range(num):
+        lock.acquire()
+        NUM += 1
+        lock.release()
+    print(f'Foo1:{NUM}')
+
+def Foo2(num: int):
+    global NUM
+    for i in range(num):
+        lock.acquire()
+        NUM += 1
+        lock.release()
+    print(f'Foo2:{NUM}')
+
+def main():
+    t1 = threading.Thread(target=Foo1,args=(1000000,))
+    t2 = threading.Thread(target=Foo2,args=(1000000,))
+    t1.start()
+    time.sleep(0.1)
+    t2.start()
+
+
+if __name__ == '__main__':
+    main()
+    time.sleep(2)
+    print(NUM)
+
+```
+
+python threading模块中提供两个锁，Lock和RLock，作用都是为了解决资源竞争，但RLock是多重锁，也就是在锁里面上锁，上锁和解锁必须成对出现
+
+除此之外还有条件变量Condition，也可以理解成一个锁，当满足一定条件后该线程等待,里面有下面几种常用方法
+
+* acquire():获得线程锁
+* release():释放线程锁
+* wait(): 线程等待（挂起），程序会阻塞在这，直到notify或notify_all把他唤醒，在wait之前线程必须获得锁，不然会抛出RuntimeError
+* notify(n=1): 通知正在等待的线程执行,最多执行n个，不会主动释放锁，调用之前必须获得锁，否则抛出RuntimeError异常
+* notify_all():唤醒所有线程
+
+```py
+# 生产者消费者模型
+import threading
+Product = []
+
+
+class Producer(threading.Thread):
+    """生产者，当生产的产品大于10时，生产者等待"""
+    def __init__(self, condition):
+        super().__init__()
+        self._condition = condition
+
+    @staticmethod
+    def Production():
+        Product.append('product')
+        print(f'生产者：{len(Product)}')
+
+    def run(self):
+        self._condition.acquire()
+        while True:
+            if len(Product) == 5:
+                self._condition.notify()
+                self._condition.wait()
+            self.Production()
+
+
+class Consumers(threading.Thread):
+    """消费者，当产品数小于5时，消费者等待"""
+    def __init__(self, condition):
+        super().__init__()
+        self._condition = condition
+
+    @staticmethod
+    def Consumption():
+        Product.pop(0)
+        print(f'消费者:{len(Product)}')
+
+    def run(self):
+        self._condition.acquire()
+        while True:
+            if len(Product) == 1:
+                self._condition.notify()
+                self._condition.wait()
+            self.Consumption()
+
+if __name__ == '__main__':
+    condition = threading.Condition()
+    producer = Producer(condition)
+    consumer = Consumers(condition)
+    producer.start()
+    consumer.start()
+
+
+```
+
+#### 14.2.2 多线程实现UDP通信
+
+```py
+import socket
+import threading
+
+
+def Send(udp_socket, receive_addr):
+    while True:
+        info = str(input('请输入：')).encode()
+        udp_socket.sendto(info, receive_addr)
+
+def Receive(udp_socket):
+    while True:
+        data, addr = udp_socket.recvfrom(1024)
+        print(f'接收到来自 {addr[0]}({addr[1]}) 的消息： {data.decode()}')
+
+
+
+def main():
+    # 建立套接字
+    udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    udp_socket.bind(('', 1231))
+    # 接收端套接字
+    receive_addr = ('192.168.1.8', 5000)
+    t1 = threading.Thread(target=Send, args=(udp_socket, receive_addr))
+    t2 = threading.Thread(target=Receive,args=(udp_socket, ))
+    t1.start()
+    t2.start()
+
+if __name__ == '__main__':
+    main()
+```
+
+#### 14.2.3 练习
+
+这是来自[力扣](https://leetcode-cn.com/problems/print-in-order/)上的一道题目,题目描述:
+
+我们提供了一个类：
+
+```java
+public class Foo {
+  public void one() { print("one"); }
+  public void two() { print("two"); }
+  public void three() { print("three"); }
+}
+```
+
+三个不同的线程将会共用一个 Foo 实例。
+
+线程 A 将会调用 one() 方法
+线程 B 将会调用 two() 方法
+线程 C 将会调用 three() 方法
+请设计修改程序，以确保 two() 方法在 one() 方法之后被执行，three() 方法在 two() 方法之后被执行。
+
+```py
+import threading
+
+
+def One():
+    print('one', end='')
+
+
+def Two():
+    print('two', end='')
+
+
+def Three():
+    print('three', end='')
+
+
+class Foo():
+
+    def __init__(self):
+        self.cd = threading.Condition()
+        self.NUM = 0
+
+    def first(self,PrintFirst:callable):
+        # with语法糖
+        with self.cd:
+            while self.NUM != 0:
+                self.cd.wait()
+            PrintFirst()
+            self.NUM += 1
+            self.cd.notify_all()
+
+    def Second(self,PrintSecond:callable):
+        self.cd.acquire()
+        while self.NUM != 1:
+            self.cd.wait()
+        PrintSecond()
+        self.NUM += 1
+        self.cd.notify_all()
+        self.cd.release()
+
+    def Third(self,PrintThird:callable):
+        self.cd.acquire()
+        while self.NUM != 2:
+            self.cd.wait()
+        PrintThird()
+        self.NUM += 1
+        self.cd.notify_all()
+        self.cd.release()
+
+if __name__ == '__main__':
+    foo = Foo()
+    callablelist = [foo.first, foo.Second, foo.Third]
+    callablelistargs = [One, Two, Three]
+    order = [2, 1, 3]
+    A = threading.Thread(target=callablelist[order[0]-1], args=(callablelistargs[order[0]-1],))
+    B = threading.Thread(target=callablelist[order[1]-1], args=(callablelistargs[order[1]-1],))
+    C = threading.Thread(target=callablelist[order[2]-1], args=(callablelistargs[order[2]-1],))
+    A.start()
+    B.start()
+    C.start()
+
+```
+
+### 14.3 总结
+
+* 单核CPU多任务的实质：时间片轮转
+* 什么是线程：计算机处理任务的最小调度单元
+* python实现多线程：依赖threading模块
+* 创建线程
+  * 调用threading模块Thread类的实例化对象的start()方法
+  * 继承Thread类，实现run()方法
+* 线程间通信：共享全局变量
+  * 问题：存在资源竞争
+* 解决资源竞争的办法：
+  * 从代码设计上：银行家算法
+  * 程序上：使用互斥锁（Lock，RLock）或条件变量Condition
+* 条件变量Condition
+  * acquire
+  * wait
+  * notify/notify_all
+  * release
+* 查看线程：enumerate()
+* 守护线程：SetDeamon(),传入True为守护线程，否则不是，守护线程会在主线程结束时直接结束。
+* join():用来阻塞主线程，可以传入一个timeout参数，它是所有子线程执行时间之和，如果设置了守护进程（只要设置了），outtime时间结束后，主线程终止，未完成的子进程也会被杀死，对于没有设置守护线程的，主线程会阻塞一段时间（timeout累加之和），时间到后，主线程结束，子线程继续，直到子线程执行完毕

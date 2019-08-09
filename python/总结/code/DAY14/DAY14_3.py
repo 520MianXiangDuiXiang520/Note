@@ -1,54 +1,60 @@
 import threading
-import time
-
-lock = threading.RLock()
-
-class Foo:
-    global lock
-    def __init__(self, n):
-        self.n = n
-
-    def One(self):
-        for i in range(self.n):
-            # 得到锁后才执行
-            lock.acquire()
-            try:
-                print('one', end='')
-            finally:
-                lock.release()
-
-    def Two(self):
-        for i in range(self.n):
-            lock.acquire()
-            try:
-                print('two', end='')
-            finally:
-                lock.release()
 
 
-class MyThread(threading.Thread):
-    global lock
+def One():
+    print('one', end='')
 
-    def __init__(self, no, foo):
-        super().__init__()
-        self.no = no
-        self.foo = foo
 
-    def run(self):
-        if self.no == 1:
-            lock.acquire()
-            print('one', end='')
-            lock.release()
-        elif self.no == 2:
-            self.foo.Two()
+def Two():
+    print('two', end='')
 
-def main(n:int):
-    foo = Foo(n)
-    for i in range(n):
-        t1 = MyThread(no=1, foo=foo)
-        t1.start()
-        t2 = MyThread(no=2,foo=foo)
-        t2.start()
+
+def Three():
+    print('three', end='')
+
+
+class Foo():
+
+    def __init__(self):
+        self.cd = threading.Condition()
+        self.NUM = 0
+
+    def first(self,PrintFirst:callable):
+        # with语法糖
+        with self.cd:
+            while self.NUM != 0:
+                self.cd.wait()
+            PrintFirst()
+            self.NUM += 1
+            self.cd.notify_all()
+
+    def Second(self,PrintSecond:callable):
+        self.cd.acquire()
+        while self.NUM != 1:
+            self.cd.wait()
+        PrintSecond()
+        self.NUM += 1
+        self.cd.notify_all()
+        self.cd.release()
+
+    def Third(self,PrintThird:callable):
+        self.cd.acquire()
+        while self.NUM != 2:
+            self.cd.wait()
+        PrintThird()
+        self.NUM += 1
+        self.cd.notify_all()
+        self.cd.release()
 
 if __name__ == '__main__':
-    main(5)
+    foo = Foo()
+    callablelist = [foo.first, foo.Second, foo.Third]
+    callablelistargs = [One, Two, Three]
+    order = [2, 1, 3]
+    A = threading.Thread(target=callablelist[order[0]-1], args=(callablelistargs[order[0]-1],))
+    B = threading.Thread(target=callablelist[order[1]-1], args=(callablelistargs[order[1]-1],))
+    C = threading.Thread(target=callablelist[order[2]-1], args=(callablelistargs[order[2]-1],))
+    A.start()
+    B.start()
+    C.start()
+
