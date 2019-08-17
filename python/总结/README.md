@@ -2453,3 +2453,157 @@ Pipe(管道)：参考 [GitHub](https://github.com/520MianXiangDuiXiang520/Note/b
 * 程序和进程：
   * 程序是一个二进制文件，是静态的，不占用计算机资源
   * 进程是程序执行的产物，是一堆资源的总称
+
+## DAY 16. python协程
+
+## DAY 17. GIL全局锁
+
+## DAY 18. python垃圾回收机制
+
+python GC主要有三种方式
+
+* [引用计数](#181-%e5%bc%95%e7%94%a8%e8%ae%a1%e6%95%b0reference-counting)
+* [标记清除](#182-%e6%a0%87%e8%ae%b0%e6%b8%85%e9%99%a4mark-sweep)
+* [分代回收](#183-%e5%88%86%e4%bb%a3%e5%9b%9e%e6%94%b6)
+
+其中，以引用计数为主。
+
+### 18.1 引用计数（Reference Counting）
+
+引用计数的原理是在每次创建对象时都添加一个计数器，每当有引用指向这个对象时，该计数器就会加1，当引用结束计数器就会减1，当计数器为0时，该对象就会被回收。
+
+python 中所有对象所共有的数据成员由一个叫做pyobject的结构体来保存
+
+```h
+typedef struct _object {
+
+     /* 宏，仅仅在Debag模式下才不为空 */
+    _PyObject_HEAD_EXTRA
+
+    /* 定义了一个 Py_ssize_t 类型的 ob_refcnt 用来计数 */
+    Py_ssize_t ob_refcnt;
+
+    /* 类型 */
+    struct _typeobject *ob_type;
+} PyObject;
+```
+
+里面的ob_refcnt就是垃圾回收用到的计数器，而Py_ssize_t是整数
+
+pyobject中保存的是python对象中共有的数据成员，所以python创建的每一个对象都会有该属性。
+
+在python中可以使用`from sys import getrefcount`来查看引用计数的值,但一般这个值会比期望的ob_refcnt高，应为它会包含临时应用以作为getrefcount的参数
+
+以下情况ob_refcnt加一
+
+* 创建对象
+* 引用对象
+* 作为参数传递到函数中
+* 作为成员存储在容器中
+
+```py
+from sys import getrefcount
+
+foo: int = 1
+print(getrefcount(foo))  # 91 应为包含临时引用，所以会比预期的高很多
+
+bar: int = foo
+print(getrefcount(foo))  # 92 增加了一个foo的引用，所以计数加一
+
+List = []
+List.append(foo)
+print(getrefcount(foo))  # 93 作为成员存储在容器中,计数加一
+
+def Foo(*agrs):
+    print(getrefcount(foo))  # 95 作为参数传递给了函数计数加一，实参与形参的赋值使计数加一
+Foo(foo)
+print(getrefcount(foo))  # 函数生命周期结束，计数减2
+```
+
+以下情况，计数减一：
+
+* 当该对象的别名被显式销毁时
+* 该对象的别名被赋予新值时
+* 离开作用域时
+* 从容器中删除时
+
+```py
+del bar
+print(getrefcount(foo))  # 92 对象的别名被显式销毁
+
+List.pop()
+print(getrefcount(foo))  # 91 从容器中删除
+
+foo2: int = foo
+foo2 = 2
+print(getrefcount(foo))  # 91 别名被赋予新值
+```
+
+当计数被减为0时，该对象就会被回收
+
+```py
+class MyList(list):
+    def __del__(self):
+        print('该对象被回收')
+
+
+s = MyList()
+s = []  # s是MyList实例对象唯一的引用，s指向别的对象，MyList的这个实例对象就会被立刻回收
+print('end')
+# 该对象被回收
+# end
+```
+
+优点：
+
+* 实现简单
+* 内存回收及时，只要没有引用立刻回收
+* 高效对象有确定生命周期
+  
+缺点：
+
+* 维护计数器占用资源
+* 无法解决循环引用问题
+
+```py
+# 循环引用
+class MyList(list):
+    def __del__(self):
+        print('该对象被回收')
+
+
+if __name__ == '__main__':
+    a = MyList()
+    b = MyList()
+    a.append(b)
+    b.append(a)
+    del a
+    del b
+
+    print('程序结束')
+
+# 程序结束
+# 该对象被回收
+# 该对象被回收
+```
+
+a和b相互引用，造成a，b的计数始终大于0，这样就无法使用引用计数的方法处理垃圾，针对这种情况，python使用另外一种GC机制——标记清除来回收垃圾。
+
+### 18.2 标记清除（Mark-Sweep）
+
+标记清除就是为解决循环引用产生的，应为它造成的内存开销较大，所以在不会产生循环引用的对象上是不会使用的。
+
+* 哪写对象会产生循环引用？  
+只有能“引用”别的对象，才会产生循环引用，那些int,string等是不会产生的，只有“容器”，类似list,dict之类才可能产生，也只有这类对象才可能使用标记清除机制。
+
+
+
+### 18.3 分代回收
+
+## DAY 19. lambda表达式
+
+## 总结（二）
+
+## DAY 20. python拷贝
+
+## DAY 21. python设计模式
