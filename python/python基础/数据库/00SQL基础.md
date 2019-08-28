@@ -1,3 +1,20 @@
+<!--961032830987546d0e6d54829fc886f6-->
+
+目录(Catalo)
+
+* [SQL操作](#SQL操作)
+  * [1.DML 和 DDL](#1.DML 和 DDL)
+    * [1.1 DML](#1.1 DML)
+      * [1.1.1 SELECT](#1.1.1 SELECT)
+      * [1.1.2 INSERT INTO](#1.1.2 INSERT INTO)
+      * [1.2.3 UPDATE](#1.2.3 UPDATE)
+      * [1.2.4 DELETE](#1.2.4 DELETE)
+    * [1.2 DDL](#1.2 DDL)
+      * [1.2.1 CREATE DATABASE](#1.2.1 CREATE DATABASE)
+      * [1.2.2 ALTER DATABASE](#1.2.2 ALTER DATABASE)
+      * [1.2.3 CREATE TABLE](#1.2.3 CREATE TABLE)
+
+<!--a46263f7a69f33f39fc26f907cdb773a-->
 # SQL操作
 
 ## 1.DML 和 DDL
