@@ -2,7 +2,7 @@
 
 目录(Catalo)
 
-* [python JSON](#python JSON)
+* [python-JSON](#python-JSON)
 
 <!--a46263f7a69f33f39fc26f907cdb773a-->
 # python JSON
