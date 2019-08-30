@@ -2,12 +2,12 @@
 
 目录(Catalo)
 
-* [lxml和xpath](#lxml和xpath)
+* [lxml和xpath](#lxml%E5%92%8Cxpath)
   * [Xpath](#Xpath)
-    * [Xpath节点](#Xpath节点)
-    * [Xpath基本语法](#Xpath基本语法)
-    * [Xpath轴](#Xpath轴)
-    * [Xpath运算符](#Xpath运算符)
+    * [Xpath节点](#Xpath%E8%8A%82%E7%82%B9)
+    * [Xpath基本语法](#Xpath%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95)
+    * [Xpath轴](#Xpath%E8%BD%B4)
+    * [Xpath运算符](#Xpath%E8%BF%90%E7%AE%97%E7%AC%A6)
   * [lxml](#lxml)
 
 <!--a46263f7a69f33f39fc26f907cdb773a-->
