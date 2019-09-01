@@ -2,41 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="237c4ef7-262e-459b-b46b-3666adc66cb2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/code/入门/01.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/01.数据类型.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/01.数据类型.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/02.流程控制语句.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/02.流程控制语句.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/03python序列.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/03python序列.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/04函数.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/04函数.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/05字符串与正则.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/05字符串与正则.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/06文件.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/06文件.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/07异常捕捉.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/07异常捕捉.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/eval.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/eval.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/json.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/json.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/数据库/00SQL基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/数据库/00SQL基础.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/数据库/01SQLite操作.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/数据库/01SQLite操作.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/数据库/关系型数据库操作.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/数据库/关系型数据库操作.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/数据库/非关系型数据库操作.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/数据库/非关系型数据库操作.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/面向对象/单例模式.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/面向对象/单例模式.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/面向对象/新式类和旧式类.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/面向对象/新式类和旧式类.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/面向对象/类对象.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/面向对象/类对象.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/面向对象/面向对象01.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/面向对象/面向对象01.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/面向对象/魔术方法01.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/面向对象/魔术方法01.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python基础/面向对象/魔术方法02-算术运算.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python基础/面向对象/魔术方法02-算术运算.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/01盗亦有道.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/01盗亦有道.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/02知己知彼.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/02知己知彼.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/03尚方宝剑-requests.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/03尚方宝剑-requests.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/04九齿钉耙-json.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/04九齿钉耙-json.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/05青龙偃月-lxml.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/05青龙偃月-lxml.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/06紫金葫芦-bs4.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/06紫金葫芦-bs4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/爬虫之道/07屠龙宝刀-Scrapt.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/爬虫之道/07屠龙宝刀-Scrapt.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/线程与进程/多线程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/线程与进程/多线程.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/线程与进程/多进程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/线程与进程/多进程.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/网络编程/FTP编程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/网络编程/FTP编程.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/网络编程/NAT编程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/网络编程/NAT编程.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/网络编程/TCP编程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/网络编程/TCP编程.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/网络编程/UDP简单模拟在线聊天.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/网络编程/UDP简单模拟在线聊天.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/python进阶/网络编程/UDP编程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/python进阶/网络编程/UDP编程.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/总结/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../python/总结/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/入门/01.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/入门/01.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/code/入门/01.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -106,7 +72,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="951" />
     <option name="y" value="-9" />
     <option name="width" value="978" />
@@ -146,8 +112,15 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tool/python_android" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
@@ -174,16 +147,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567168870042</updated>
-      <workItem from="1567168871576" duration="1013000" />
+      <workItem from="1567168871576" duration="1023000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1013000" />
+    <option name="totallyTimeSpent" value="1023000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="761" y="-7" width="782" height="878" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.041208792" />
@@ -216,7 +188,7 @@
     <entry file="file://$PROJECT_DIR$/code/入门/01.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>

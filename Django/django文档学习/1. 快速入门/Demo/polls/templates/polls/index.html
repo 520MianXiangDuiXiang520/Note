@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/index.css' %}">
+
+{% if question_list %}
+    {% for question in question_list %}
+        <a href="{% url 'polls:detail' question.id %}">{{question}}</a>
+        
+    {% endfor %}
+{% else %}
+    没有任何投票
+{% endif %}

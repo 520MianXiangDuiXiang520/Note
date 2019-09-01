@@ -1,0 +1,25 @@
+<h1>details</h1>
+{% if error %}{{error}}{% endif %}
+<h2>{{question}}</h2>
+{% if question.choice_set.all %}
+<table>
+
+<!-- {% for choice in choices %}
+<tr>
+    <td>{{choice.choice_text}}</td>
+    <td>{{choice.votes}}</td>
+</tr>
+{% endfor %} -->
+
+<form action="{% url 'polls:vote' question.id %}", method='POST'>
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+    <input type="submit" value="提交">
+</form>
+</table>
+{% else %}
+没有选项
+{% endif %}
