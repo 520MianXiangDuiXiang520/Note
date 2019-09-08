@@ -16,7 +16,7 @@ from urllib import parse
 # [('key', '哈哈哈')]
 # {'key': ['哈哈哈']}
 
-proxy = {'http': '120.83.97.83:9999'}
+proxy = {'http': '171.13.200.149:9999'}
 url = 'https://httpbin.org/ip'
 hander = request.ProxyHandler(proxy)
 opener = request.build_opener(hander)

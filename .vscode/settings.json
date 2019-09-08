@@ -8,5 +8,7 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": false,
+    "python.pythonPath": "C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "python.testing.promptToConfigure": false
 }
