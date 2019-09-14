@@ -40,19 +40,7 @@ class Proxy:
         # except:
         #     print("代理连接失败")
 
-    def _get_proxy0(self):
-        """
-        免费代理IP库
-        该站十秒刷新一次
-        """
-        link = 'http://ip.jiangxianli.com/?page='
-        while True:
-            for i in range(1, 4):
-                request = etree.HTML(requests.get(link + str(i)).text)
-                proxy = request.xpath(
-                    '//tbody/tr/td/button[@class = "btn btn-sm btn-copy"]/@data-url')
-                self._add(proxy)
-                sleep(10)
+
 
     def _get_proxy1(self):
         """
