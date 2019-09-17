@@ -4,37 +4,6 @@
 
 类似于C++的构造函数，是一个与类名相同的函数，没有返回值（没有返回值不同于返回NULL），程序执行时会被默认执行。
 
-## 方法重载
-
-## 区分方法重载的两种方法
-
-* 不同的参数类型
-* 不同的参数顺序（不推荐使用）
-* 不能通过返回值区分重载函数
-
-## 涉及到基本数据类型的方法重载
-
-涉及到基本数据类型的方法重载会到变量提升的问题,如果传入的实参类型小于形参类型，实参数据类型就会被提升，char不同，如果找不到接受char参数的方法，他就会被直接提升为int，如果实参类型大于形参类型（如方法只接受int，传入float）就必须使用类型转换窄化实参，否则会报错。
-
-```java
-public class Chapter5_1 {
-    // 涉及到基本数据类型的方法重载
-    void demo(int i){
-        System.out.println("a int args");
-    }
-
-    public static void main(String[] args) {
-        Chapter5_1 c = new Chapter5_1();
-        c.demo('x');
-    }
-}
-```
-
-## this
-
-类似于python中的self和JavaScript的this。  
-在方法内部调用同一类的别的方法是可以不使用this
-
 ### 在构造器中使用构造器
 
 * 在构造器中使用构造器，this必须作为第一条语句
@@ -78,6 +47,37 @@ public class Chapter5_1 {
 //    num = 5, str = hello
 
 ```
+
+## 方法重载
+
+### 区分方法重载的两种方法
+
+* 不同的参数类型
+* 不同的参数顺序（不推荐使用）
+* 不能通过返回值区分重载函数
+
+### 涉及到基本数据类型的方法重载
+
+涉及到基本数据类型的方法重载会到变量提升的问题,如果传入的实参类型小于形参类型，实参数据类型就会被提升，char不同，如果找不到接受char参数的方法，他就会被直接提升为int，如果实参类型大于形参类型（如方法只接受int，传入float）就必须使用类型转换窄化实参，否则会报错。
+
+```java
+public class Chapter5_1 {
+    // 涉及到基本数据类型的方法重载
+    void demo(int i){
+        System.out.println("a int args");
+    }
+
+    public static void main(String[] args) {
+        Chapter5_1 c = new Chapter5_1();
+        c.demo('x');
+    }
+}
+```
+
+## this
+
+类似于python中的self和JavaScript的this。  
+在方法内部调用同一类的别的方法是可以不使用this
 
 ## 垃圾回收和终结处理
 
@@ -321,3 +321,59 @@ public class Chapter5_7_4 {
 ```
 
 ### 数组初始化
+
+编译器不允许定义数组的大小，使用`int [] array`创建的只是一个数组的引用，并没有给数组对象本身分配任何内存空间，为了给数组创建相应的存储空间，必须使用初始化表达式，对于数组，初始化动作可以发生在代码的任何地方，但`int [] array = {1, 2, 3}`这种形式的初始化必须出现在数组创建的地方。  
+
+如果不确定数组大小，可以使用new动态创建数组`int [] array = new int [10]`,这个10可以是一个变量，对于基本数据类型，这样创建数组后，数组中的元素会有初值，但对于其他数据类型不行。
+
+```java
+package Note;
+
+public class Chapter5_8 {
+    public static void main(String[] args) {
+        // 基本数据类型
+        int [] array_int = new int [20];
+        for(int i: array_int){
+            System.out.print(i);
+        }
+        System.out.println();
+        // 非基本数据类型
+        Integer [] array_integer = new Integer[20];
+        for(int i=0;i<array_integer.length;i++){
+            array_integer[i] = new Integer(0);
+        }
+        for(int i: array_integer){
+            System.out.print(i);
+        }
+    }
+}
+
+```
+
+对于非基本数据类型的数组，使用new（`Integer [] array_integer = new Integer[20];`）也只是创建了一个引用数组，只有只有创建了新的Integer对象，并把这个对象赋值给引用，才算初始化了数组。  
+还有两种方法可以创建数组：
+
+```java
+Integer [] a;
+        a = new Integer[]{
+                new Integer(1),
+                new Integer(2),
+        };
+
+        for(Integer i: a){
+            System.out.print(i);
+        }
+
+        System.out.println();
+        Integer [] b = {
+                new Integer(1),
+                new Integer(2),
+        };
+        for(Integer i: b){
+            System.out.print(i);
+        }
+```
+
+#### 可变参数列表
+
+## 枚举类型
