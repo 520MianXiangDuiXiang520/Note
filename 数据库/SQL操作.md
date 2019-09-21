@@ -30,7 +30,7 @@ SELECT 列名 FROM table_name FETCH FIRST 5 ROWS ONLY;
 -- Oracle
 SELECT prod_name FROM table_name WHERE ROWNUM <= 5;
 
--- MyDQL / MariaDB / PostgreSQL / SQLite
+-- MySQL / MariaDB / PostgreSQL / SQLite
 SELECT prod_name FROM table_name LIMIT 5;
 
 -- MySQL 从第六行开始，检索五行
@@ -304,3 +304,178 @@ select grade, count(*) AS nums from stu group by grade;
 +-------+------+
 5 rows in set (0.00 sec)
 ```
+
+* GROUP BY 子句可以包含任意数目的列，因此可以对分组进行嵌套，进行更细致的分组
+* 如果嵌套了分组，数据将在最后指定的分组上进行汇总。（所有列一起计算）
+* GROUP BY 子句中列出的每一列都必须是检索列或有效的表达式（不能是聚集函数），如果在SELECT中使用表达式，则必须在GROUP子句中指定相同的表达式，不能使用别名.
+* 大多数DBMS不允许GROUP BY 带有长度可变的数据类型
+* 除聚集计算语句外，SELECT语句中的每一列都必须在GROUP BY中给出
+* 如果分组列中包含一个NULL值，则NULL作为一个分组返回，多个NULL作为一个分组。
+* GROUP BY应该出现在WHERE之前，ORDER BY 之前。
+
+### 过滤分组 HAVING
+
+```sql
+select grade, count(*) AS nums from stu group by grade having grade > 60;
++-------+------+
+| grade | nums |
++-------+------+
+|    99 |    1 |
+|    66 |    1 |
+|    77 |    2 |
+|    96 |    1 |
++-------+------+
+4 rows in set (0.10 sec)
+```
+
+> HAVING 与 WHERE 的区别：
+> WHERE在数据分组前进行过滤，HAVING在数据分组后进行过滤，WHERE排除的行不包括在分组中，这可能会改变计算值，从而影响HAVING中基于这些值过滤掉的分组。
+> 如果不指定GROUP BY 大多数DBMS会同等对待他们，不过，使用HAVING时应该结合GROUP BY 而WHERE应该用于标准的行级过滤。
+
+### 分组和排序
+
+GROUP BY　与　ORDER　BY　经常完成相同的工作，但他们非常不同，ORDER　BY　是对产生的输出进行排序，而GROUP　BY　是对行进行排序，但输出的可能不是分组的顺序，所以在使用GROUP　BY时，也应该给出ORDER　BY　子句。
+
+```sql
+--- 除ACCESS外，大部分DBMS支持用别名排序
+select grade, count(*) AS nums from stu
+        group by grade having grade > 60
+        order by count(*);
++-------+------+
+| grade | nums |
++-------+------+
+|    66 |    1 |
+|    96 |    1 |
+|    99 |    1 |
+|    77 |    2 |
++-------+------+
+```
+
+## 子查询
+
+```sql
+select * from songs where singer in  
+    -> (select id from singer where name = "张靓颖");
++-----------+---------------------+--------------------------------------------------------+--------+
+| id        | name                | link                                                   | singer |
++-----------+---------------------+--------------------------------------------------------+--------+
+|    169794 | 天下无双            | http://music.163.com/song/media/outer/url?id=169794    |  10561 |
+|    327089 | 画心                | http://music.163.com/song/media/outer/url?id=327089    |  10561 |
+|    327163 | 我们说好的          | http://music.163.com/song/media/outer/url?id=327163    |  10561 |
+|    327225 | 如果爱下去          | http://music.163.com/song/media/outer/url?id=327225    |  10561 |
+|   5233037 | 另一个天堂          | http://music.163.com/song/media/outer/url?id=5233037   |  10561 |
+|  31877130 | 饿狼传说 (Live)     | http://music.163.com/song/media/outer/url?id=31877130  |  10561 |
+| 431853688 | 我的梦 (Live)       | http://music.163.com/song/media/outer/url?id=431853688 |  10561 |
++-----------+---------------------+--------------------------------------------------------+--------+
+7 rows in set (0.25 sec)
+```
+
+* 子查询可以嵌套，但出于效能考虑，不应该嵌套过多。
+
+### 作为计算字段使用子查询
+
+```sql
+mysql> SELECT name,
+    -> (SELECT COUNT(*) FROM songs WHERE songs.singer = singer.id) AS nums
+    -> FROM singer WHERE type IN
+    -> (SELECT id FROM singer_type WHERE type = "华语男歌手")
+    -> ORDER BY name
+    -> LIMIT 5;
++-----------------+------+
+| name            | nums |
++-----------------+------+
+| “阿兰姐”        |   50 |
+| 023 GC          |    0 |
+| A3              |   32 |
+| abduwali tohti  |    8 |
+| ABSDJHONG       |   22 |
++-----------------+------+
+5 rows in set (0.69 sec)
+```
+
+## 联结表
+
+> 联结是一种机制，用来在一条SELECT语句中关联表，因此，称为联结
+
+```sql
+--- 等值联结
+mysql> SELECT songs.name,link,singer.name FROM songs,singer
+    -> WHERE songs.singer = singer.id
+    -> LIMIT 5;
++-----------------+----------------------------------------------------+--------+
+| name            | link                                               | name   |
++-----------------+----------------------------------------------------+--------+
+| Happy Birth Day | http://music.163.com/song/media/outer/url?id=59867 | 阿信   |
+| 几年了          | http://music.163.com/song/media/outer/url?id=59870 | 阿杜   |
+| Valentines Day | http://music.163.com/song/media/outer/url?id=59875 | 阿杜   |
+| 再唱一首        | http://music.163.com/song/media/outer/url?id=59877 | 阿杜   |
+| 圣堂之门        | http://music.163.com/song/media/outer/url?id=59886 | 阿沁   |
++-----------------+----------------------------------------------------+--------+
+5 rows in set (0.01 sec)
+```
+
+* 创建表联结时的WGERE语句非常重要，他作为过滤条件，只包含那些匹配给定条件的行，没有联结条件则会返回要联结的表的笛卡尔积（叉联结）
+* 完全限定名：引用列可能出现歧义，这种情况应该使用`表名.列名`的完全限定名
+
+### 内连接（inner-join）
+
+上面的等值连接也叫内连接，可以显式声明联结类型
+
+```sql
+mysql> SELECT songs.name, link, singer.name AS singer
+    -> FROM songs INNER JOIN singer ON
+    -> songs.singer = singer.id
+    -> LIMIT 5;
++-----------------+----------------------------------------------------+--------+
+| name            | link                                               | singer |
++-----------------+----------------------------------------------------+--------+
+| Happy Birth Day | http://music.163.com/song/media/outer/url?id=59867 | 阿信   |
+| 几年了          | http://music.163.com/song/media/outer/url?id=59870 | 阿杜   |
+| Valentines Day | http://music.163.com/song/media/outer/url?id=59875 | 阿杜   |
+| 再唱一首        | http://music.163.com/song/media/outer/url?id=59877 | 阿杜   |
+| 圣堂之门        | http://music.163.com/song/media/outer/url?id=59886 | 阿沁   |
++-----------------+----------------------------------------------------+--------+
+5 rows in set (0.00 sec)
+```
+
+* SQL本身不限制联结表的数量，但许多DBMS有限制
+* 联结表越多，性能下降越厉害
+* 允许使用表别名(Oracle 不用 AS)
+
+### 自联结（self-join）
+
+```sql
+mysql> SELECT s1.name,s1.singer
+    -> FROM songs AS s1,songs AS s2
+    -> WHERE s1.singer = s2.singer AND s2.name="光年之外";
++-----------------------------+--------+
+| name                        | singer |
++-----------------------------+--------+
+| 来自天堂的魔鬼              |   7763 |
+| 画 (Live Piano Session II)  |   7763 |
+| 光年之外                    |   7763 |
+| 断讯                        | 916042 |
+| 光年之外                    | 916042 |
+| 那个她                      | 916042 |
++-----------------------------+--------+
+6 rows in set (4.53 sec)
+```
+
+* 联结中的两张表是同一张表，必须使用别名区分。
+* 许多DBMS处理自联结比处理子查询快。
+
+### 自然联结
+
+自然联结是一种特殊的等值联结（内联结），他要求两个关系中进行比较的分量必须是同名的属性组，并且在结果中把重复的属性列去掉，事实上，我们迄今为止建立的每个内联结都是自然联结，也很可能永远都不会用到不是自然联结的内联结。通常对一个表使用通配符（SELECT *）其他表使用明确的子集来完成。
+
+```sql
+mysql> SELECT s.* ,e.name
+    -> FROM songs AS s,singer AS e
+    -> WHERE s.singer = e.id AND e.name = "袁娅维";
+```
+
+### 外联结
+
+两个关系R和S在做自然连接时，他们在公共属性上值相等的元组构成新的关系，但是关系R中某些元组可能在关系S中不存在公共属性上值相等的元组，从而造成R中的这些元组被舍弃了，同样的S中的元组也有可能被舍弃，这些被舍弃的元组被称为 **悬浮元组**
+
+如果把悬浮元组也保存到结果关系中，而在其他属性上填空值，这种联结叫做外联结
