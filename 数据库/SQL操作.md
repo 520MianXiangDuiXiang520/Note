@@ -539,3 +539,197 @@ mysql> SELECT r.*,s.*
 还有一种全外联结（FULL OUTER JOIN）包含两个表中不相关的行，Access，MariaDB，MySQL，Open Office Base，SQLite不支持。
 
 ### 使用带聚集函数的联结
+
+## 组合查询 UNION
+
+```sql
+mysql> SELECT id, name from singer where name="阿沁"
+    -> UNION
+    -> SELECT name, id FROM singer WHERE name="林俊呈";
++-----------+----------+
+| id        | name     |
++-----------+----------+
+| 1872      | 阿沁     |
+| 林俊呈    | 30107224 |
++-----------+----------+
+2 rows in set (0.07 sec)
+```
+
+* UNION 语句中必须包含相同的列，表达式或聚集函数（次序可以不同）
+* 列数据类型必须兼容
+* 只能使用一条ORDER BY 语句，位于最后一个select之后
+* UNION会自动删除相同的行，如果不希望这样，可以使用 UNION ALL
+
+## 插入数据 INSERT
+
+```sql
+-- 不安全
+mysql> INSERT INTO stu
+    -> VALUES(
+    -> 7,
+    -> "dapeng",
+    -> "girl",
+    -> 99,
+    -> "2019-10-9 10:11:21");
+Query OK, 1 row affected (0.09 sec)
+```
+
+应该给出列名（虽然更加麻烦），尤其是你只打算插入部分行时。
+
+```sql
+mysql> INSERT INTO stu(id,
+    ->                 name,
+    ->                 sex,
+    ->                 grade)
+    -> VALUES(8,
+    ->        "xiaowei",
+    ->        "girl",
+    ->        99);
+Query OK, 1 row affected (0.05 sec)
+```
+
+### 插入检索出的数据
+
+```sql
+mysql> INSERT INTO stu(name,
+    ->                 sex,
+    ->                 grade,
+    ->                 birthday)
+    -> SELECT name,
+    ->        sex,
+    ->        grade,
+    ->        birthday
+    -> FROM stu WHERE id = 1;
+Query OK, 1 row affected (1.67 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+```
+
+* 可以从本表中检索插入，也可以从其他表中检索插入。
+
+### 从一个表复制到另一个表 SELECT INTO
+
+* DB2 不支持
+
+```sql
+-- MariaDB,MySQL,Oracle,PostgreSQL,SQLite
+mysql> CREATE TABLE s_copy AS SELECT * FROM s;
+Query OK, 5 rows affected (0.11 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++----------------------+
+| Tables_in_sqlstudent |
++----------------------+
+| r                    |
+| s                    |
+| s_copy               |
+| stu                  |
++----------------------+
+4 rows in set (0.00 sec)
+
+-- 其他DBMS
+SELECT * INTO s_copy FROM s;
+```
+
+## 更新和删除数据
+
+```sql
+mysql> UPDATE stu
+    -> SET sex="boy",
+    ->     birthday=Null
+    -> WHERE name = "dapeng";
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
+
+* 可以只写一条UPDATE语句更新多列数据
+* 部分DBMS支持FROM语法，把别的表中的数据更新到这张表里
+* 不写WHERE语句会更新所有行
+* UPDATE允许使用子查询
+
+```sql
+mysql> DELETE FROM stu WHERE id=2;
+Query OK, 1 row affected (0.04 sec)
+```
+
+* 不写WHERE语句会删除所有数据
+* DELETE不需要列名或通配符，应为它删除的是整个行
+* 如果想删除所有行，应该使用TRUNCATE TABLE，它更快，所以无论何时，使用DELETE时记得加WHERE
+
+## 创建和操纵表
+
+删除表
+
+```sql
+mysql> DROP TABLE s_copy;
+Query OK, 0 rows affected (0.07 sec)
+```
+
+* 没提示确认
+
+创建表
+
+```sql
+mysql> CREATE TABLE Products(
+    -> id int(255) NOT NULL,
+    -> name VARCHAR(100) NULL
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+```
+
+* 不同DBMS的表创建语句有差异
+* 创建新表时，指定的表名必须不存在
+* 创建表时字段允许为空则指定NULL，否则，如果要求插入时必须给出值，则指定为NOT NULL
+* `NULL`不同于`''`,前者是没有值，后者是空字符串
+* 不指定时大部分DBMS默认为NULL，但DB2不指定会报错
+* 允许NULL值的列不允许作为主键
+* DEFAULT 用来指定默认值，常用于时间或时间戳列
+
+获取系统日期
+
+|DBMS|函数|
+|----|----|
+|Access|NOW()|
+|DB2|CURRENT_DATE|
+|MySQL|CURRENT_TIMESTAMP|
+|Oracle|SYSDATE|
+|PostgreSQL|CURRENT_DATE|
+|SQL Server|GETDATE()|
+|SQLite|date('now')|
+
+```sql
+CREATE TABLE User
+(
+    id      INT(255)        NOT NULL,
+    name    VARCHAR(255)    NOT NULL,
+    create_time timestamp   DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+更新表 ALTER TABLE
+
+* 一般不要在表中包含数据时更新表
+* 所有DBMS都允许怎加列，不过对所增加列的数据类型（NULL和DEFAULT的使用）有限制
+* 许多DBMS不允许删除或更改列
+* 许多DBMS允许重命名列
+
+```sql
+-- 增加列
+ALTER TABLE User ADD phone CHAR(20);
+
+mysql> DESCRIBE User;
++-------------+--------------+------+-----+-------------------+-------------------+
+| Field       | Type         | Null | Key | Default           | Extra             |
++-------------+--------------+------+-----+-------------------+-------------------+
+| id          | int(255)     | NO   |     | NULL              |                   |
+| name        | varchar(255) | NO   |     | NULL              |                   |
+| create_time | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| phone       | char(20)     | YES  |     | NULL              |                   |
++-------------+--------------+------+-----+-------------------+-------------------+
+4 rows in set (0.00 sec)
+```
+
+```sql
+-- 删除列
+ALTER TABLE User DROP COLUMN phone;
+```

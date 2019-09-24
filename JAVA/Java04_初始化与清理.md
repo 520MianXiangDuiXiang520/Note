@@ -327,8 +327,6 @@ public class Chapter5_7_4 {
 如果不确定数组大小，可以使用new动态创建数组`int [] array = new int [10]`,这个10可以是一个变量，对于基本数据类型，这样创建数组后，数组中的元素会有初值，但对于其他数据类型不行。
 
 ```java
-package Note;
-
 public class Chapter5_8 {
     public static void main(String[] args) {
         // 基本数据类型
@@ -376,4 +374,102 @@ Integer [] a;
 
 #### 可变参数列表
 
-## 枚举类型
+## 枚举类型enum
+
+创建枚举类型
+
+```java
+
+public class Chapter5_9 {
+    public enum Spiciness{
+        NOT, MILD, MEDIUM, HOT, FLAMING
+    }
+}
+```
+
+使用枚举类型
+
+```java
+public static void main(String[] args) {
+        // 为了使用enum，需要创建一个该类型的引用
+        Spiciness howhot = Spiciness.MEDIUM;
+        System.out.println(howhot);
+        for(Spiciness s: Spiciness.values()){
+            System.out.println(s + "(" + s.ordinal() + ")");
+        }
+    }
+```
+
+创建枚举类型时，编译器会自动添加一些有用的方法：
+
+* toString()
+* ordinal():表示特定enum常量的声明顺序
+* static values():根据声明顺序将常量值构成数组
+
+enum与switch
+
+```java
+public class Chapter5_9 {
+    public enum Spiciness{
+        NOT, MILD, MEDIUM, HOT, FLAMING
+    }
+    Spiciness degree;
+
+    Chapter5_9(Spiciness degree){
+        this.degree = degree;
+    }
+
+    public void describe(){
+        System.out.print("This burrito is ");
+        switch(this.degree){
+            case NOT:
+                System.out.println("not spicy at all");
+                break;
+            case MILD:
+            case MEDIUM:
+                System.out.println("a little hot");
+                break;
+            case FLAMING:
+            case HOT:
+                default:
+                System.out.println("maybe too hot.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Chapter5_9
+                plain = new Chapter5_9(Spiciness.NOT),
+                greenChile = new Chapter5_9(Spiciness.MEDIUM),
+                jalapeno = new Chapter5_9(Spiciness.HOT);
+                plain.describe();
+                greenChile.describe();
+                jalapeno.describe();
+    }
+}
+
+```
+
+## 总结
+
+* 函数重载
+  * 区分方法重载：不同的参数类型，不同的参数顺序（不推荐），不能使用返回值区分方法
+  * 实参类型应该小于或等于形参类型，实参小于形参会被提升
+  * 对于char型（单引号）实参，找不到对应的参数会被转换为int
+* 构造器
+  * 无返回值，可重载，与类同名
+  * 在构造器中使用构造器：this作为第一条语句，只出现一次
+  * static的含义，没有this
+* 初始化：
+  * 构造器初始化
+    * 执行代码前，变量优先初始化
+    * 静态数据只初始化一次，可以使用静态块初始化
+    * 非静态实例初始化：只要显式调用了构造器，实例初始化块中的代码就会被执行
+  * 成员初始化（允许直接赋初值）
+  * 数组初始化
+    * 定义一个数组只是定义了一个引用，必须使用相应的初始化语句
+    * 对于基本数据类型，用new可以为数组分配内存，并赋初值
+    * 对于非基本数据类型，使用new之后也还是一个引用，只有创建了一个新的对象并赋值给这个引用才行
+* 枚举类型
+  * enum
+  * values()
+  * ordinal()
