@@ -733,3 +733,72 @@ mysql> DESCRIBE User;
 -- 删除列
 ALTER TABLE User DROP COLUMN phone;
 ```
+
+## 视图
+
+视图是一张虚拟的表，不包含数据，只包含使用时动态检索数据的查询。
+
+为什么使用视图：
+
+* 重用SQL语句
+* 简化复杂的SQL操作
+* 只是用表的一部分而不是整个表
+* 保护数据，可以授予用户访问表的特定部分的权限，而不是整个表的访问权限
+* 更改数据格式和表示
+
+性能问题
+
+视图不包含数据，每次使用视图时，都必须处理查询执行时需要的所有检索，如果使用多个联结和过滤创立了复杂的视图或嵌套了视图，性能可能会下降的很厉害
+
+视图的规则和限制
+
+* 必须拥有唯一命名
+* 创建视图的数目没有限制
+* 必须拥有足够的访问权限
+* 可以嵌套，嵌套层数因DBMS而异
+* 许多DBMS禁止使用ORDER BY
+* 有些DBMS要求对所返回的所有列命名，如果是计算字段，需要使用别名
+* 有些DBMS把视图作为只读查询
+* 有些DBMS允许创建这样的视图：不能进行导致行不再属于视图的插入或更新
+
+创建视图 CREATE VIEW
+
+```sql
+CREATE VIEW song_singer AS
+SELECT songs.name AS song_name,
+songs.link,
+singer.name AS singer_name,
+singer_type.type
+FROM songs,singer,singer_type
+WHERE songs.singer = singer.id AND
+singer.type = singer_type.id;
+```
+
+创建视图时可以使用格式化语句或计算字段
+
+使用视图
+
+SELECT语句中的所有约束条件在视图中都适用。
+
+```sql
+mysql> SELECT * FROM song_singer WHERE singer_name = "薛之谦";
+```
+
+## 存储过程
+
+存储过程可以理解为保存一条或多条语句，将其视为批文件，也可以看作是编程语言中的函数
+
+为什么使用存储过程
+
+* 把处理分装在一个易用的单元中，可以简化操作
+* 由于不要求反复建立一系列处理步骤，从而保证了数据的一致性
+* 简化对变动的管理存储过程通常以编译过的形式存储，所以DBMS处理命令的工作较少，提高了性能
+* 存在一些只能用在单个请求中的SQL元素和特性，存储过程可以使用他们编写功能更强，更灵活的代码
+* 存在一些只能用在单个请求中的SQL元素和特性，存储过程可以使用他们编写更强更灵活的代码。
+
+缺点
+
+* 不同DBMS的存储过程语法不同，可移植性差
+* 编写复杂
+
+[参考](https://www.runoob.com/w3cnote/mysql-stored-procedure.html)
