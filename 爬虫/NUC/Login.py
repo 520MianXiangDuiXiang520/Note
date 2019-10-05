@@ -32,7 +32,6 @@ class Login:
     def _login(self, stu_id: str):
         self._download_validate_code()
         vcode = self._ocr.base64_api()
-        print(vcode)
         data = Setting.POST_DATA_DICT
         data['zjh'] = str(stu_id)
         data['mm'] = str(stu_id)

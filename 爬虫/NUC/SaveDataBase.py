@@ -21,14 +21,14 @@ class SaveDataBase:
 
 
 if __name__ == '__main__':
-    ss = {'name': ' 杨楠',
-          'id': ' 1807004102',
-          'idcode': '142329200004092327',
+    ss = {'name': ' **',
+          'id': ' ******102',
+          'idcode': '14232***********',
           'sex': '女',
-          'place': '山西省吕梁市岚县',
-          'highschool': '太原北辰双语学校',
-          'gkid': ' 8140107151667',
-          'mingzu': '汉族'
+          'place': '山西********',
+          'highschool': '太原*******',
+          'gkid': ' 8*********7',
+          'mingzu': '**'
           }
     s = SaveDataBase()
     s.save(ss)
