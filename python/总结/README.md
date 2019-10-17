@@ -114,11 +114,14 @@
       - [主模块中](#%e4%b8%bb%e6%a8%a1%e5%9d%97%e4%b8%ad)
       - [不同模块](#%e4%b8%8d%e5%90%8c%e6%a8%a1%e5%9d%97)
     - [总结](#%e6%80%bb%e7%bb%93)
+  - [DAY 23. python上下文管理器](#day-23-python%e4%b8%8a%e4%b8%8b%e6%96%87%e7%ae%a1%e7%90%86%e5%99%a8)
+  - [generator与contextlib.contextmanager](#generator%e4%b8%8econtextlibcontextmanager)
+    - [closing()](#closing)
+    - [suppress()](#suppress)
+    - [redirect_stdout/redirect_stderr](#redirectstdoutredirectstderr)
 
 <!--a46263f7a69f33f39fc26f907cdb773a-->
 # python 重要知识点总结
-
-[Toc]
 
 ## DAY 1. 函数的参数传递
 
@@ -3063,35 +3066,167 @@ print(builtins == __builtins__)
 
 如果从另一个文件引用上一个文件，输出的结果就是
 
-```py
-<module 'builtins' (built-in)>
-{'__name__': 'builtins', '__doc__': "Built-in functions, exceptions, and other objects.\n\nNoteworthy: None is the `nil' object; Ellipsis represents `...' in slices.", '__package__': '', '__loader__': <class '_frozen_importlib.BuiltinImporter'>, '__spec__': ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>), '__build_class__': <built-in function __build_class__>, '__import__': <built-in function __import__>, 'abs': <built-in function abs>, 'all': <built-in function all>, 'any': <built-in function any>, 'ascii': <built-in function ascii>, 'bin': <built-in function bin>, 'breakpoint': <built-in function breakpoint>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'compile': <built-in function compile>, 'delattr': <built-in function delattr>, 'dir': <built-in function dir>, 'divmod': <built-in function divmod>, 'eval': <built-in function eval>, 'exec': <built-in function exec>, 'format': <built-in function format>, 'getattr': <built-in function getattr>, 'globals': <built-in function globals>, 'hasattr': <built-in function hasattr>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'input': <built-in function input>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'iter': <built-in function iter>, 'len': <built-in function len>, 'locals': <built-in function locals>, 'max': <built-in function max>, 'min': <built-in function min>, 'next': <built-in function next>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'print': <built-in function print>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'setattr': <built-in function setattr>, 'sorted': <built-in function sorted>, 'sum': <built-in function sum>, 'vars': <built-in function vars>, 'None': None, 'Ellipsis': Ellipsis, 'NotImplemented': NotImplemented, 'False': False, 'True': True, 'bool': <class 'bool'>, 'memoryview': <class 'memoryview'>, 'bytearray': <class 'bytearray'>, 'bytes': <class 'bytes'>, 'classmethod': <class 'classmethod'>, 'complex': <class 'complex'>, 'dict': <class 'dict'>, 'enumerate': <class 'enumerate'>, 'filter': <class 'filter'>, 'float': <class 'float'>, 'frozenset': <class 'frozenset'>, 'property': <class 'property'>, 'int': <class 'int'>, 'list': <class 'list'>, 'map': <class 'map'>, 'object': <class 'object'>, 'range': <class 'range'>, 'reversed': <class 'reversed'>, 'set': <class 'set'>, 'slice': <class 'slice'>, 'staticmethod': <class 'staticmethod'>, 'str': <class 'str'>, 'super': <class 'super'>, 'tuple': <class 'tuple'>, 'type': <class 'type'>, 'zip': <class 'zip'>, '__debug__': True, 'BaseException': <class 'BaseException'>, 'Exception': <class 'Exception'>, 'TypeError': <class 'TypeError'>, 'StopAsyncIteration': <class 'StopAsyncIteration'>, 'StopIteration': <class 'StopIteration'>, 'GeneratorExit': <class 'GeneratorExit'>, 'SystemExit': <class 'SystemExit'>, 'KeyboardInterrupt': <class 'KeyboardInterrupt'>, 'ImportError': <class 'ImportError'>, 'ModuleNotFoundError': <class 'ModuleNotFoundError'>, 'OSError': <class 'OSError'>, 'EnvironmentError': <class 'OSError'>, 'IOError': <class 'OSError'>, 'WindowsError': <class 'OSError'>, 'EOFError': <class 'EOFError'>, 'RuntimeError': <class 'RuntimeError'>, 'RecursionError': <class 'RecursionError'>, 'NotImplementedError': <class 'NotImplementedError'>, 'NameError': <class 'NameError'>, 'UnboundLocalError': <class 'UnboundLocalError'>, 'AttributeError': <class 'AttributeError'>, 'SyntaxError': <class 'SyntaxError'>, 'IndentationError': <class 'IndentationError'>, 'TabError': <class 'TabError'>, 'LookupError': <class 'LookupError'>, 'IndexError': <class 'IndexError'>, 'KeyError': <class 'KeyError'>, 'ValueError': <class 'ValueError'>, 'UnicodeError': <class 'UnicodeError'>, 'UnicodeEncodeError': <class 'UnicodeEncodeError'>, 'UnicodeDecodeError': <class 'UnicodeDecodeError'>, 'UnicodeTranslateError': <class 'UnicodeTranslateError'>, 'AssertionError': <class 'AssertionError'>, 'ArithmeticError': <class 'ArithmeticError'>, 'FloatingPointError': <class 'FloatingPointError'>, 'OverflowError': <class 'OverflowError'>, 'ZeroDivisionError': <class 'ZeroDivisionError'>, 'SystemError': <class 'SystemError'>, 'ReferenceError': <class 'ReferenceError'>, 'MemoryError': <class 'MemoryError'>, 'BufferError': <class 'BufferError'>, 'Warning': <class 'Warning'>, 'UserWarning': <class 'UserWarning'>, 'DeprecationWarning': <class 'DeprecationWarning'>, 'PendingDeprecationWarning': <class 'PendingDeprecationWarning'>, 'SyntaxWarning': <class 'SyntaxWarning'>, 'RuntimeWarning': <class 'RuntimeWarning'>, 'FutureWarning': <class 'FutureWarning'>, 'ImportWarning': <class 'ImportWarning'>, 'UnicodeWarning': <class 'UnicodeWarning'>, 'BytesWarning': <class 'BytesWarning'>, 'ResourceWarning': <class 'ResourceWarning'>, 'ConnectionError': <class 'ConnectionError'>, 'BlockingIOError': <class 'BlockingIOError'>, 'BrokenPipeError': <class 'BrokenPipeError'>, 'ChildProcessError': <class 'ChildProcessError'>, 'ConnectionAbortedError': <class 'ConnectionAbortedError'>, 'ConnectionRefusedError': <class 'ConnectionRefusedError'>, 'ConnectionResetError': <class 'ConnectionResetError'>, 'FileExistsError': <class 'FileExistsError'>, 'FileNotFoundError': <class 'FileNotFoundError'>, 'IsADirectoryError': <class 'IsADirectoryError'>, 'NotADirectoryError': <class 'NotADirectoryError'>, 'InterruptedError': <class 'InterruptedError'>, 'PermissionError': <class 'PermissionError'>, 'ProcessLookupError': <class 'ProcessLookupError'>, 'TimeoutError': <class 'TimeoutError'>, 'open': <built-in function open>, 'quit': Use quit() or Ctrl-Z plus Return to exit, 'exit': Use exit() or Ctrl-Z plus Return to exit, 'copyright': Copyright (c) 2001-2018 Python Software Foundation.
-All Rights Reserved.
-
-Copyright (c) 2000 BeOpen.com.
-All Rights Reserved.
-
-Copyright (c) 1995-2001 Corporation for National Research Initiatives.
-All Rights Reserved.
-
-Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
-All Rights Reserved., 'credits':     Thanks to CWI, CNRI, BeOpen.com, Zope Corporation and a cast of thousands
-    for supporting Python development.  See www.python.org for more information., 'license': Type license() to see the full license text, 'help': Type help() for interactive help, or help(object) for help about object.}
-False
-
-Process finished with exit code 0
-
-```
-
 builtins还是之前那个对象，但`__builtins__`则变成了一个字典，是内建对象名与内建对象的映射，如`'eval': <built-in function eval>`,对象名eval对应 `<built-in function eval>`对象。
-
-```py
->>> dir(builtins)
-['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'WindowsError', 'ZeroDivisionError', '_', '__build_class__', '__debug__', '__doc__', '__import__', '__loader__', '__name__', '__package__', '__spec__', 'abs', 'all', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
-```
 
 就是说，处于不同的模块中时，builtins一个对象，使用type自省是module类的实例，它中包含了像print,list,map等方法，而`__builtins__`是一个字典，键就是builtins中的方法名，值是builtins中的方法。这个`__builtins__`只是一个实现细节，所以python替代实现可能不会使用它
 
 ### 总结
 
 builtins是python的内建对象模块，在主模块下，`__builtins__`就是builtins,否则`__builtins__`是builtins中方法名和方法的映射，只是一个实现细节。
+
+## DAY 23. python上下文管理器
+
+>Python 的 with 语句支持通过上下文管理器所定义的运行时上下文这一概念。 此对象的实现使用了一对专门方法，允许用户自定义类来定义运行时上下文，在语句体被执行前进入该上下文，并在语句执行完毕时退出该上下文：
+
+实现了`__enter__()`和`__exit__(exc_type, exc_val, exc_tb)`方法的对象就是上下文管理器，上下文管理器可以被with支持。
+
+```python
+class Demo:
+    def __init__(self):
+        print("init")
+
+    def __enter__(self):
+        print("enter")
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("exit")
+
+
+if __name__ == '__main__':
+    demo = Demo()
+    with demo:
+        print("with")
+
+```
+
+`__enter__()`的返回值将会赋值给与with配套使用的as后面的变量，`__exit__()`如果返回True会忽略with中抛出的所有异常，返回False（默认）会向下传递异常,三个参数exc_type, exc_val, exc_tb分别表示捕捉到的异常类型，异常值，回溯信息，没有异常为None。其行为类似于try,finally语句，不管有没有产生异常，exit一定会被执行。
+
+```python
+class Demo:
+    def __init__(self):
+        print("init")
+
+    def __enter__(self):
+        print("enter")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print(exc_type, exc_val, exc_tb)
+        print("exit")
+
+
+if __name__ == '__main__':
+    demo = Demo()
+    with demo as d:
+        print(d)
+        raise IOError("主动抛出异常")
+        print("with")
+
+```
+
+结果：
+
+```txt
+Traceback (most recent call last):
+init
+  File "E:/桌面文件/笔记/Note/Python/总结/code/DAY23/DAY23_1.py", line 18, in <module>
+enter
+    raise IOError("主动抛出异常")
+<__main__.Demo object at 0x00000243B4005908>
+OSError: 主动抛出异常
+<class 'OSError'> 主动抛出异常 <traceback object at 0x00000243BAEDD048>
+exit
+```
+
+`__exit__() return True`后的运行结果
+
+```txt
+init
+enter
+<__main__.Demo object at 0x00000183AFDA11D0>
+<class 'OSError'> 主动抛出异常 <traceback object at 0x00000183B6E6F908>
+exit
+```
+
+>传入的异常绝对不应当被显式地重新引发 —— 相反地，此方法应当返回一个假值以表明方法已成功完成并且不希望屏蔽被引发的异常.
+>这允许上下文管理代码方便地检测 `__exit__()` 方法是否确实已失败。
+
+## generator与contextlib.contextmanager
+
+> Python 的 `generator` 和 `contextlib.contextmanager` 装饰器提供了实现这些协议的便捷方式。 如果使用 contextlib.contextmanager 装饰器来装饰一个生成器函数，它将返回一个实现了必要的 `__enter__()` and `__exit__()` 方法的上下文管理器，而不再是由未经装饰的生成器函数所产生的迭代器。
+
+contextlib.contextmanager 是一个装饰器，它可以不用定义类或`__enter__()`和`__exit__(exc_type, exc_val, exc_tb)`方法而产生一个上下文管理器,被装饰的函数必须是一个生成器对象，并且这个迭代器只能yield出一个对象，它会被绑定到with语句as后面的变量上
+
+```python
+from contextlib import contextmanager
+
+
+@contextmanager
+def my_open(path: str, mode: str):
+    # 之所以之捕捉了yield语句的异常，是因为我们只希望如果with语句块中
+    # 产生了异常，也可以确保close()被执行，至于open可能抛出的异常，我们希望它
+    # 能够向下传递。
+    fp = open(path, mode)
+    try:
+        yield f
+    finally:
+        print("close the file")
+        fp.close()
+
+
+if __name__ == '__main__':
+    with my_open('01.txt', 'w') as fp:
+        raise OSError
+        fp.write("111")
+
+```
+
+代码执行顺序是：
+
+1. 执行yield之前的语句
+2. yield调用后执行with中的代码块
+3. 最后执行yield之后的语句
+
+### closing()
+
+closing()是contextlib中的一个方法，用来把一个不是上下文对象的方法变成上下文对象,也是用contextmanage实现的，一个官方的栗子
+
+```python
+from contextlib import closing
+from urllib.request import urlopen
+
+with closing(urlopen('http://www.python.org')) as page:
+    for line in page:
+        print(line)
+```
+
+不用显式调用page.close()也能确保执行
+
+### suppress()
+
+可以选择禁止一个或多个异常
+
+```py
+if __name__ == '__main__':
+    with suppress(OSError):
+        with my_open('01.txt', 'r') as fp:
+            # 抛出的这个异常会被忽略
+            raise OSError
+            fp.write("111")
+```
+
+### redirect_stdout/redirect_stderr
+
+重定向输入输出
+
+```py
+# 将输出重定向到文件
+
+from contextlib import redirect_stdout
+
+path = "test/test.txt"
+
+with open(path,"w") as fobj:
+    with redirect_stdout(fobj):
+        help(redirect_stdout)
+```
