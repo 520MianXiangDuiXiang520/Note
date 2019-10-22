@@ -5,6 +5,7 @@
 1. 激活SQL Server 服务
 2. 配置SQL Server网络配置
 3. 连接SQL Server
+4. 导入数据
 
 ## 激活SQLServer服务
 
@@ -40,3 +41,16 @@
 这就好了！
 
 ![06](image/06.png)
+
+## 导入数据
+
+```sql
+exec sp_attach_db @dbname = 'text',
+@filename1 = 'E:\桌面文件\作业\XSCJ_DB\XSCJ_Data.MDF',
+@filename2 = 'E:\桌面文件\作业\XSCJ_DB\XSCJ_Log.LDF';
+```
+
+* text：（数据库名） 必须是原先没有的数据库
+* filename1和filename2：MDF文件和LDF文件路径，**user用户必须对该目录拥有完全控制权限**。（右键文件夹->属性->安全->Users->编辑->完全控制->确定）
+
+![07](image/07.png)
