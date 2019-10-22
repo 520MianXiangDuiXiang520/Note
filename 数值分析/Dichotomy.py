@@ -57,13 +57,15 @@ def run():
     start = float(input("请输入区间起点："))
     end = float(input("请输入区间终点："))
     error = float(input("请输入允许误差："))
+    count = 0
     calcu = Dichotomy(start, end, error, function)
     while True:
+        count += 1
         calcu.judge()
         cha = calcu.end - calcu.start
         if cha < calcu.allowable_error:
             result = (calcu.start + calcu.end) / 2
-            print(result)
+            print(f"迭代{count}次，结果为{result}")
             return 0
 
 
