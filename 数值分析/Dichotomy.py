@@ -44,7 +44,6 @@ class Dichotomy:
         以 （a+b）/2 代替a, 否则，以(a+b)/2 代替b
         :return: None
         """
-        # 判断
         value_midpoint = self.calculate_the_value_of_midpoint()
         fa = self.calculation_function_value(self.start)
         if fa * value_midpoint > 0:
