@@ -160,4 +160,66 @@ def user(self):
         self._not_authenticated()
 ```
 
-他会遍历`self.authenticators`，现在的self是那个分装过的request,所以`self.authenticators`其实就是上面列表生成式生成的那个认证类对象列表，它遍历并调用每一个认证类对象的`authenticate`方法，这个方法必须覆盖，
+他会遍历`self.authenticators`，现在的self是那个分装过的request,所以`self.authenticators`其实就是上面列表生成式生成的那个认证类对象列表，它遍历并调用每一个认证类对象的`authenticate`方法，这个方法必须覆盖，否则会抛出NotImplementedError异常
+
+```py
+def authenticate(self, request):
+    raise NotImplementedError(".authenticate() must be overridden.")
+```
+
+这里的逻辑是一旦`authenticate()`抛出`exceptions.APIException`异常，就调用`self._not_authenticated()`也就是认证失败，如果没有抛出异常，就进入下面的if语句，判断返回值是否是`None`如果是，本次循环就结束，也就是不使用这个认证类对象，转而使用下一个认证类对象，如果不为`None`则进行一个序列解包操作，把元组中的第一个元素赋值给`self.user`第二个元素赋值给`self.auth`,终止循环，如果遍历完整个`self.authenticators`还是没认证成功，就会执行最后一行的`self._not_authenticated()`和认证时抛出异常一样，认证失败。
+
+```py
+def _not_authenticated(self):
+    """
+    设置authenticator，user&authToken表示未经过身份验证的请求。
+    默认值为None，AnonymousUser&None。
+    """
+    self._authenticator = None
+
+    if api_settings.UNAUTHENTICATED_USER:
+        self.user = api_settings.UNAUTHENTICATED_USER()
+    else:
+        self.user = None
+
+    if api_settings.UNAUTHENTICATED_TOKEN:
+        self.auth = api_settings.UNAUTHENTICATED_TOKEN()
+    else:
+        self.auth = None
+
+```
+
+认证失败后的逻辑是：先看配置文件中有没有`UNAUTHENTICATED_USER`,如果有，就把这个配置内容作为默认的“匿名用户”，否则就把`self.user`赋值为None，`self.auth`也一样。
+
+----
+
+这大概就是认证的基本流程了。
+
+## 过程总结
+
+用户发出请求，产生request,传递到URL调度器，url调度器将request传递给`as_view()`，`as_view()`再传递给`dispatch()`,在这里会给原来的`request`封装用来身份验证的`authenticators`，他是一个储存认证类对象的列表，封装完成后遍历这个列表，如果抛出`exceptions.APIException`异常，认证失败，使用匿名用户登录，否则如果返回一个二元组，就将他们分别赋值给user和auth，如果返回None，同样认证失败，使用匿名用户登录。
+
+## 全局验证
+
+可以设置对所有视图验证,因为
+
+```py
+authentication_classes = api_settings.DEFAULT_AUTHENTICATION_CLASSES
+```
+
+```py
+def reload_api_settings(*args, **kwargs):
+    setting = kwargs['setting']
+    if setting == 'REST_FRAMEWORK':
+        api_settings.reload()
+```
+
+所以在Django的配置文件中添加
+
+```py
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ['demo.utils.MyAuthentication.MyAuthentication']
+}
+```
+
+就可以设置所有视图都要使用MyAuthentication验证，如果由别的视图不需要验证，可在视图类内把`authentication_classes`设置为空列表。
