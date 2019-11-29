@@ -34,7 +34,7 @@ class Iterative:
             assert index < self.N
             x1 = self.calculation_function_value(self.x0)
             if abs(x1 - self.x0) < self.deviation:
-                return x1
+                return x1, index
             self.x0 = x1
             index += 1
 

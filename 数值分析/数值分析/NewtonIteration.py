@@ -1,35 +1,16 @@
 import sympy
+from 数值分析.Newton import Newton
 
 x = sympy.Symbol('x')
 
 
-class NewtonIteration:
+class NewtonIteration(Newton):
     """
     非线性方程——牛顿迭代法
     x|(k + 1) = x|(k) - f(x|(k)) / f'(x|(k))
     """
     def __init__(self, function: str, x0: float, deviation: float, n: int):
-        self.x0 = x0
-        self.deviation = deviation
-        self.N = n
-        self.function = eval(function)
-        self.derivative = sympy.diff(self.function, x)
-
-    def computer_fx_value(self, value: float) -> float:
-        """
-        计算f(x)的值
-        :param value: 自变量取值
-        :return: float
-        """
-        return self.function.evalf(subs={x: value})
-
-    def computer_fx_der_value(self, value: float) -> float:
-        """
-        计算f(x) 的一阶导数值
-        :param value: 自变量取值
-        :return: float
-        """
-        return self.derivative.evalf(subs={x: value})
+        super(NewtonIteration, self).__init__(function, x0, deviation, n)
 
     def computer(self):
         index = 0
@@ -37,7 +18,7 @@ class NewtonIteration:
             assert index < self.N
             x1 = self.x0 - self.computer_fx_value(self.x0) / self.computer_fx_der_value(self.x0)
             if abs(x1 - self.x0) < self.deviation:
-                return x1
+                return x1, index
             self.x0 = x1
             index += 1
 
@@ -55,4 +36,13 @@ def run():
 
 
 if __name__ == '__main__':
-    print(run())
+    result = run()
+    print(result[0])
+    print(f"迭代{result[1]}次")
+
+# 请输入迭代函数：1-x-sympy.sin(x)
+# 请输入初值x0：0
+# 请输入允许误差: 0.00005
+# 请输入允许迭代的最大次数：100
+# 0.510973429357289
+# 迭代2次
