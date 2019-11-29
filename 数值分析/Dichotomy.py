@@ -1,5 +1,8 @@
 import math
 from sys import exit
+"""
+区间二分法
+"""
 
 
 class Dichotomy:
