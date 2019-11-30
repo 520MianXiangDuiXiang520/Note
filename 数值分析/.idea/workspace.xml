@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91bd423d-0ea3-4649-ae7a-501e863a4f25" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/数值分析/Newton.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/数值分析/NewtonDownhill.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/数值分析/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dichotomy.py" beforeDir="false" afterPath="$PROJECT_DIR$/数值分析/Dichotomy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iterative.py" beforeDir="false" afterPath="$PROJECT_DIR$/数值分析/Iterative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewtonIteration.py" beforeDir="false" afterPath="$PROJECT_DIR$/数值分析/NewtonIteration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/NewtonDownhill.py" beforeDir="false" afterPath="$PROJECT_DIR$/数值分析/NewtonDownhill.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +192,8 @@
       <workItem from="1572006225684" duration="208000" />
       <workItem from="1572009792553" duration="1040000" />
       <workItem from="1575024456713" duration="317000" />
-      <workItem from="1575024797616" duration="12709000" />
+      <workItem from="1575024797616" duration="12757000" />
+      <workItem from="1575113213246" duration="738000" />
     </task>
     <task id="LOCAL-00001" summary="基本迭代法">
       <created>1575027037060</created>
@@ -214,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575032298405</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="牛顿下山">
+      <created>1575037702875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575037702875</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +238,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="基本迭代法" />
     <MESSAGE value="牛顿迭代法" />
-    <option name="LAST_COMMIT_MESSAGE" value="牛顿迭代法" />
+    <MESSAGE value="牛顿下山" />
+    <option name="LAST_COMMIT_MESSAGE" value="牛顿下山" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/$rsa.coverage" NAME="rsa Coverage Results" MODIFIED="1571993364795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -246,6 +249,6 @@
     <SUITE FILE_PATH="coverage/$Dichotomy.coverage" NAME="Dichotomy Coverage Results" MODIFIED="1575032888636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/$NewtonIteration.coverage" NAME="NewtonIteration Coverage Results" MODIFIED="1575035147196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/$test.coverage" NAME="test Coverage Results" MODIFIED="1575031661471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/$NewtonDownhill.coverage" NAME="NewtonDownhill Coverage Results" MODIFIED="1575037333039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/数值分析" />
+    <SUITE FILE_PATH="coverage/$NewtonDownhill.coverage" NAME="NewtonDownhill Coverage Results" MODIFIED="1575114083852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/数值分析" />
   </component>
 </project>

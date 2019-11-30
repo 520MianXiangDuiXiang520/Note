@@ -31,20 +31,19 @@ class NewtonDownHill(Newton):
                                                     self.computer_fx_der_value(self.x0))
             if abs(fx1) < abs(fx0):
                 print(f"下山因子：{self.downhill_factor}")
-                return
+                return fx1
             self.downhill_factor /= 2
 
     def computer(self):
         try:
-            self.computer_downhill_factor()
+            self.x0 = self.computer_downhill_factor()
         except AssertionError:
             print("不能下山")
-            exit()
 
         index = 0
         while True:
             assert index < self.N
-            x1 = self.x0 - self.downhill_factor * (self.computer_fx_value(self.x0) /
+            x1 = self.x0 - (self.computer_fx_value(self.x0) /
                                                    self.computer_fx_der_value(self.x0))
             if abs(x1 - self.x0) < self.deviation:
                 return x1, index
