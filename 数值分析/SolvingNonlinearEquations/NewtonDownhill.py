@@ -1,6 +1,7 @@
 import sympy
 from sys import exit
-from 数值分析.Newton import Newton
+
+from SolvingNonlinearEquations.Newton import Newton
 
 x = sympy.Symbol('x')
 

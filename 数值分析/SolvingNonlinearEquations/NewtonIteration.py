@@ -1,5 +1,5 @@
 import sympy
-from 数值分析.Newton import Newton
+from SolvingNonlinearEquations.Newton import Newton
 
 x = sympy.Symbol('x')
 
@@ -36,6 +36,10 @@ def run():
 
 
 if __name__ == '__main__':
+    print("牛顿迭代法")
+    print("班级：17070144 "
+          "姓名：张君保 "
+          "学号：1707004650")
     result = run()
     print(result[0])
     print(f"迭代{result[1]}次")

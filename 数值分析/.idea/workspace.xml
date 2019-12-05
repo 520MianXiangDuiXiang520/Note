@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91bd423d-0ea3-4649-ae7a-501e863a4f25" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Fit/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SystemOfLinearEquations/GaussianElimination.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SystemOfLinearEquations/GaussianPrincipalComponentElimination.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SystemOfLinearEquations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interpolation/Interpolation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interpolation/LagrangeInterpolation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interpolation/NewtonInterpolation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interpolation/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数值分析/NewtonDownhill.py" beforeDir="false" afterPath="$PROJECT_DIR$/数值分析/NewtonDownhill.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/Dichotomy.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/Dichotomy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/Iterative.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/Iterative.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/Newton.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/Newton.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/NewtonDownhill.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/NewtonDownhill.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/NewtonIteration.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/NewtonIteration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数值分析/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fit/Fit.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,10 +50,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\桌面文件\笔记\Note\数值分析\interpolate" />
+      <recent name="E:\桌面文件\笔记\Note\数值分析\SolvingNonlinearEquations" />
+      <recent name="E:\桌面文件\笔记\Note\数值分析\Interpolation" />
+      <recent name="E:\桌面文件\笔记\Note\数值分析\SystemOfLinearEquations" />
       <recent name="E:\桌面文件\笔记\Note\数值分析\数值分析" />
     </key>
   </component>
@@ -55,8 +73,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.NewtonDownhill">
-    <configuration name="Dichotomy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.NewtonInterpolation (3)">
+    <configuration name="Fit" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="数值分析" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -64,12 +82,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Fit" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\桌面文件\笔记\Note\数值分析\数值分析\Dichotomy.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Fit/Fit.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -78,7 +96,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Iterative" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Interpolation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="数值分析" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -86,12 +104,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Interpolation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\桌面文件\笔记\Note\数值分析\数值分析\Iterative.py" />
+      <option name="SCRIPT_NAME" value="E:\桌面文件\笔记\Note\数值分析\interpolate\Interpolation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,7 +118,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NewtonDownhill" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="NewtonInterpolation (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="数值分析" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,12 +126,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/数值分析" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interpolate" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/数值分析/NewtonDownhill.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interpolate/NewtonInterpolation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -122,7 +140,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NewtonIteration (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="NewtonInterpolation (3)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="数值分析" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,12 +148,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/数值分析" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interpolation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/数值分析/NewtonIteration.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interpolation/NewtonInterpolation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,7 +162,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NewtonIteration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="NewtonInterpolation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="数值分析" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -152,12 +170,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Interpolation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\桌面文件\笔记\Note\数值分析\数值分析\NewtonIteration.py" />
+      <option name="SCRIPT_NAME" value="E:\桌面文件\笔记\Note\数值分析\interpolate\NewtonInterpolation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -168,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.NewtonDownhill" />
-        <item itemvalue="Python.NewtonIteration (1)" />
-        <item itemvalue="Python.NewtonIteration" />
-        <item itemvalue="Python.Dichotomy" />
-        <item itemvalue="Python.Iterative" />
+        <item itemvalue="Python.NewtonInterpolation (3)" />
+        <item itemvalue="Python.Fit" />
+        <item itemvalue="Python.NewtonInterpolation (2)" />
+        <item itemvalue="Python.NewtonInterpolation" />
+        <item itemvalue="Python.Interpolation" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +211,13 @@
       <workItem from="1572009792553" duration="1040000" />
       <workItem from="1575024456713" duration="317000" />
       <workItem from="1575024797616" duration="12757000" />
-      <workItem from="1575113213246" duration="738000" />
+      <workItem from="1575113213246" duration="1007000" />
+      <workItem from="1575175609899" duration="604000" />
+      <workItem from="1575246341561" duration="3127000" />
+      <workItem from="1575259191086" duration="11783000" />
+      <workItem from="1575289481406" duration="52000" />
+      <workItem from="1575355623569" duration="9067000" />
+      <workItem from="1575425479483" duration="16659000" />
     </task>
     <task id="LOCAL-00001" summary="基本迭代法">
       <created>1575027037060</created>
@@ -216,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575037702875</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="下山因子只是为了获得最佳初值">
+      <created>1575114193412</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575114193412</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,16 +270,27 @@
     <MESSAGE value="基本迭代法" />
     <MESSAGE value="牛顿迭代法" />
     <MESSAGE value="牛顿下山" />
-    <option name="LAST_COMMIT_MESSAGE" value="牛顿下山" />
+    <MESSAGE value="下山因子只是为了获得最佳初值" />
+    <option name="LAST_COMMIT_MESSAGE" value="下山因子只是为了获得最佳初值" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/$rsa.coverage" NAME="rsa Coverage Results" MODIFIED="1571993364795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/$NewtonIteration__1_.coverage" NAME="NewtonIteration (1) Coverage Results" MODIFIED="1575037306334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/数值分析" />
-    <SUITE FILE_PATH="coverage/$gif.coverage" NAME="gif Coverage Results" MODIFIED="1571926734028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../.." />
-    <SUITE FILE_PATH="coverage/$Iterative.coverage" NAME="Iterative Coverage Results" MODIFIED="1575032846667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/$Dichotomy.coverage" NAME="Dichotomy Coverage Results" MODIFIED="1575032888636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$Dichotomy__1_.coverage" NAME="Dichotomy (1) Coverage Results" MODIFIED="1575259358319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/数值分析" />
+    <SUITE FILE_PATH="coverage/$NewtonInterpolation.coverage" NAME="NewtonInterpolation Coverage Results" MODIFIED="1575448866508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interpolation" />
     <SUITE FILE_PATH="coverage/$NewtonIteration.coverage" NAME="NewtonIteration Coverage Results" MODIFIED="1575035147196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/$test.coverage" NAME="test Coverage Results" MODIFIED="1575031661471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/$NewtonDownhill.coverage" NAME="NewtonDownhill Coverage Results" MODIFIED="1575114083852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/数值分析" />
+    <SUITE FILE_PATH="coverage/$NewtonInterpolation__1_.coverage" NAME="NewtonInterpolation (1) Coverage Results" MODIFIED="1575448797666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$NewtonDownhill.coverage" NAME="NewtonDownhill Coverage Results" MODIFIED="1575448825188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SolvingNonlinearEquations" />
+    <SUITE FILE_PATH="coverage/$NewtonInterpolation__2_.coverage" NAME="NewtonInterpolation (2) Coverage Results" MODIFIED="1575448946033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpolate" />
+    <SUITE FILE_PATH="coverage/$rsa.coverage" NAME="rsa Coverage Results" MODIFIED="1571993364795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$NewtonIteration__1_.coverage" NAME="NewtonIteration (1) Coverage Results" MODIFIED="1575268972927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/数值分析" />
+    <SUITE FILE_PATH="coverage/$gif.coverage" NAME="gif Coverage Results" MODIFIED="1571926734028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../.." />
+    <SUITE FILE_PATH="coverage/$Iterative.coverage" NAME="Iterative Coverage Results" MODIFIED="1575032846667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$NewtonInterpolation__3_.coverage" NAME="NewtonInterpolation (3) Coverage Results" MODIFIED="1575517112761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpolation" />
+    <SUITE FILE_PATH="coverage/$Dichotomy.coverage" NAME="Dichotomy Coverage Results" MODIFIED="1575032888636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$GaussianElimination.coverage" NAME="GaussianElimination Coverage Results" MODIFIED="1575361909564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$Interpolation.coverage" NAME="Interpolation Coverage Results" MODIFIED="1575448852250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interpolation" />
+    <SUITE FILE_PATH="coverage/$GaussianPrincipalComponentElimination__1_.coverage" NAME="GaussianPrincipalComponentElimination (1) Coverage Results" MODIFIED="1575362219176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SystemOfLinearEquations" />
+    <SUITE FILE_PATH="coverage/$Fit.coverage" NAME="Fit Coverage Results" MODIFIED="1575463196331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fit" />
+    <SUITE FILE_PATH="coverage/$GaussianPrincipalComponentElimination.coverage" NAME="GaussianPrincipalComponentElimination Coverage Results" MODIFIED="1575362037712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
