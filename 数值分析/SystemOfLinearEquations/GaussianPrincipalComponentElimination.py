@@ -44,11 +44,6 @@ class GaussianPrincipalElimination(GaussianElimination):
 
 
 if __name__ == '__main__':
-    print("-" * 70)
-    print("班级：17070144"
-          "姓名：张君保"
-          "学号：1707004650")
-    print("-"*70)
     ge = GaussianPrincipalElimination()
     ge.first()
     ge.second()

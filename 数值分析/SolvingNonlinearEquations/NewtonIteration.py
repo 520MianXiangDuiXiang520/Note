@@ -37,9 +37,6 @@ def run():
 
 if __name__ == '__main__':
     print("牛顿迭代法")
-    print("班级：17070144 "
-          "姓名：张君保 "
-          "学号：1707004650")
     result = run()
     print(result[0])
     print(f"迭代{result[1]}次")
