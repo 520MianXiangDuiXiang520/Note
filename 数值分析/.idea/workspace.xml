@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91bd423d-0ea3-4649-ae7a-501e863a4f25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fit/Fit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fit/Fit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolvingNonlinearEquations/Dichotomy.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/Dichotomy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolvingNonlinearEquations/NewtonIteration.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolvingNonlinearEquations/NewtonIteration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SystemOfLinearEquations/GaussianElimination.py" beforeDir="false" afterPath="$PROJECT_DIR$/SystemOfLinearEquations/GaussianElimination.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SystemOfLinearEquations/GaussianPrincipalComponentElimination.py" beforeDir="false" afterPath="$PROJECT_DIR$/SystemOfLinearEquations/GaussianPrincipalComponentElimination.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpolation/NewtonInterpolation.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpolation/NewtonInterpolation.py" afterDir="false" />
-    </list>
+    <list default="true" id="91bd423d-0ea3-4649-ae7a-501e863a4f25" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -218,7 +210,7 @@
       <workItem from="1576070441924" duration="1992000" />
       <workItem from="1576072890350" duration="154000" />
       <workItem from="1576237928304" duration="71000" />
-      <workItem from="1576720553767" duration="1119000" />
+      <workItem from="1576720553767" duration="1141000" />
     </task>
     <task id="LOCAL-00001" summary="基本迭代法">
       <created>1575027037060</created>
@@ -248,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575114193412</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=":pencil:">
+      <created>1576721696534</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1576721696534</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,25 +271,30 @@
     <MESSAGE value="牛顿迭代法" />
     <MESSAGE value="牛顿下山" />
     <MESSAGE value="下山因子只是为了获得最佳初值" />
-    <option name="LAST_COMMIT_MESSAGE" value="下山因子只是为了获得最佳初值" />
+    <MESSAGE value=":pencil:" />
+    <option name="LAST_COMMIT_MESSAGE" value=":pencil:" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1497" height="177" key="GridCell.Tab.0.bottom" timestamp="1576721375447">
+    <state x="389" y="9" key="CommitChangelistDialog2" timestamp="1576721692047">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1497" height="177" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1576721375447" />
-    <state width="1497" height="177" key="GridCell.Tab.0.center" timestamp="1576721375447">
+    <state x="389" y="9" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1576721692047" />
+    <state width="1497" height="379" key="GridCell.Tab.0.bottom" timestamp="1576721699215">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1497" height="177" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1576721375447" />
-    <state width="1497" height="177" key="GridCell.Tab.0.left" timestamp="1576721375447">
+    <state width="1497" height="379" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1576721699215" />
+    <state width="1497" height="379" key="GridCell.Tab.0.center" timestamp="1576721699213">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1497" height="177" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1576721375447" />
-    <state width="1497" height="177" key="GridCell.Tab.0.right" timestamp="1576721375447">
+    <state width="1497" height="379" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1576721699213" />
+    <state width="1497" height="379" key="GridCell.Tab.0.left" timestamp="1576721699212">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1497" height="177" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1576721375447" />
+    <state width="1497" height="379" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1576721699212" />
+    <state width="1497" height="379" key="GridCell.Tab.0.right" timestamp="1576721699213">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1497" height="379" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1576721699213" />
     <state x="457" y="212" key="git4idea.merge.GitPullDialog" timestamp="1576721282894">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
