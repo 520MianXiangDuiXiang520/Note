@@ -589,3 +589,54 @@ ENTRYPOINT ["curl", "-s", "http://www.baidu.com"]
 
 开启容器时同样执行`docker run -i mycurl`,`-i`参数就会追加到ENTRYPOINT后面，实际执行变成`ENTRYPOINT ["curl", "-s", "-i", "http://www.baidu.com"]`
 
+## 9 Docker常用安装
+
+### 9.1 Tomcat
+
+### 9.2 MySQL
+
+```shell
+docker search mysql
+docker pull mysql
+docker run -v /dataVolume/mysql/conf:/etc/mysql/conf.d -v /dataVolume/mysql/logs:/logs -v /dataVolume/mysql/data:/var/lib/mysql -p 3306:3306  -d -e MYSQL_ROOT_PASSWORD=1234567 mysql
+
+docker exec -t 容器ID /bin/bash
+```
+
+### 9.3 Redis
+
+### 9.4 Nginx
+
+最好把Nginx需要修改的文件做数据卷，方便修改和项目部署
+
+首先就是配置文件，直接从DockerHub pull 下来的nginx 配置文件有两部分，全局块和http块在`/etc/nginx/nginx.conf`而server块在`/etc/nginx/conf.d/default.conf`下，当然可以修改`nginx.conf`来自定义server块配置文件的路径，直接写这也没问题，所以我们可以把这个配置文件在宿主机建立数据卷。
+
+其次是http目录，Nginx的默认项目根目录，我们也可以建立一个数据卷，统一管理容器中的项目，默认在`/usr/share/nginx/html`
+
+最后是日志文件，我们经常需要查看日志文件，所以需要同步宿主机和容器的日志文件，容器里nginx的日志文件在`/var/log/nginx`
+
+```shell
+docker pull nginx
+docker run -v /dataVolume/nginx/conf:/etc/nginx/conf.d -v /dataVolume/nginx/html:/usr/share/nginx/html -v /dataVolume/nginx/logs:/var/logs/nginx -p 8000:80 -d nginx
+```
+
+如果这时宿主机上conf目录没有`default.conf`,那就自己新建一个，内容就是server块的内容。
+
+## 10 发布镜像
+
+1. [创建镜像仓库](https://cr.console.aliyun.com/cn-hangzhou/instances/repositories), 代码源选本地
+2. 推送到阿里云
+
+```txt
+$ sudo docker login --username=用户名 registry.cn-hangzhou.aliyuncs.com
+$ sudo docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/命名空间/仓库名:[镜像版本号]
+$ sudo docker push registry.cn-hangzhou.aliyuncs.com/命名空间/仓库名:[镜像版本号]
+```
+
+从阿里云仓库拉取镜像
+
+```txt
+ sudo docker pull registry.cn-hangzhou.aliyuncs.com/junebao/django_rest_mysql:[镜像版本号]
+```
+
+
