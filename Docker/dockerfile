@@ -27,7 +27,7 @@ RUN pip install django==2.2.7
 
 RUN pip install djangorestframework==3.9.4
 
-RUN pip install PyMySQL==0.9.3
+RUN pip install mysqlclient
 
 RUN pip install pytz==2019.1
 
@@ -45,6 +45,8 @@ RUN cd $PROJECT_PATH
 
 RUN django-admin startproject project
 
+RUN mkdir $PROJECT_PATH/logs && touch $PROJECT_PATH/logs/uwsgi.log
+
 # 建立uwsgi.ini文件
 
 RUN touch $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
@@ -56,6 +58,7 @@ RUN echo "[uwsgi]" >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
 RUN echo "http = :8000" >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
 RUN echo chdir = $PROJECT_PATH/$PROJECT_NAME >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
 RUN echo module = $PROJECT_NAME.wsgi >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
+RUN echo logto = $PROJECT_PATH/logs/uwsgi.log >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
 RUN echo "master = true" >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
 RUN echo "processes = 4" >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
 RUN echo "vacuum = true" >> $PROJECT_PATH/$PROJECT_NAME/uwsgi.ini
