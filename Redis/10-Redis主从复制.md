@@ -166,7 +166,117 @@ master 有密码的情况：
 
 7. 当slave过多时，建议调整拓扑结构，如将一对多结构调整为树状结构，让中间节点分担根master的负载，但这样会导致顶层master和底层的slave间数据延时增加，数据一致性变差，应综合考虑业务对数据一致性的要求和服务器实际能力谨慎选择。
 
+### 3.命令传播阶段
 
+实时保持master和slave的同步
 
-### 3.命令传播阶段（master把自己的数据与slave反复同步）
+#### 命令传播阶段的部分复制
 
+如果在命令传播阶段出现断网的情况：
+
+* 闪断闪联：影响不大
+* 长时间网络中断：全量复制
+* 短时间网络中断：部分复制
+
+部分复制的三个核心要素：
+
+* 服务器的运行ID（run id）
+* master的复制积压缓冲区
+* 主从服务器的复制偏移量
+
+##### 服务器运行ID
+
+* 概念：run id 是每一台服务器每次运行的身份识别码，一台服务器多次运行可以生成多个run id
+* 组成：40位随机十六进制字符
+* 作用：run id 被用于在服务期间进行传输时识别身份，如果想两次操作都对同一台服务器进行，必须每次操作携带对应的run id ，用于对方识别
+* 实现方式：run id 在每台服务器启动时自动生成，master首次与slave连接时，会将自己的run id 发送给slave，slave保存此ID，通过`info Server`可以查看节点run id
+
+##### 复制缓冲区和偏移量
+
+slave和master连接后，master通过`命令传播程序`向slave分发数据
+
+![image-20200226131036892](image/10-Redis主从复制/image-20200226131036892.png)
+
+这时如果slave 1发生网络故障，就无法与master同步数据，为了解决这个问题，master除了会将命令发送给slave之外，还会把命令放入复制缓冲区，复制缓冲区是一个队列，由偏移量和字符值组成，master和slave分别保存偏移量，如果slave某一次没有正确同步到master的数据，那下一次同步时他们俩的偏移量就会不一样，master就会给这个slave重新同步上一次的数据
+
+> 复制缓冲区
+>
+> 组成：
+>
+> * 偏移量
+> * 字符值
+>
+> ![image-20200226131707420](image/10-Redis主从复制/image-20200226131707420.png)
+>
+> master接受到的指令会像AOF那样拆分，然后按字符存放在缓冲区队列中，传输过程中，为了记下传输到哪个字符了，每个字符都会有一个偏移量offset
+>
+> 如果Redis开启了AOF，那复制缓冲区一开始就有，如果没有开启，那Redis作为master时，复制缓冲区就会被开辟
+
+### 4. 主从复制工作流程总结
+
+假设master上原本就有一些数据，当slave连接上master之后，要同步master的数据（这些数据包括master原有的和同步期间master新增的），就给master发送`psync2`命令，`psync`命令格式是：
+
+```shell
+psync2 <runid> <offset>
+```
+
+由于是第一次连接master，slave并不知道runid和offset，所以就发送`psync2 ? -1`，master接受到这条命令后，就认为这个slave是要进行全量复制，就使用`+FULLRESYNC runid offset`把runid和offset发送给slave，并且调用`gbsave`持久化当前数据，生成RDB文件发给slave，并把新接受到的master客户端命令保存到复制缓冲区，slave收到`+FULLRESYNC runid offset`就保存runid和offset，清空自己原有的数据并通过RDB文件同步master的数据，同步结束后，会再像master发起**部分复制请求** 具体是向master发送命令`psync2 runid offset` master接受到这个请求后，先会判断runid是否正确，如果runid错误，就认为slave实在请求全量复制，如果正确，就会检查offset，如果offset超过了复制缓冲区中最新的数据的偏移量，就认为offset有误，也会进行全量复制，如果offset和缓冲区中最新数据的偏移量一致，就说明主从数据是一致的，就会忽略这次请求，最后如果offset小于缓冲区中最新的数据【salve由于网络故障没有正确同步master的数据也属于这种情况】，就说明slave缺少缓冲区中的部分数据，就发送`+CONTINUE offset`给slave，并把缓冲区中从slave请求的偏移量开始的命令以AOF的格式发给slave，slave接收到`+CONTINUE`指令后，先对master发来的AOF执行`bgrewriteaof`重写，再以追加的方式恢复数据
+
+## 心跳机制
+
+在进入信息传播阶段，master和slave之间的信息维护就通过“心跳包”维护，以此来保持双方在线
+
+对于slave来说，它每隔1s向master发送`REPLCONF ACK <offset>`一方面向master汇报自己最新的偏移量，如果小于master的偏移量，master就把少的数据传给slave，另一方面也可以以此判断master是否在线
+
+对于master来说，它只需要确定slave还在线就行，所以它每隔10s【可以通过`repl-ping-slave-period`设置】向slave发送`PING`来确认slave是否在线，我们可以使用`INFO replication`来查看slave最后一次连接的时间间隔，lag项维持在0或1视为正常。
+
+当slave多数掉线或延时过高时，master为了保障数据稳定性，将停止数据写入，可以配置最小slave连接数和最大延时
+
+```
+min-slaves-to-write 2
+min-slaves-max-lag 8
+```
+
+slave的数量和延时都由`REPLCONF ACK`命令确认
+
+## 常见问题
+
+### 频繁的全量复制
+
+全量复制的开销非常大，不恰当的配置可能导致频繁的全量复制，最终导致服务器性能下降甚至宕机，可能导致屏藩的全量复制的原因有很多，Redis内部也对此做了优化，比如使用`shutdown save`关闭master时，master会将runid和offset一起持久化到RDB文件，这样重启后runid不变，slave连接后就不用全量复制了。
+
+除此之外，如果复制缓冲区过小，网络环境不佳，slave不提供服务，后来的命令就会“挤出”队首的命令，造成slave的offset越界，重复执行全量复制；这时可以修改复制缓冲区大小
+
+```
+repl-backlog-size
+```
+
+> 复制缓冲区大小建议：
+>
+> 1. 测算从master到slave重连平均时长second
+> 2. 获取master平均每秒产生写命令的数据总量write_size_per_second
+> 3. 最优复制缓冲区空间 = 2 * second * write_size_per_second
+
+### 频繁的网络中断
+
+如果slave接受到慢查询指令，就会花费大量时间去执行这条慢查询，而master每隔1s会调用replicationCron()判断slave是否超时，造成master各种资源被严重占用，我们可以设置合理的超时时间，确认是否释放slave
+
+```
+repl-timeout
+```
+
+* 默认60s，一旦响应时间超过这里设定的值，slave就会被释放
+
+如果master发送ping指令较低，而master设定的超时时间又过短，这时如果ping指令在网络中丢包，就会导致slave和master连接断开，可以适当提高ping指令发送的频率
+
+```
+repl-ping-slave-period
+```
+
+* repl-timeout至少应该是ping指令频度的5-10被，否则slave很容易被判断超时
+
+### 数据不同步
+
+如果主从间网络环境不好，就会导致数据不同步，对于数据一致性要求高的业务，建议主从服务器部署在同一个机房，尽量优化服务器间网络环境，或者对于一致性要求高而数量不是特别大的的数据，可以不使用主从复制。
+
+  
