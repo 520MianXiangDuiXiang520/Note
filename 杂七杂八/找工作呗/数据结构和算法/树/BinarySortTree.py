@@ -67,7 +67,6 @@ class BinarySortTree:
                 this = this.left
             this.left = root.left
             return this
-            
 
     def _delete_node(self, root, value):
         if root.left and root.left.value == value:

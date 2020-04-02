@@ -2047,7 +2047,7 @@ class Foo:
         return cls._object
 
     def __init__(self, name):
-            self.name = name
+        self.name = name
 
     def Print(self):
         print(f'The name of this object is: {self.name}')
@@ -2519,6 +2519,7 @@ python创建与管理进程依赖multiprocessing模块，创建进程的方法�
 * initargs：传入给initializer的参数
 * maxtasksperchild：允许创建的最大子进程数
   
+
 方法：
 
 * apply()：阻塞式添加一个进程给进程池，类似于可迭代对象的apply()方法，阻塞式会阻塞进程池，直到正在执行的进程结束，造成程序串行，不推荐使用
@@ -2789,6 +2790,7 @@ print('end')
 * 内存回收及时，只要没有引用立刻回收
 * 高效对象有确定生命周期
   
+
 缺点：
 
 * 维护计数器占用资源
@@ -2882,6 +2884,7 @@ print('end')
 
 * 什么时候进行标记清除
   
+
 标记清除并不像引用计数那样是实时的，而是等待占用内存到达GC阈值的时候才会触发
 
 ### 18.3 分代回收
