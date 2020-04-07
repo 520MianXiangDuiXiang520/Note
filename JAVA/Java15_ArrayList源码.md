@@ -174,3 +174,6 @@ public boolean addAll(int index, Collection<? extends E> c) {
 }
 ```
 
+## 总结
+
+ArrayList内部使用数组实现，初始容量是10，每次扩容怎加150%，最大容量是Integer.MAX_VALUE ，由于数组是连续的空间，所以查询和修改是很快的，但增加和删除要复制移动所有元素效率不如LinkedList.
