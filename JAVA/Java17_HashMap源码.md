@@ -130,6 +130,17 @@ private void inflateTable(int toSize) {
 
 由于数组容量要求是2的倍数，所以这个方法会先通过`roundUpToPowerOf2()`根据我们指定的数组容量计算出真实的数组容量capacity，然后实例化一个capacity大小的Entry数组。最后这个`initHashSeedAsNeeded()`允许你配置一个哈希种子，来手动影响散列结果。
 
+```java
+    private static int roundUpToPowerOf2(int number) {
+        // assert number >= 0 : "number must be non-negative";
+        return number >= MAXIMUM_CAPACITY
+                ? MAXIMUM_CAPACITY
+                : (number > 1) ? Integer.highestOneBit((number - 1) << 1) : 1;
+    }
+```
+
+
+
 初始化后，由于HashMap允许null作为key值，所以如果key是null，就执行`putForNullKey()`方法把`null: value`存入哈希表.
 
 ```java
@@ -363,9 +374,297 @@ void transfer(Entry[] newTable, boolean rehash) {
 
 [参考2](https://blog.csdn.net/weixin_42769637/article/details/103304102)
 
+### get方法
+
+get就很简单了
+
+```java
+public V get(Object key) {
+    if (key == null)
+        return getForNullKey();
+    Entry<K,V> entry = getEntry(key);
+
+    return null == entry ? null : entry.getValue();
+}
+```
+
+```java
+private V getForNullKey() {
+    if (size == 0) {
+        return null;
+    }
+    // null 是直接存在0位的
+    for (Entry<K,V> e = table[0]; e != null; e = e.next) {
+        if (e.key == null)
+            return e.value;
+    }
+    return null;
+}
+```
+
+```java
+final Entry<K,V> getEntry(Object key) {
+    if (size == 0) {
+        return null;
+    }
+
+    int hash = (key == null) ? 0 : hash(key);
+    for (Entry<K,V> e = table[indexFor(hash, table.length)];
+         e != null;
+         e = e.next) {
+        Object k;
+        if (e.hash == hash &&
+            ((k = e.key) == key || (key != null && key.equals(k))))
+            return e;
+    }
+    return null;
+}
+```
+
+### remove方法
+
+```java
+public V remove(Object key) {
+    Entry<K,V> e = removeEntryForKey(key);
+    return (e == null ? null : e.value);
+}
+```
+
+## JDK 1.8 的实现
+
+jdk1.8 开始HashMap将解决冲突的办法改成了链表加红黑树，红黑树其实是一个自平衡的二叉查找树，所以如果数组某个位置链接了大量节点时，转变为红黑树会大幅提高查找效率，但红黑树的插入相对麻烦，所以只有在满足一定条件时才会把链表转换为红黑树。
+
+### 基本属性
+
+```java
+// 数组的默认长度 16  
+static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+
+// 数组的最大长度 2^30
+static final int MAXIMUM_CAPACITY = 1 << 30;
+
+// 默认的负载因子 0.75f
+static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+// 默认树化的链表临界长度 8
+static final int TREEIFY_THRESHOLD = 8;
+
+// 默认红黑树重新转换为链表时的临界节点数
+static final int UNTREEIFY_THRESHOLD = 6;
+
+// 默认将链表转换为树时最小的数组长度
+static final int MIN_TREEIFY_CAPACITY = 64;
+
+// 用于初始化数组
+transient Node<K,V>[] table;
+
+// 一个空的entrySet
+transient Set<Map.Entry<K,V>> entrySet;
+
+// 元素个数
+transient int size;
+
+// 用于快速失败
+transient int modCount;
+
+// 扩容阈值
+int threshold;
+
+// 负载因子
+final float loadFactor;
+```
 
 
 
+### put方法
+
+```java
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+```
+
+jdk1.8 中，put这个方法只是调用`hash()`重新求了一下对象的哈希值，剩余操作全部放在了`putVal()`中。
+
+```java
+static final int hash(Object key) {
+    int h;
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
+```
+
+这里重新求哈希值的方法比1.7中简单了很多，也取消了哈希种子的设置，原因还是引入了红黑树后，哪怕发生大量冲突还是能保持较高的效率，所以就可以适当简化散列操作。右移16位后做异或还是为了让高位参与到最后求index的操作中，以此减缓冲突。
+
+同样不变的是key位null的键值对还是会被存放在数组0位。
 
 
+
+然后就是这个复杂的putVal方法，个人感觉1.8的代码可读性下降了不少。
+
+```java
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+               boolean evict) {
+    Node<K,V>[] tab; Node<K,V> p;
+    int n, i;
+    // 如果数组还没被实例化或长度为0，就初始化（扩容）
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+    // 如果算出的数组index位没有元素就直接加入
+    if ((p = tab[i = (n - 1) & hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    else {
+        // 这个e的作用是：如果put的key重复了，就把找到的重复的那个键值对象赋值给e，
+        // 否则e就是null，说明key没有重复
+        Node<K,V> e;
+        K k;
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k))))
+            e = p;
+        // 如果当前数组保存的树的话，就调用往树里插入元素的方法
+        else if (p instanceof TreeNode)
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+        else {
+            // 开始遍历链表
+            for (int binCount = 0; ; ++binCount) {
+                if ((e = p.next) == null) {
+                    // 遍历到最后发现没有重复的key，就把新节点插入到链表尾部
+                    p.next = newNode(hash, key, value, null);
+                    // 判断插入新节点后，有没有达到树化条件
+                    if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        // 树化
+                        treeifyBin(tab, hash);
+                    break;
+                }
+                // 找到了重复的key
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    break;
+                p = e;
+            }
+        }
+        // 处理重复的值
+        if (e != null) { // existing mapping for key
+            V oldValue = e.value;
+            if (!onlyIfAbsent || oldValue == null)
+                e.value = value;
+            afterNodeAccess(e);
+            return oldValue;
+        }
+    }
+    ++modCount;
+    if (++size > threshold)
+        resize();
+    afterNodeInsertion(evict);
+    return null;
+}
+```
+
+扩容
+
+```java
+final Node<K,V>[] resize() {
+    // 原来的HashMap
+    Node<K,V>[] oldTab = table;
+    // 原来数组的容量
+    int oldCap = (oldTab == null) ? 0 : oldTab.length;
+    // 原来的扩容临界阈值
+    int oldThr = threshold;
+    int newCap, newThr = 0;
+    if (oldCap > 0) {
+        // 如果数组到了最大容量，就不扩容
+        if (oldCap >= MAXIMUM_CAPACITY) {
+            threshold = Integer.MAX_VALUE;
+            return oldTab;
+        }
+        // 新容量是就容量的2倍
+        else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
+                 oldCap >= DEFAULT_INITIAL_CAPACITY)
+            // 2倍阈值（oldCap > 16）
+            newThr = oldThr << 1; // double threshold
+    }
+    // 原来的数组为空（初始化）时，数组容量为阈值
+    else if (oldThr > 0) // initial capacity was placed in threshold
+        newCap = oldThr;
+    // 如果指定阈值不大于0，就使用默认阈值16
+    else {               // zero initial threshold signifies using defaults
+        newCap = DEFAULT_INITIAL_CAPACITY;
+        // 默认新的阈值为 16 * 0.75
+        newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+    }
+    // 如果得出新阈值是0，通过新容量 * 加载因子 得出新阈值
+    if (newThr == 0) {
+        float ft = (float)newCap * loadFactor;
+        newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
+                  (int)ft : Integer.MAX_VALUE);
+    }
+    threshold = newThr;
+    // 移动旧容器里的数据到新容器
+    @SuppressWarnings({"rawtypes","unchecked"})
+    // 创建一个新容器
+    Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+    table = newTab;
+    if (oldTab != null) {
+        // 遍历旧容器中数组的每一位
+        for (int j = 0; j < oldCap; ++j) {
+            Node<K,V> e;
+            // 如果数组这一位不为空
+            if ((e = oldTab[j]) != null) {
+                // 把原来数组这一位指向null，让这块空间被回收
+                oldTab[j] = null;
+                // 如果只有一个元素，就直接加入新容器
+                if (e.next == null)
+                    newTab[e.hash & (newCap - 1)] = e;
+                // 如果这一位存的是红黑树
+                else if (e instanceof TreeNode)
+                    ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                // 如果是链表
+                else { // preserve order
+                    // 转到新数组中元素位置不变的时的头尾节点
+                    Node<K,V> loHead = null, loTail = null;
+                    // 转到新数组中元素位置加oldCap的时的头尾节点
+                    Node<K,V> hiHead = null, hiTail = null;
+                    Node<K,V> next;
+                    do {
+                        next = e.next;
+                        if ((e.hash & oldCap) == 0) {
+                            if (loTail == null)
+                                loHead = e;
+                            else
+                                loTail.next = e;
+                            loTail = e;
+                        }
+                        else {
+                            if (hiTail == null)
+                                hiHead = e;
+                            else
+                                hiTail.next = e;
+                            hiTail = e;
+                        }
+                    } while ((e = next) != null);
+                    // 移动index不需要变的链
+                    if (loTail != null) {
+                        loTail.next = null;
+                        newTab[j] = loHead;
+                    }
+                    // 移动需要变的链
+                    if (hiTail != null) {
+                        hiTail.next = null;
+                        newTab[j + oldCap] = hiHead;
+                    }
+                }
+            }
+        }
+    }
+    return newTab;
+}
+
+```
+
+![UTOOLS1586498786726.png](http://yanxuan.nosdn.127.net/5685eac79bec2f0e32df79a67086fac6.png)![UTOOLS1586498805550.png](http://yanxuan.nosdn.127.net/19edeb02f245d679fa54cf16baf4aae0.png)
+
+![UTOOLS1586498819007.png](http://yanxuan.nosdn.127.net/d25f811026e15da9906e66b02a158f12.png)
+
+
+
+ 
 
