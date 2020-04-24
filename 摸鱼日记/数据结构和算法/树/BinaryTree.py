@@ -79,14 +79,10 @@ class BinaryTree:
                 queue.append(node.left)
             if node.right is not None:
                 queue.append(node.right)
-
-
-
+                
     def level_visiting(self):
         self._level_visiting(self)
         print()
-
-
 
 def create_new_tree_by_list(values: list):
     pass

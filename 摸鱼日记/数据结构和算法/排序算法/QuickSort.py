@@ -4,10 +4,10 @@ class QuickSort:
     def get_pivot(nums: list, left: int, right: int):
         pivot = nums[left]
         while left < right:
-            while nums[right] > pivot and left < right:
+            while nums[right][1] > pivot[1] and left < right:
                 right -= 1
             nums[left] = nums[right]
-            while nums[left] < pivot and left < right:
+            while nums[left][1] < pivot[1] and left < right:
                 left += 1
             nums[right] = nums[left]
         nums[left] = pivot
@@ -27,4 +27,4 @@ class QuickSort:
 
 
 if __name__ == '__main__':
-    QuickSort().run([5, 9, 3, 4, 7, 1])
+    QuickSort().run([(0, 1), (1, 2), (2, 4), (3, 3)])
