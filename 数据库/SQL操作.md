@@ -37,7 +37,7 @@ SELECT prod_name FROM table_name LIMIT 5;
 SELECT prod_name FROM table_name LIMIT 5 OFFSET 6;
 
 -- MySQL 与 MariaSQL 快捷键，上一条语句等价于：
-SELECT prod_name FROM table_name LIMIT 5,6
+SELECT prod_name FROM table_name LIMIT 6,5
 ```
 
 ## 排序检索数据 ORDER BY
