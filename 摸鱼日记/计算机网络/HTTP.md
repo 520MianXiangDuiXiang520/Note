@@ -586,7 +586,7 @@ B 有了 CA 机构的证书，在向 A 发送公钥时就只需要发送证书�
 
 #### HTTPS 通信流程
 
-![image-20210122163508612](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20210122163508612.png)
+![](https://cdn.jsdelivr.net/gh/520MianXiangDuiXiang520/cdn@master/img/1616402388828-1616402388812.png)
 
 看上面的截图，前三行 [SYN], [SYN, ACK], [ACK] 是典型的 TCP 三次握手，那么在三次握手后，客户端向服务端以 TLSV1.2 协议向服务端发送了一个 `client Hello` 包，通过 `Client Hello`, 客户端会生成一个随机数，并告诉服务端自己支持的加密，哈希等算法，我们可以在这个报文里看到这些内容:
 
