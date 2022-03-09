@@ -59,5 +59,5 @@ func max(i, j int) int {
 }
 
 func main(){
-	fmt.Println(longestCommonSubsequence("ace", "babcde"))
+	fmt.Println(longestCommonSubsequence("123459", "13578"))
 }
