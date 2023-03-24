@@ -1,0 +1,15 @@
+FROM blogapi_base AS builder
+
+WORKDIR /app
+COPY . /app
+RUN make build
+
+FROM alpine:latest AS run
+WORKDIR /app
+RUN apk update \
+    && apk add tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+COPY --from=builder /go/bin .
+EXPOSE 8080 2998
+ENTRYPOINT ["./blogapi"]
