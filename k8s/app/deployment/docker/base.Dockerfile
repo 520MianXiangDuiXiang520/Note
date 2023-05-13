@@ -1,4 +1,4 @@
-FROM golang:1.18.1 AS blog_base
+FROM golang:1.18.1 AS demo_base
 
 ENV GOPROXY https://goproxy.cn
 ENV GO111MODULE on

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube_demo
+spec:
+  selector:
+    matchLabels:
+      app: kube_demo
+  template:
+    metadata:
+      labels:
+        app: kube_demo
+    spec:
+      containers:
+      - name: kube_demo
+        image: kube_demo
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,2 @@
+#!clisp
+(pprint "hello lisp")

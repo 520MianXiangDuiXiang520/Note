@@ -22,7 +22,7 @@ func recvAndSend(ch1, ch2 chan int) {
 func recv(ch chan int) {
 	for {
 		select {
-		case v := <- ch:
+		case v := <-ch:
 			fmt.Printf("got v: %d \n", v)
 		}
 	}
@@ -34,5 +34,6 @@ func main() {
 	// go send(ch2)
 	go recvAndSend(ch1, ch2)
 	go recv(ch1)
-	for{}
+	for {
+	}
 }

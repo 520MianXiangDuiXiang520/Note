@@ -1,0 +1,744 @@
+/usr/local/go/src/cmd/go/internal/modfetch/zip_sum_test/testdata/zip_sums.csv:github.com/getgauge/common,v0.0.0-20190514095629-619e107433ce,h1:/ofMj8gIhPYdb/JEXKj8iYe5Yxl3mrK8YA7yl/06t6Y=,04ab4fb7e8dcf693c3b79028693130cd51fe54f5a16f12622975a7c3eb7705f7
+/usr/local/go/src/cmd/dist/build.go:		b = xgetgoarm()
+/usr/local/go/src/cmd/dist/util.go:func xgetgoarm() string {
+/usr/local/go/src/cmd/compile/internal/noder/transform.go:			if sym := n.X.(*ir.Name).Sym(); types.IsRuntimePkg(sym.Pkg) && sym.Name == "getg" {
+/usr/local/go/src/cmd/compile/internal/noder/transform.go:				// Emit code for runtime.getg() directly instead of calling function.
+/usr/local/go/src/cmd/compile/internal/noder/transform.go:				// In this case, we know getg() always returns the same result within a given function
+/usr/local/go/src/cmd/compile/internal/ir/node.go:	OGETG        // runtime.getg() (read g pointer)
+/usr/local/go/src/cmd/compile/internal/amd64/ssa.go:func getgFromTLS(s *ssagen.State, r int16) {
+/usr/local/go/src/cmd/compile/internal/amd64/ssa.go:		getgFromTLS(s, r)
+/usr/local/go/src/cmd/compile/internal/amd64/ssa.go:			getgFromTLS(s, x86.REG_R14)
+/usr/local/go/src/cmd/compile/internal/amd64/ssa.go:			getgFromTLS(s, x86.REG_R14)
+/usr/local/go/src/cmd/compile/internal/staticdata/data.go:	if base.Flag.CompilingRuntime && (s.Name == "getg" || s.Name == "getclosureptr" || s.Name == "getcallerpc" || s.Name == "getcallersp") ||
+/usr/local/go/src/cmd/compile/internal/staticdata/data.go:		// runtime.getg(), getclosureptr(), getcallerpc(), getcallersp(),
+/usr/local/go/src/cmd/compile/internal/ssa/gen/genericOps.go:	{name: "GetG", argLength: 1, zeroWidth: true}, // runtime.getg() (read g pointer). arg0=mem
+/usr/local/go/src/cmd/compile/internal/ssa/regalloc_test.go:			gee := getg()
+/usr/local/go/src/cmd/compile/internal/typecheck/func.go:			if sym := n.X.(*ir.Name).Sym(); types.IsRuntimePkg(sym.Pkg) && sym.Name == "getg" {
+/usr/local/go/src/cmd/compile/internal/typecheck/func.go:				// Emit code for runtime.getg() directly instead of calling function.
+/usr/local/go/src/cmd/compile/internal/typecheck/func.go:				// In this case, we know getg() always returns the same result within a given function
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_solaris.go://sysnb	getgroups(ngid int, gid *_Gid_t) (n int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_solaris.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_solaris.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_amd64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_386.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_386.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_mipsle.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_riscv64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_arm.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error) = SYS_GETGROUPS32
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_openbsd_arm.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_netbsd_arm.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_mips64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_mips.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_bsd.go://sysnb	getgroups(ngid int, gid *_Gid_t) (n int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_bsd.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_bsd.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_386.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_386.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go:	r0, _, e1 := syscall_rawSyscall(libc_getgroups_trampoline_addr, uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go:var libc_getgroups_trampoline_addr uintptr
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go://go:cgo_import_dynamic libc_getgroups getgroups "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go:	r0, _, _ := syscall_rawSyscall(libc_getgid_trampoline_addr, 0, 0, 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go:var libc_getgid_trampoline_addr uintptr
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go://go:cgo_import_dynamic libc_getgid getgid "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm64.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm64.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.so"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go://go:cgo_import_dynamic libc_getgid getgid "libc.so"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go://go:linkname procgetgroups libc_getgroups
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go://go:linkname procGetgid libc_getgid
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go:	procgetgroups,
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go:	r0, _, e1 := rawSysvicall6(uintptr(unsafe.Pointer(&procgetgroups)), 2, uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0, 0, 0, 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_openbsd_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_aix.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_aix.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_aix.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_zos_s390x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_zos_s390x.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_zos_s390x.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_arm.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_s390x.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_dragonfly_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_amd64.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_amd64.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm64.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm64.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:TEXT libc_getgroups_trampoline<>(SB),NOSPLIT,$0-0
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:GLOBL	·libc_getgroups_trampoline_addr(SB), RODATA, $8
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:DATA	·libc_getgroups_trampoline_addr(SB)/8, $libc_getgroups_trampoline<>(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:TEXT libc_getgid_trampoline<>(SB),NOSPLIT,$0-0
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:GLOBL	·libc_getgid_trampoline_addr(SB), RODATA, $8
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s:DATA	·libc_getgid_trampoline_addr(SB)/8, $libc_getgid_trampoline<>(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_sparc64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_netbsd_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_arm64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_mips64.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_mips64.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_386.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_arm64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_386.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_sparc64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_dragonfly_amd64.go:	SYS_GETGID                 = 47  // { gid_t getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_dragonfly_amd64.go:	SYS_GETGROUPS              = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_s390x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_arm.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_openbsd.go:// getgid
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_openbsd_mips64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go:	r0, _, e1 := syscall_rawSyscall(libc_getgroups_trampoline_addr, uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go:var libc_getgroups_trampoline_addr uintptr
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go://go:cgo_import_dynamic libc_getgroups getgroups "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go:	r0, _, _ := syscall_rawSyscall(libc_getgid_trampoline_addr, 0, 0, 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go:var libc_getgid_trampoline_addr uintptr
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go://go:cgo_import_dynamic libc_getgid getgid "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_amd64.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_freebsd_amd64.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_openbsd_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go:int getgid();
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go:int getgroups(int, uintptr_t);
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go:func callgetgid() (r1 uintptr, e1 Errno) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go:	r1 = uintptr(C.getgid())
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go:func callgetgroups(n int, list uintptr) (r1 uintptr, e1 Errno) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go:	r1 = uintptr(C.getgroups(C.int(n), C.uintptr_t(list)))
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_ppc64x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_386.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error) = SYS_GETGROUPS32
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_mips64x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64.go:	r0, _ := callgetgid()
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64.go:	r0, e1 := callgetgroups(n, uintptr(unsafe.Pointer(list)))
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_openbsd_386.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_netbsd_386.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc64le.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_386.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_386.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_mipsx.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go:int getgid();
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go:int getgroups(int, uintptr_t);
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go:	r0, _ := C.getgid()
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go:	r0, er := C.getgroups(C.int(n), C.uintptr_t(uintptr(unsafe.Pointer(list))))
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm64.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm64.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_zos_s390x.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_netbsd_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_amd64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go://go:cgo_import_dynamic libc_getgid getgid "libc.a/shr_64.o"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.a/shr_64.o"
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go://go:linkname libc_getgid libc_getgid
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go://go:linkname libc_getgroups libc_getgroups
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go:	libc_getgid,
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go:	libc_getgroups,
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go:func callgetgid() (r1 uintptr, e1 Errno) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go:	r1, _, e1 = rawSyscall6(uintptr(unsafe.Pointer(&libc_getgid)), 0, 0, 0, 0, 0, 0, 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go:func callgetgroups(n int, list uintptr) (r1 uintptr, e1 Errno) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go:	r1, _, e1 = rawSyscall6(uintptr(unsafe.Pointer(&libc_getgroups)), 2, uintptr(n), list, 0, 0, 0, 0)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_ppc.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_linux_mips64le.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_amd64.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsysnum_openbsd_amd64.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_freebsd_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/syscall_linux_riscv64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:TEXT libc_getgroups_trampoline<>(SB),NOSPLIT,$0-0
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:GLOBL	·libc_getgroups_trampoline_addr(SB), RODATA, $8
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:DATA	·libc_getgroups_trampoline_addr(SB)/8, $libc_getgroups_trampoline<>(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:TEXT libc_getgid_trampoline<>(SB),NOSPLIT,$0-0
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:GLOBL	·libc_getgid_trampoline_addr(SB), RODATA, $8
+/usr/local/go/src/cmd/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s:DATA	·libc_getgid_trampoline_addr(SB)/8, $libc_getgid_trampoline<>(SB)
+/usr/local/go/src/debug/elf/symbols_test.go:// golden symbol table data generated by testdata/getgoldsym.c
+/usr/local/go/src/os/proc.go:	return gids, NewSyscallError("getgroups", e)
+/usr/local/go/src/os/os_unix_test.go:		t.Fatalf("getgroups: %s", err)
+/usr/local/go/src/os/os_unix_test.go:		t.Fatalf("getgroups: %s", err)
+/usr/local/go/src/os/os_unix_test.go:		t.Fatalf("getgroups: %s", err)
+/usr/local/go/src/os/user/user.go:getpwuid_r, getgrnam_r, and getgrouplist.
+/usr/local/go/src/os/user/getgrouplist_unix.go:static int mygetgrouplist(const char* user, gid_t group, gid_t* groups, int* ngroups) {
+/usr/local/go/src/os/user/getgrouplist_unix.go:	return getgrouplist(user, group, groups, ngroups);
+/usr/local/go/src/os/user/getgrouplist_unix.go:	return C.mygetgrouplist(name, userGID, gids, n)
+/usr/local/go/src/os/user/cgo_lookup_unix.go:static int mygetgrgid_r(int gid, struct group *grp,
+/usr/local/go/src/os/user/cgo_lookup_unix.go: return getgrgid_r(gid, grp, buf, buflen, result);
+/usr/local/go/src/os/user/cgo_lookup_unix.go:static int mygetgrnam_r(const char *name, struct group *grp,
+/usr/local/go/src/os/user/cgo_lookup_unix.go: return getgrnam_r(name, grp, buf, buflen, result);
+/usr/local/go/src/os/user/cgo_lookup_unix.go:		return syscall.Errno(C.mygetgrnam_r((*C.char)(unsafe.Pointer(&cname[0])),
+/usr/local/go/src/os/user/cgo_lookup_unix.go:		// mygetgrgid_r is a wrapper around getgrgid_r to avoid using gid_t
+/usr/local/go/src/os/user/cgo_lookup_unix.go:		return syscall.Errno(C.mygetgrgid_r(C.int(gid),
+/usr/local/go/src/os/user/getgrouplist_darwin.go:static int mygetgrouplist(const char* user, gid_t group, gid_t* groups, int* ngroups) {
+/usr/local/go/src/os/user/getgrouplist_darwin.go:	int rv = getgrouplist(user, (int) group, buf, ngroups);
+/usr/local/go/src/os/user/getgrouplist_darwin.go:	return C.mygetgrouplist(name, userGID, gids, n)
+/usr/local/go/src/runtime/proc.go:	g := getg()
+/usr/local/go/src/runtime/proc.go:		inittrace.id = getg().goid
+/usr/local/go/src/runtime/proc.go:	forcegc.g = getg()
+/usr/local/go/src/runtime/proc.go:	gp := getg()
+/usr/local/go/src/runtime/proc.go:	gp := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	gp := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	gp := getg()
+/usr/local/go/src/runtime/proc.go:	g := getg()
+/usr/local/go/src/runtime/proc.go:	_p_ := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go://     if getg().m.p.runSafePointFn != 0 {
+/usr/local/go/src/runtime/proc.go:	p := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	mp := getg().m
+/usr/local/go/src/runtime/proc.go:	return uintptr(unsafe.Pointer(getg().m))
+/usr/local/go/src/runtime/proc.go:	if gp := getg(); gp != nil && gp.m != nil && (gp.m.lockedExt != 0 || gp.m.incgo) && GOOS != "plan9" {
+/usr/local/go/src/runtime/proc.go:		releasem(getg().m)
+/usr/local/go/src/runtime/proc.go:	releasem(getg().m)
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	getg().m.spinning = true
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	p := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go:	pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:		if pp != getg().m.p.ptr() || int(atomic.Load(&pp.deletedTimers)) <= int(atomic.Load(&pp.numTimers)/4) {
+/usr/local/go/src/runtime/proc.go:	if pp == getg().m.p.ptr() && int(atomic.Load(&pp.deletedTimers)) > len(pp.timers)/4 {
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:// save updates getg().sched to refer to pc and sp so that a following
+/usr/local/go/src/runtime/proc.go:// can clobber getg().sched.
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:		traceGoSysBlock(getg().m.p.ptr())
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	gp := getg().m.curg
+/usr/local/go/src/runtime/proc.go:	gp := getg().m.curg
+/usr/local/go/src/runtime/proc.go:	msigrestore(getg().m.sigmask)
+/usr/local/go/src/runtime/proc.go:	gp := getg()
+/usr/local/go/src/runtime/proc.go:		_p_ := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	getg().m.lockedInt++
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	// other threads, so mp is usually not getg().m.
+/usr/local/go/src/runtime/proc.go:	getg().m.mallocing++
+/usr/local/go/src/runtime/proc.go:	getg().m.mallocing--
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:		plocal := getg().m.p.ptr()
+/usr/local/go/src/runtime/proc.go:			mp := getg().m
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	getg().m.throwing = -1 // do not dump full stacks
+/usr/local/go/src/runtime/proc.go:	if mp == nil || mp == getg().m {
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	_g_ := getg()
+/usr/local/go/src/runtime/proc.go:	if p := getg().m.p.ptr(); !runqempty(p) {
+/usr/local/go/src/runtime/lock_js.go:	gp := getg()
+/usr/local/go/src/runtime/lock_js.go:	gp := getg()
+/usr/local/go/src/runtime/lock_js.go:	// gp := getg()
+/usr/local/go/src/runtime/lock_js.go:	gp := getg()
+/usr/local/go/src/runtime/lock_js.go:		gp:       getg(),
+/usr/local/go/src/runtime/os_freebsd.go:	getg().m.procid = uint64(thr_self())
+/usr/local/go/src/runtime/os_freebsd.go:	if gp := getg(); !isarchive && !islibrary && gp.m == &m0 && gp == gp.m.g0 {
+/usr/local/go/src/runtime/net_plan9.go:	getg().m.ignoreHangup = true
+/usr/local/go/src/runtime/net_plan9.go:	getg().m.ignoreHangup = false
+/usr/local/go/src/runtime/net_plan9.go:	return getg().m.ignoreHangup
+/usr/local/go/src/runtime/mbitmap.go:	getg().m.traceback = 2
+/usr/local/go/src/runtime/mbitmap.go:	buf := &getg().m.p.ptr().wbBuf
+/usr/local/go/src/runtime/mbitmap.go:	buf := &getg().m.p.ptr().wbBuf
+/usr/local/go/src/runtime/mbitmap.go:	buf := &getg().m.p.ptr().wbBuf
+/usr/local/go/src/runtime/mbitmap.go:	buf := &getg().m.p.ptr().wbBuf
+/usr/local/go/src/runtime/mbitmap.go:func getgcmaskcb(frame *stkframe, ctxt unsafe.Pointer) bool {
+/usr/local/go/src/runtime/mbitmap.go:	ret := getgcmask(x)
+/usr/local/go/src/runtime/mbitmap.go:func getgcmask(ep any) (mask []byte) {
+/usr/local/go/src/runtime/mbitmap.go:	if _g_ := getg(); _g_.m.curg.stack.lo <= uintptr(p) && uintptr(p) < _g_.m.curg.stack.hi {
+/usr/local/go/src/runtime/mbitmap.go:		_g_ := getg()
+/usr/local/go/src/runtime/mbitmap.go:		gentraceback(_g_.m.curg.sched.pc, _g_.m.curg.sched.sp, 0, _g_.m.curg, 0, nil, 1000, getgcmaskcb, noescape(unsafe.Pointer(&frame)), 0)
+/usr/local/go/src/runtime/os_darwin.go:	mp := getg().m
+/usr/local/go/src/runtime/os_darwin.go:	getg().m.procid = uint64(pthread_self())
+/usr/local/go/src/runtime/mwbbuf.go://     buf := &getg().m.p.ptr().wbBuf
+/usr/local/go/src/runtime/mwbbuf.go:	if getg().m.dying > 0 {
+/usr/local/go/src/runtime/mwbbuf.go:		getg().m.p.ptr().wbBuf.discard()
+/usr/local/go/src/runtime/mwbbuf.go:			getg().m.p.ptr().wbBuf.discard()
+/usr/local/go/src/runtime/mwbbuf.go:		wbBufFlush1(getg().m.p.ptr())
+/usr/local/go/src/runtime/checkptr.go:	if gp := getg(); gp.stack.lo <= uintptr(p) && uintptr(p) < gp.stack.hi {
+/usr/local/go/src/runtime/os_plan9.go:	g := getg()
+/usr/local/go/src/runtime/os_plan9.go:	getg().m.procid = getpid()
+/usr/local/go/src/runtime/os_plan9.go:	v := getg().m.procid ^ uint64(t)
+/usr/local/go/src/runtime/os_plan9.go:	getg().m.locks++
+/usr/local/go/src/runtime/os_plan9.go:	getg().m.locks--
+/usr/local/go/src/runtime/os_plan9.go:	_g_ := getg()
+/usr/local/go/src/runtime/os3_plan9.go:	_g_ := getg()
+/usr/local/go/src/runtime/os3_plan9.go:	getg().m.profilehz = hz
+/usr/local/go/src/runtime/mfinal.go:			gp := getg()
+/usr/local/go/src/runtime/trace.go:	_g_ := getg()
+/usr/local/go/src/runtime/trace.go:			gp.tracelastp = getg().m.p
+/usr/local/go/src/runtime/trace.go:	trace.lockOwner = getg()
+/usr/local/go/src/runtime/trace.go:		trace.reader.set(getg())
+/usr/local/go/src/runtime/trace.go:		if getg() == mp.curg {
+/usr/local/go/src/runtime/trace.go:	_g_ := getg()
+/usr/local/go/src/runtime/trace.go:	releasem(getg().m)
+/usr/local/go/src/runtime/trace.go:	dolock := owner == nil || owner != getg().m.curg
+/usr/local/go/src/runtime/trace.go:	traceEvent(traceEvProcStart, -1, uint64(getg().m.id))
+/usr/local/go/src/runtime/trace.go:	_p_ := getg().m.p.ptr()
+/usr/local/go/src/runtime/trace.go:	_p_ := getg().m.p.ptr()
+/usr/local/go/src/runtime/trace.go:	_p_ := getg().m.p.ptr()
+/usr/local/go/src/runtime/trace.go:	newg.tracelastp = getg().m.p
+/usr/local/go/src/runtime/trace.go:	_g_ := getg().m.curg
+/usr/local/go/src/runtime/trace.go:	_g_ := getg()
+/usr/local/go/src/runtime/trace.go:	_g_ := getg()
+/usr/local/go/src/runtime/trace.go:	_p_ := getg().m.p
+/usr/local/go/src/runtime/trace.go:	_g_ := getg().m.curg
+/usr/local/go/src/runtime/atomic_pointer.go:	if !getg().m.p.ptr().wbBuf.putFast(*slot, uintptr(new)) {
+/usr/local/go/src/runtime/time.go:	gp := getg()
+/usr/local/go/src/runtime/time.go:	pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/time.go:		pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/time.go:	gp := getg()
+/usr/local/go/src/runtime/time.go:		ppcur := getg().m.p.ptr()
+/usr/local/go/src/runtime/time.go:		gp := getg()
+/usr/local/go/src/runtime/time.go:		gp := getg()
+/usr/local/go/src/runtime/debuglog_on.go:	if getg() != mp.gsignal {
+/usr/local/go/src/runtime/debuglog_on.go:	if getg() != mp.gsignal && mp.dlogCache == nil {
+/usr/local/go/src/runtime/proflabel.go:	// This would more properly use &getg().labels as the sync address,
+/usr/local/go/src/runtime/proflabel.go:	// on &getg().labels since we would synchronize with each
+/usr/local/go/src/runtime/proflabel.go:	getg().labels = labels
+/usr/local/go/src/runtime/proflabel.go:	return getg().labels
+/usr/local/go/src/runtime/msan.go:	g := getg()
+/usr/local/go/src/runtime/mgcsweep.go:	sweep.g = getg()
+/usr/local/go/src/runtime/mgcsweep.go:	gp := getg()
+/usr/local/go/src/runtime/mgcsweep.go:	_g_ := getg()
+/usr/local/go/src/runtime/mgcsweep.go:	_g_ := getg()
+/usr/local/go/src/runtime/mgcsweep.go:		getg().m.p.ptr().traceReclaimed += uintptr(nfreed) * s.elemsize
+/usr/local/go/src/runtime/sema.go:	gp := getg()
+/usr/local/go/src/runtime/sema.go:		if s.ticket == 1 && getg().m.locks == 0 {
+/usr/local/go/src/runtime/sema.go:	s.g = getg()
+/usr/local/go/src/runtime/sema.go:	s.g = getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	gp := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os2_aix.go:	_g_ := getg()
+/usr/local/go/src/runtime/os_openbsd.go:	_g_ := getg()
+/usr/local/go/src/runtime/os_openbsd.go:	getg().m.procid = uint64(getthrid())
+/usr/local/go/src/runtime/signal_windows.go:	_g_ := getg()
+/usr/local/go/src/runtime/signal_windows.go:	g := getg()
+/usr/local/go/src/runtime/lock_sema.go:	gp := getg()
+/usr/local/go/src/runtime/lock_sema.go:	gp := getg()
+/usr/local/go/src/runtime/lock_sema.go:	gp := getg()
+/usr/local/go/src/runtime/lock_sema.go:	gp = getg()
+/usr/local/go/src/runtime/lock_sema.go:	gp := getg()
+/usr/local/go/src/runtime/lock_sema.go:	gp := getg()
+/usr/local/go/src/runtime/iface.go:	if getg().m.mallocing != 0 {
+/usr/local/go/src/runtime/cgocall.go:	mp := getg().m
+/usr/local/go/src/runtime/cgocall.go:	gp := getg()
+/usr/local/go/src/runtime/cgocall.go:	gp := getg()
+/usr/local/go/src/runtime/os_linux.go:	getg().m.procid = uint64(gettid())
+/usr/local/go/src/runtime/os_linux.go:	mp := getg().m
+/usr/local/go/src/runtime/os_linux.go:		releasem(getg().m)
+/usr/local/go/src/runtime/os_linux.go:	gp := getg()
+/usr/local/go/src/runtime/os_linux.go:	releasem(getg().m)
+/usr/local/go/src/runtime/os_linux.go:	gp := getg()
+/usr/local/go/src/runtime/HACKING.md:`getg()` and `getg().m.curg`
+/usr/local/go/src/runtime/HACKING.md:To get the current user `g`, use `getg().m.curg`.
+/usr/local/go/src/runtime/HACKING.md:`getg()` alone returns the current `g`, but when executing on the
+/usr/local/go/src/runtime/HACKING.md:use `getg() == getg().m.curg`.
+/usr/local/go/src/runtime/HACKING.md:an active P (`getg().m.p != nil`) and scheduler code often runs
+/usr/local/go/src/runtime/syscall_windows.go:	c := &getg().m.syscall
+/usr/local/go/src/runtime/syscall_windows.go:	c := &getg().m.syscall
+/usr/local/go/src/runtime/syscall_windows.go:	c := &getg().m.syscall
+/usr/local/go/src/runtime/syscall_windows.go:	c := &getg().m.syscall
+/usr/local/go/src/runtime/race.go:	_g_ := getg()
+/usr/local/go/src/runtime/race.go:	_g_ := getg()
+/usr/local/go/src/runtime/race.go:	osPreemptExtEnter(getg().m)
+/usr/local/go/src/runtime/race.go:	_g_ := getg()
+/usr/local/go/src/runtime/race.go:	racecall(&__tsan_go_end, getg().racectx, 0, 0, 0)
+/usr/local/go/src/runtime/race.go:	_g_ := getg()
+/usr/local/go/src/runtime/race.go:	_g_ := getg()
+/usr/local/go/src/runtime/race.go:	raceacquireg(getg(), addr)
+/usr/local/go/src/runtime/race.go:	if getg().raceignore != 0 || !isvalidaddr(addr) {
+/usr/local/go/src/runtime/race.go:	racereleaseg(getg(), addr)
+/usr/local/go/src/runtime/race.go:	if getg().raceignore != 0 || !isvalidaddr(addr) {
+/usr/local/go/src/runtime/race.go:	racereleaseacquireg(getg(), addr)
+/usr/local/go/src/runtime/race.go:	if getg().raceignore != 0 || !isvalidaddr(addr) {
+/usr/local/go/src/runtime/race.go:	racereleasemergeg(getg(), addr)
+/usr/local/go/src/runtime/race.go:	if getg().raceignore != 0 || !isvalidaddr(addr) {
+/usr/local/go/src/runtime/race.go:	racecall(&__tsan_finalizer_goroutine, getg().racectx, 0, 0, 0)
+/usr/local/go/src/runtime/chan.go:	gp := getg()
+/usr/local/go/src/runtime/chan.go:	gp := getg()
+/usr/local/go/src/runtime/mgcmark.go:			userG := getg().m.curg
+/usr/local/go/src/runtime/mgcmark.go:	if getg() == gp.m.g0 {
+/usr/local/go/src/runtime/mgcmark.go:	if mp := getg().m; mp.locks > 0 || mp.preemptoff != "" {
+/usr/local/go/src/runtime/mgcmark.go:	gcw := &getg().m.p.ptr().gcw
+/usr/local/go/src/runtime/mgcmark.go:	gp := getg()
+/usr/local/go/src/runtime/mgcmark.go:	if gp == getg() {
+/usr/local/go/src/runtime/mgcmark.go:	gp := getg().m.curg
+/usr/local/go/src/runtime/mgcmark.go:	gp := getg().m.curg
+/usr/local/go/src/runtime/mgcmark.go:		gcw := &getg().m.p.ptr().gcw
+/usr/local/go/src/runtime/mgcmark.go:			getg().m.traceback = 2
+/usr/local/go/src/runtime/mgcmark.go:	gcw := &getg().m.p.ptr().gcw
+/usr/local/go/src/runtime/traceback.go:	if ourg := getg(); ourg == gp && ourg == ourg.m.curg {
+/usr/local/go/src/runtime/traceback.go:	gp := getg()
+/usr/local/go/src/runtime/traceback.go:	g := getg()
+/usr/local/go/src/runtime/traceback.go:	curgp := getg().m.curg
+/usr/local/go/src/runtime/traceback.go:		if gp.m != getg().m && readgstatus(gp)&^_Gscan == _Grunning {
+/usr/local/go/src/runtime/traceback.go:	if panicking > 0 || getg().m.curg != getg() {
+/usr/local/go/src/runtime/traceback.go:	if panicking > 0 || getg().m.curg != getg() {
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	gp := getg()
+/usr/local/go/src/runtime/panic.go:	_g_ := getg()
+/usr/local/go/src/runtime/panic.go:	_g_ := getg()
+/usr/local/go/src/runtime/panic.go:	_g_ := getg()
+/usr/local/go/src/runtime/heapdump.go:	_g_ := getg()
+/usr/local/go/src/runtime/mcheckmark.go:		getg().m.traceback = 2
+/usr/local/go/src/runtime/sys_libc.go:	gp := getg()
+/usr/local/go/src/runtime/debugcall.go:	if getg() != getg().m.curg {
+/usr/local/go/src/runtime/debugcall.go:	if sp := getcallersp(); !(getg().stack.lo < sp && sp <= getg().stack.hi) {
+/usr/local/go/src/runtime/debugcall.go:	gp := getg()
+/usr/local/go/src/runtime/debugcall.go:	gp := getg()
+/usr/local/go/src/runtime/debugcall.go:	getg().schedlink.set(callingG)
+/usr/local/go/src/runtime/preempt.go:	if mp := getg().m; mp.curg != nil && readgstatus(mp.curg) == _Grunning {
+/usr/local/go/src/runtime/preempt.go:	gp := getg()
+/usr/local/go/src/runtime/debug.go:	g := getg()
+/usr/local/go/src/runtime/debug.go:	g := getg()
+/usr/local/go/src/runtime/export_unix_test.go:	mp := getg().m
+/usr/local/go/src/runtime/mstats.go:	if pp := getg().m.p.ptr(); pp != nil {
+/usr/local/go/src/runtime/mstats.go:	if pp := getg().m.p.ptr(); pp != nil {
+/usr/local/go/src/runtime/print.go:	mp := getg().m
+/usr/local/go/src/runtime/print.go:	mp := getg().m
+/usr/local/go/src/runtime/print.go:	gp := getg()
+/usr/local/go/src/runtime/os_windows.go:		result = stdcall2(_WaitForSingleObject, getg().m.waitsema, uintptr(_INFINITE))
+/usr/local/go/src/runtime/os_windows.go:				uintptr(unsafe.Pointer(&[2]uintptr{getg().m.waitsema, getg().m.resumesema})),
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	g0 := getg()
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	gp := getg()
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_windows.go:		if haveHighResTimer && getg().m.highResTimer != 0 {
+/usr/local/go/src/runtime/os_windows.go:			if mp == getg().m {
+/usr/local/go/src/runtime/os_windows.go:	atomic.Store((*uint32)(unsafe.Pointer(&getg().m.profilehz)), uint32(hz))
+/usr/local/go/src/runtime/os_windows.go:	if mp == getg().m {
+/usr/local/go/src/runtime/stack.go:	thisg := getg()
+/usr/local/go/src/runtime/stack.go:	gp := getg()
+/usr/local/go/src/runtime/stack.go:				getg().m.traceback = 2
+/usr/local/go/src/runtime/stack.go:	gcController.addScannableStack(getg().m.p.ptr(), int64(newsize)-int64(old.hi-old.lo))
+/usr/local/go/src/runtime/stack.go:	thisg := getg()
+/usr/local/go/src/runtime/stack.go:	// TODO: double check all gp. shouldn't be getg().
+/usr/local/go/src/runtime/stack.go:		if !(gp == getg().m.curg && getg() != getg().m.curg && s == _Grunning) {
+/usr/local/go/src/runtime/stack.go:	if gp == getg().m.curg && gp.m.libcallsp != 0 {
+/usr/local/go/src/runtime/stack.go:			// frame".  That leak propagates up to getgcmask, then
+/usr/local/go/src/runtime/netpoll_solaris.go:	return *getg().m.perrno
+/usr/local/go/src/runtime/export_debuglog_test.go:	g := getg()
+/usr/local/go/src/runtime/export_test.go:		ret = getgcmask(x)
+/usr/local/go/src/runtime/export_test.go:		getg().m.mallocing++
+/usr/local/go/src/runtime/export_test.go:		getg().m.mallocing--
+/usr/local/go/src/runtime/export_test.go:	g := getg()
+/usr/local/go/src/runtime/export_test.go:		return gentraceback(pc, sp, 0, getg(), 0, &stk[0], len(stk), nil, nil, _TraceJumpStack)
+/usr/local/go/src/runtime/export_test.go:	return getg()
+/usr/local/go/src/runtime/export_test.go:	// Test that getg works correctly with thread switch.
+/usr/local/go/src/runtime/export_test.go:	// With gccgo, if we generate getg inlined, the backend
+/usr/local/go/src/runtime/export_test.go:	g1 := getg()
+/usr/local/go/src/runtime/export_test.go:	g2 := getg()
+/usr/local/go/src/runtime/export_test.go:	// Also test getg after some control flow, as the
+/usr/local/go/src/runtime/export_test.go:	g3 := getg()
+/usr/local/go/src/runtime/export_test.go:		getg().m.mallocing++
+/usr/local/go/src/runtime/export_test.go:		getg().m.mallocing--
+/usr/local/go/src/runtime/export_test.go:	releasem(getg().m)
+/usr/local/go/src/runtime/stubs.go:// getg returns the pointer to the current g.
+/usr/local/go/src/runtime/stubs.go:func getg() *g
+/usr/local/go/src/runtime/stubs.go:	mp := getg().m
+/usr/local/go/src/runtime/debuglog.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/lockrank_on.go:	gp := getg()
+/usr/local/go/src/runtime/export_debug_test.go:		if getg().m != h.mp {
+/usr/local/go/src/runtime/export_debug_test.go:			println("trap on wrong M", getg().m, h.mp)
+/usr/local/go/src/runtime/export_debug_test.go:	if getg().m != h.mp {
+/usr/local/go/src/runtime/export_debug_test.go:		println("trap on wrong M", getg().m, h.mp)
+/usr/local/go/src/runtime/os_netbsd.go:	_g_ := getg()
+/usr/local/go/src/runtime/os_netbsd.go:	_g_ := getg()
+/usr/local/go/src/runtime/rwmutex.go:				m := getg().m
+/usr/local/go/src/runtime/rwmutex.go:	releasem(getg().m)
+/usr/local/go/src/runtime/rwmutex.go:	m := getg().m
+/usr/local/go/src/runtime/lock_futex.go:	gp := getg()
+/usr/local/go/src/runtime/lock_futex.go:	gp := getg()
+/usr/local/go/src/runtime/lock_futex.go:	gp := getg()
+/usr/local/go/src/runtime/lock_futex.go:	gp := getg()
+/usr/local/go/src/runtime/lock_futex.go:	gp := getg()
+/usr/local/go/src/runtime/lock_futex.go:	gp := getg()
+/usr/local/go/src/runtime/mgcpacer.go:	gp := getg()
+/usr/local/go/src/runtime/malloc.go:		if inittrace.active && inittrace.id == getg().goid {
+/usr/local/go/src/runtime/malloc.go:		assistG = getg()
+/usr/local/go/src/runtime/malloc.go:	if mp.gsignal == getg() {
+/usr/local/go/src/runtime/malloc.go:		if inittrace.active && inittrace.id == getg().goid {
+/usr/local/go/src/runtime/malloc.go:		if getg().preempt {
+/usr/local/go/src/runtime/malloc.go:		if g := getg(); g == g.m.gsignal {
+/usr/local/go/src/runtime/netpoll_windows.go:	mp := getg().m
+/usr/local/go/src/runtime/os_aix.go:	mp := getg().m
+/usr/local/go/src/runtime/os_aix.go:	mp := getg().m
+/usr/local/go/src/runtime/os_aix.go:	getg().m.procid = uint64(pthread_self())
+/usr/local/go/src/runtime/cgo_sigaction.go:			g = getg()
+/usr/local/go/src/runtime/os3_solaris.go:	getg().m.procid = uint64(pthread_self())
+/usr/local/go/src/runtime/os3_solaris.go:	_g_ := getg()
+/usr/local/go/src/runtime/os3_solaris.go:	mp := getg().m
+/usr/local/go/src/runtime/runtime1.go:	_g_ := getg()
+/usr/local/go/src/runtime/runtime1.go:	_g_ := getg()
+/usr/local/go/src/runtime/runtime1.go:	_g_ := getg()
+/usr/local/go/src/runtime/mheap.go:	pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/mheap.go:	pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/mheap.go:	pp := getg().m.p.ptr()
+/usr/local/go/src/runtime/mheap.go:	gp := getg()
+/usr/local/go/src/runtime/mheap.go:	gp := getg()
+/usr/local/go/src/runtime/rdebug.go:	_g_ := getg()
+/usr/local/go/src/runtime/os_js.go:	g := getg()
+/usr/local/go/src/runtime/os_js.go:	getg().m.procid = 2
+/usr/local/go/src/runtime/cgocheck.go:	g := getg()
+/usr/local/go/src/runtime/signal_unix.go:	getg().m.profilehz = hz
+/usr/local/go/src/runtime/signal_unix.go:	return getg()
+/usr/local/go/src/runtime/signal_unix.go:// It must be nosplit because getg() is still the G that was running
+/usr/local/go/src/runtime/signal_unix.go:	_g_ := getg()
+/usr/local/go/src/runtime/signal_unix.go:// getg().throwsplit, since sigpanic may need to grow the stack.
+/usr/local/go/src/runtime/signal_unix.go:	g := getg()
+/usr/local/go/src/runtime/signal_unix.go:	_g_ := getg()
+/usr/local/go/src/runtime/signal_unix.go:	nmask := getg().m.sigmask
+/usr/local/go/src/runtime/signal_unix.go:	if getg().m.newSigstack {
+/usr/local/go/src/runtime/signal_unix.go:		restoreGsignalStack(&getg().m.goSigStack)
+/usr/local/go/src/runtime/signal_unix.go:	g := getg()
+/usr/local/go/src/runtime/signal_unix.go:	gp := getg().m.gsignal
+/usr/local/go/src/runtime/signal_unix.go:	g := getg()
+/usr/local/go/src/runtime/mgc.go:	p := getg().m.p.ptr()
+/usr/local/go/src/runtime/mgc.go:		work.sweepWaiters.list.push(getg())
+/usr/local/go/src/runtime/mgc.go:	if gp := getg(); gp == mp.g0 || mp.locks > 1 || mp.preemptoff != "" {
+/usr/local/go/src/runtime/mgc.go:		gp := getg().m.curg
+/usr/local/go/src/runtime/mgc.go:	getg().m.preemptoff = "gcing"
+/usr/local/go/src/runtime/mgc.go:		getg().m.preemptoff = ""
+/usr/local/go/src/runtime/mgc.go:	_g_ := getg()
+/usr/local/go/src/runtime/mgc.go:			gcw := &getg().m.p.ptr().gcw
+/usr/local/go/src/runtime/mgc.go:			wbBufFlush1(getg().m.p.ptr())
+/usr/local/go/src/runtime/mgc.go:	gp := getg()
+/usr/local/go/src/runtime/mgc.go:	gp := getg()
+/usr/local/go/src/runtime/mgc.go:	gp := getg()
+/usr/local/go/src/runtime/mprof.go:	gp := getg()
+/usr/local/go/src/runtime/mprof.go:	gp := getg()
+/usr/local/go/src/runtime/mprof.go:		gp := getg()
+/usr/local/go/src/runtime/mprof.go:			g0 := getg()
+/usr/local/go/src/runtime/mprof.go:	gp := getg()
+/usr/local/go/src/runtime/mprof.go:	gp := getg()
+/usr/local/go/src/runtime/mprof.go:	gp := getg()
+/usr/local/go/src/runtime/string.go:	stk := getg().stack
+/usr/local/go/src/runtime/select.go:	gp = getg()
+/usr/local/go/src/runtime/mgcscavenge.go:	scavenge.g = getg()
+/usr/local/go/src/runtime/mgcwork.go://     gcw := &getg().m.p.ptr().gcw
+/usr/local/go/src/runtime/mgcwork.go:		gp := getg().m.curg
+/usr/local/go/src/runtime/os_dragonfly.go:	getg().m.procid = uint64(lwp_gettid())
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/runtime/os_solaris.go:	gp := getg()
+/usr/local/go/src/syscall/syscall_solaris.go://sysnb	getgroups(ngid int, gid *_Gid_t) (n int, err error)
+/usr/local/go/src/syscall/syscall_solaris.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/syscall/syscall_solaris.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/syscall/syscall_linux_amd64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/zsysnum_openbsd_386.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/syscall/zsysnum_openbsd_386.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_linux_mipsle.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_riscv64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/syscall_linux_arm.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error) = SYS_GETGROUPS32
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go:	r0, _, e1 := rawSyscall(abi.FuncPCABI0(libc_getgroups_trampoline), uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go:func libc_getgroups_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.so"
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go:	r0, _, _ := rawSyscall(abi.FuncPCABI0(libc_getgid_trampoline), 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go:func libc_getgid_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.go://go:cgo_import_dynamic libc_getgid getgid "libc.so"
+/usr/local/go/src/syscall/zsyscall_netbsd_arm.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_mips64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_mips.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsysnum_netbsd_arm.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/syscall/zsysnum_netbsd_arm.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/syscall/syscall_bsd.go://sysnb	getgroups(ngid int, gid *_Gid_t) (n int, err error)
+/usr/local/go/src/syscall/syscall_bsd.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/syscall/syscall_bsd.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/syscall/zsyscall_linux_ppc64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsysnum_freebsd_386.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/syscall/zsysnum_freebsd_386.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go:	r0, _, e1 := rawSyscall(abi.FuncPCABI0(libc_getgroups_trampoline), uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go:func libc_getgroups_trampoline()
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go://go:cgo_import_dynamic libc_getgroups getgroups "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go:	r0, _, _ := rawSyscall(abi.FuncPCABI0(libc_getgid_trampoline), 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go:func libc_getgid_trampoline()
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.go://go:cgo_import_dynamic libc_getgid getgid "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/syscall/zsysnum_freebsd_arm64.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/syscall/zsysnum_freebsd_arm64.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/syscall/zsyscall_solaris_amd64.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.so"
+/usr/local/go/src/syscall/zsyscall_solaris_amd64.go://go:cgo_import_dynamic libc_Getgid getgid "libc.so"
+/usr/local/go/src/syscall/zsyscall_solaris_amd64.go://go:linkname libc_getgroups libc_getgroups
+/usr/local/go/src/syscall/zsyscall_solaris_amd64.go:	libc_getgroups,
+/usr/local/go/src/syscall/zsyscall_solaris_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_solaris_amd64.go:	r0, _, e1 := rawSysvicall6(uintptr(unsafe.Pointer(&libc_getgroups)), 2, uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0, 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go:	r0, _, e1 := rawSyscall(abi.FuncPCABI0(libc_getgroups_trampoline), uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go:func libc_getgroups_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.so"
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go:	r0, _, _ := rawSyscall(abi.FuncPCABI0(libc_getgid_trampoline), 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go:func libc_getgid_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.go://go:cgo_import_dynamic libc_getgid getgid "libc.so"
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.s:TEXT ·libc_getgroups_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.s:TEXT ·libc_getgid_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_arm64.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/syscall/syscall_aix.go://sysnb	getgroups(ngid int, gid *_Gid_t) (n int, err error)
+/usr/local/go/src/syscall/syscall_aix.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/syscall/syscall_aix.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/syscall/syscall_linux.go:	n, err := getgroups(0, nil)
+/usr/local/go/src/syscall/syscall_linux.go:	n, err = getgroups(n, &a[0])
+/usr/local/go/src/syscall/syscall_js.go:	return jsProcess.Call("getgid").Int()
+/usr/local/go/src/syscall/syscall_js.go:	array := jsProcess.Call("getgroups")
+/usr/local/go/src/syscall/zsyscall_freebsd_arm.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_s390x.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsyscall_dragonfly_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsysnum_netbsd_amd64.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/syscall/zsysnum_netbsd_amd64.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/syscall/zsysnum_openbsd_arm64.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/syscall/zsysnum_openbsd_arm64.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.s:TEXT ·libc_getgroups_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.s:TEXT ·libc_getgid_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_darwin_arm64.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/syscall/zsyscall_freebsd_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_netbsd_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_arm64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.s:TEXT ·libc_getgroups_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.s:TEXT ·libc_getgid_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_arm.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/syscall/zsysnum_openbsd_mips64.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/syscall/zsysnum_openbsd_mips64.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_linux_386.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/syscall_linux_arm64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/zsyscall_freebsd_386.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_openbsd_386.s:TEXT ·libc_getgroups_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_386.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/syscall/zsyscall_openbsd_386.s:TEXT ·libc_getgid_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_386.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/syscall/zsysnum_dragonfly_amd64.go:	SYS_GETGID        = 47  // { gid_t getgid(void); }
+/usr/local/go/src/syscall/zsysnum_dragonfly_amd64.go:	SYS_GETGROUPS     = 79  // { int getgroups(u_int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/syscall/syscall_linux_s390x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/zsyscall_linux_arm.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsysnum_freebsd_arm.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/syscall/zsysnum_freebsd_arm.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_openbsd_mips64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go:	r0, _, e1 := rawSyscall(abi.FuncPCABI0(libc_getgroups_trampoline), uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go:func libc_getgroups_trampoline()
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go://go:cgo_import_dynamic libc_getgroups getgroups "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go:	r0, _, _ := rawSyscall(abi.FuncPCABI0(libc_getgid_trampoline), 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go:func libc_getgid_trampoline()
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.go://go:cgo_import_dynamic libc_getgid getgid "/usr/lib/libSystem.B.dylib"
+/usr/local/go/src/syscall/zsysnum_freebsd_amd64.go:	SYS_GETGID                   = 47  // { gid_t getgid(void); }
+/usr/local/go/src/syscall/zsysnum_freebsd_amd64.go:	SYS_GETGROUPS                = 79  // { int getgroups(u_int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go:	r0, _, e1 := rawSyscall(abi.FuncPCABI0(libc_getgroups_trampoline), uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go:func libc_getgroups_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.so"
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go:	r0, _, _ := rawSyscall(abi.FuncPCABI0(libc_getgid_trampoline), 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go:func libc_getgid_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.go://go:cgo_import_dynamic libc_getgid getgid "libc.so"
+/usr/local/go/src/syscall/syscall_linux_ppc64x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/syscall_linux_386.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error) = SYS_GETGROUPS32
+/usr/local/go/src/syscall/syscall_linux_mips64x.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/zsyscall_aix_ppc64.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.a/shr_64.o"
+/usr/local/go/src/syscall/zsyscall_aix_ppc64.go://go:cgo_import_dynamic libc_Getgid getgid "libc.a/shr_64.o"
+/usr/local/go/src/syscall/zsyscall_aix_ppc64.go://go:linkname libc_getgroups libc_getgroups
+/usr/local/go/src/syscall/zsyscall_aix_ppc64.go:	libc_getgroups,
+/usr/local/go/src/syscall/zsyscall_aix_ppc64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_aix_ppc64.go:	r0, _, e1 := rawSyscall6(uintptr(unsafe.Pointer(&libc_getgroups)), 2, uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0, 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go:	r0, _, e1 := rawSyscall(abi.FuncPCABI0(libc_getgroups_trampoline), uintptr(ngid), uintptr(unsafe.Pointer(gid)), 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go:func libc_getgroups_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go://go:cgo_import_dynamic libc_getgroups getgroups "libc.so"
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go:	r0, _, _ := rawSyscall(abi.FuncPCABI0(libc_getgid_trampoline), 0, 0, 0)
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go:func libc_getgid_trampoline()
+/usr/local/go/src/syscall/zsyscall_openbsd_386.go://go:cgo_import_dynamic libc_getgid getgid "libc.so"
+/usr/local/go/src/syscall/zsyscall_netbsd_386.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_ppc64le.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsysnum_netbsd_386.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/syscall/zsysnum_netbsd_386.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/syscall/syscall_linux_mipsx.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.s:TEXT ·libc_getgroups_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.s:TEXT ·libc_getgid_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_openbsd_amd64.s:	JMP	libc_getgid(SB)
+/usr/local/go/src/syscall/zsysnum_netbsd_arm64.go:	SYS_GETGID               = 47  // { gid_t|sys||getgid_with_egid(void); }
+/usr/local/go/src/syscall/zsysnum_netbsd_arm64.go:	SYS_GETGROUPS            = 79  // { int|sys||getgroups(int gidsetsize, gid_t *gidset); }
+/usr/local/go/src/syscall/zsysnum_openbsd_arm.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/syscall/zsysnum_openbsd_arm.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_netbsd_arm64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_amd64.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsyscall_linux_mips64le.go:func getgroups(n int, list *_Gid_t) (nn int, err error) {
+/usr/local/go/src/syscall/zsysnum_openbsd_amd64.go:	SYS_GETGID         = 47  // { gid_t sys_getgid(void); }
+/usr/local/go/src/syscall/zsysnum_openbsd_amd64.go:	SYS_GETGROUPS      = 79  // { int sys_getgroups(int gidsetsize, \
+/usr/local/go/src/syscall/zsyscall_freebsd_amd64.go:func getgroups(ngid int, gid *_Gid_t) (n int, err error) {
+/usr/local/go/src/syscall/syscall_linux_riscv64.go://sysnb	getgroups(n int, list *_Gid_t) (nn int, err error)
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.s:TEXT ·libc_getgroups_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.s:	JMP	libc_getgroups(SB)
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.s:TEXT ·libc_getgid_trampoline(SB),NOSPLIT,$0-0
+/usr/local/go/src/syscall/zsyscall_darwin_amd64.s:	JMP	libc_getgid(SB)

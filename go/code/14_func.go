@@ -1,6 +1,6 @@
 package main
 
-type A struct {}
+type A struct{}
 
 func (a *A) New() {
 	return &A{}
