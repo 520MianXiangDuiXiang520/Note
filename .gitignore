@@ -1,4 +1,5 @@
 *.pyc 
 .idea/
 .vscode
-Rust/code/*/target
+Rust/code/*/target/
+Leetcode/leetcode_rust/target/
