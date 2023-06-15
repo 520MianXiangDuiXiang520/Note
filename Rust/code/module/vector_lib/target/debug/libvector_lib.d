@@ -1,0 +1,1 @@
+/Users/junebao/Project/Note/Rust/code/module/vector_lib/target/debug/libvector_lib.rlib: /Users/junebao/Project/Note/Rust/code/module/vector_lib/src/lib.rs /Users/junebao/Project/Note/Rust/code/module/vector_lib/src/vector.rs
