@@ -2,6 +2,6 @@ run:
 	cargo run
 
 cp:
-	bash ./cp.sh $(id) $(name)
+	bash ./cp.sh $u
 
 .DEFAULT_GOAL := run
