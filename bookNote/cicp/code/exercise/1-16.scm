@@ -1,0 +1,7 @@
+(load "../public/math.scm")
+(define (fast-expt2 b n)
+(define (expt-iter t res i)
+    (cond ((= 0 i) res)
+        ((even? i) (expt-iter (square t) res (/ i 2))) 
+        (else (expt-iter t (* t res) (- i 1)))))
+(expt-iter b 1 n))
