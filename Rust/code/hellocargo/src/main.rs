@@ -16,4 +16,15 @@ fn main() {
     let a3: [i32;100] = [1;100];
     let size = a3.len();
     println!("{}", size);
+    greet_world();
+}
+
+fn greet_world() {
+    let southern_germany = "Grüß Gott!";
+    let chinese = "世界，你好";
+    let english = "World, hello";
+    let regions = [southern_germany, chinese,english];
+    for region in regions.iter() {
+        println!("{}", region);
+    }
 }

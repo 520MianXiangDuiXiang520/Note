@@ -10,5 +10,16 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": false,
     "python.pythonPath": "C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
-    "python.testing.promptToConfigure": false
+    "python.testing.promptToConfigure": false,
+    "editor.gotoLocation.alternativeDeclarationCommand": "editor.action.revealDefinition",
+    "editor.gotoLocation.alternativeDefinitionCommand": "editor.action.revealDefinition",
+    "editor.gotoLocation.alternativeTypeDefinitionCommand": "editor.action.revealDefinition",
+    "editor.selectionHighlight": false,
+    "files.autoSave": "onFocusChange",
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "on"
+    }
 }
