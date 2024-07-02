@@ -191,9 +191,7 @@ fn main() {
 
 * 所有 Unicode 值都可以作为一个 char，占 4 字节
 
-#### 流程控制
-
-##### 函数
+#### 函数
 
 ```rust
 fn add(a: i32, b:i32) -> i32 {
@@ -205,7 +203,7 @@ fn add(a: i32, b:i32) -> i32 {
 * 无返回值的函数，如 `main()` 返回值其实是 单元 `()`
 * 可以用 `!` 表示某个函数永远不会返回（发散函数），如 `fn dead_func() -> ! { panic!("game over") }`
 
-##### 语句和表达式
+#### 语句和表达式
 
 Rust 中语句和表达式是严格区分的（许多语言是混淆的）
 * 语句（statement）：执行一个操作，但不返回任何东西， 语句以分号结尾，如 `let x = 1_i32;`
@@ -228,6 +226,57 @@ fn add(a: i32, b:i32) -> i32 {
 }
 ```
 * 有一点需要注意 `x+=3` 是语句，因为它本质上等价于 `let x = x + 3;`
+
+#### 流程控制
+
+**分支结构**：Rust 使用经典的 `if - else if - else` **表达式** 表示分支结构，因为是表达式，所以可以为其绑定变量，如
+
+```rust
+fn main() {
+    let x = 12;
+    let x = if x % 10 == 0 {
+        1
+    } else {
+        2
+    };
+    assert_eq!(x, 1)
+}
+```
+
+**循环结构**：Rust 支持 `for`, `while`, `loop` 三种循环模式，支持在多重循环中加标签直接跳出外层循环， 如：
+
+```rust 
+fn main() {
+    let mut count = 0;
+    'outer: loop {
+        while count < 20 {
+            count += 2;
+        }
+
+        count += 5;
+
+        loop {
+            if count >= 30 {
+                break 'outer;
+            }
+
+            continue 'outer;
+        }
+    }
+    println!("{}", count);
+}
+```
+
+loop 是一个表达式，可以用 break 返回值：
+
+```rust
+fn main() {
+    let count = loop {
+        break 1;
+    };
+    println!("{}", count);
+}
+```
 
 ### 所有权和借用
 
@@ -318,6 +367,45 @@ fn append_world(s: &mut String) {
 >
 
 ### 复合数据类型
+
+#### 数组和切片
+
+数组是类型相同，长度固定的数据结构, 可以使用 `[初始值;数量]` 快速初始化数组，如：
+
+```rust
+fn main() {
+    let list = [1, 1, 1, 1, 1];
+    let list2 = [1; 5];
+    assert_eq!(list, list2)
+}
+```
+
+使用这种方式初始化数组时，数组的每个元素都是 copy 出来的，所以如果数组元素不是基本类型时，要注意是否实现了 Copy 特征，没实现的可以选择通过函数初始化，如：
+
+```rust
+fn main() {
+    let mut _list:[String;5] = std::array::from_fn(|_i| String::from("value"));
+}
+```
+
+**切片** 是对数组中部分连续片段的引用
+
+```rust
+fn main() {
+    let  list:[String;5] = std::array::from_fn(|_i| String::from("value"));
+    let  _list0:&[String] =  &list[0..3];
+}
+```
+
+#### 字符串
+
+#### 枚举
+
+#### 元组和结构体
+
+#### 动态数组 Vector
+
+#### HashMap
 
 ### 模式匹配
 

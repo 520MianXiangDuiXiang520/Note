@@ -83,12 +83,46 @@
 //     let _s2 = &s;
 // }
 
-fn first_word(s: &String) ->&str {
-    &s[..1]
-}
+// fn first_word(s: &String) ->&str {
+//     &s[..1]
+// }
+// fn main() {
+//     let mut  s = String::from("hello world");
+//     let word = first_word(&s);
+//     println!("{} {}", word, s);
+//     s.clear();
+// }
+
+
+// fn array_exercise() {
+//     let  list:[String;5] = std::array::from_fn(|_i| String::from("value"));
+//     let  _list0:&[String] =  &list[0..3];
+    // println!("{:?}", list);
+    // list0.clear();
+    // println!("{}", list0);
+    // println!("{:?}", list);
+// }
+
+// fn array_exercise1() {
+//     let list = [1, 1, 1, 1, 1];
+//     let list2 = [1; 5];
+//     assert_eq!(list, list2)
+// }
+
+// fn main() {
+//     let x = 12;
+//     let x = if x % 10 == 0 {
+//         1
+//     } else {
+//         2
+//     };
+//     assert_eq!(x, 1)
+// }
+
+
 fn main() {
-    let mut  s = String::from("hello world");
-    let word = first_word(&s);
-    println!("{} {}", word, s);
-    s.clear();
+    let count = loop {
+        break 1;
+    };
+    println!("{}", count);
 }
