@@ -121,8 +121,30 @@
 
 
 fn main() {
-    let count = loop {
-        break 1;
+    let s = String::from("holla中国人नमस्ते");
+    for char in s.chars() {
+        println!("{char}");
+    }
+
+    let mut tup:(f64,i32,i16) =(1.0, 2, 3);
+    tup.0 = 2.0;
+    println!("{}", tup.0);
+    let (x,y,z) = tup;
+    println!("{}, {}, {}", x, y, z);
+
+    let _u: () = ();
+
+    let blog = Blog {
+        id: 1,
+        abs: "hello rust".to_string(),
+        tags: vec!["rust".to_string()]
     };
-    println!("{}", count);
+
+    println!("{}", blog.abs);
+}
+
+struct Blog {
+    id: u64,
+    abs: String,
+    tags: Vec<String>
 }

@@ -399,15 +399,125 @@ fn main() {
 
 #### 字符串
 
-#### 枚举
+Rust 核心只支持一种字符串类型 `str` 它是一个不可变的字节序列 `[u8;x]`，由于他的长度是不确定的，所以几乎无法直接使用 `str` 这种类型，一般都会使用他的引用 `&str`, 或者叫字符串切片。
 
-#### 元组和结构体
+> Go 中类似，`string` 本身是一个指针，指向底层的某个字节数组，这个数组在 Rust 中就是 `str` 类型。
+> ```go
+> type StringHeader struct {
+>     Data uintptr
+>     Len  int
+> }
+> 
+> ```
+> 因此，Rust 的 `&str` 可以类比 Go 的 `string`，是 `str` 的一个切片，当然，Go 中并不是切片，但与切片的结构体相比，字符串只少了一个表示容量的 Cap 字段，因此，你也可以说 Go 的字符串是一个只读切片。
+> ```go
+> type SliceHeader struct {
+>     Data uintptr
+>     Len  int
+>     Cap int
+> }
+> ```
+> 
+
+经常使用的字符串字面量就是字符串切片 `&str`， 它指向的不可变字节数组就位于数据段的只读区：
+
+```rust
+fn main(){
+    let _s: &str = "hello rust";
+}
+```
+
+另一种常用的字符串类型是 `String` 它是标准库（不是 Rust Core）提供的一种可变的字符串类型，底层是一个动态的字节数组：
+
+```rust
+pub struct String {
+    vec: Vec<u8>,
+}
+```
+
+你可以使用 `as_str()` 方法将它方便地转换成 `&str` 类型，由于 deref 隐式强制转换，你也可以直接对其取引用得到 `&str` 类型
+
+```rust
+fn main() {
+    let s = String::from("hello word");
+    let _ps: &str= s.as_str();
+    let _ps2: &str = &s;
+}
+```
+
+值得注意的是 不管是字面量 `&str` 还是 `String` 其编码方式都是 UTF-8 这意味着单个字符是不定长的，直接对其执行切片操作是很危险的，<text style="color:red">如果索引的字节没有落到字符边界上，将会导致程序崩溃</text>。
+
+```rust
+let hello = "中国人";
+
+let s = &hello[0..2]; // will panic
+```
+
+你可以使用 `chars()` 方法去遍历其中的 char, 更复杂的操作可以使用 [utf8-slice](https://crates.io/crates/utf8_slice) 库。
+
+
+#### 元组
+
+元组是一种由多种数据类型按固定顺序组织在一起的固定长度的复合数据结构，如
+
+```rust
+fn main() {
+    let mut tup:(f64,i32,i16) =(1.0, 2, 3);
+    tup.0 = 2.0;
+    println!("{}", tup.0)
+}
+```
+
+你可以使用 `.` 来操作其中的元素，也可以使用模式匹配结构元组：
+
+```rust
+fn main() {
+    let mut tup:(f64,i32,i16) =(1.0, 2, 3);
+    tup.0 = 2.0;
+    println!("{}", tup.0);
+    let (x,y,z) = tup;
+    println!("{}, {}, {}", x, y, z);
+}
+```
+
+空的元组不占用任何空间，被称为 `unit` 类似于 Go 中的 `struct{}`
+
+```rust
+fn main(){
+    let _u: () = ();
+}
+```
+
+#### 结构体和方法
+
+你可以将元组看成一个匿名字段的结构体（这样看来 `()` 和  `struct{}` 确实是一样的），结构体是一种功能更强大和复杂的元组：
+
+```rust
+struct Blog {
+    id: u64,
+    abs: String,
+    tags: Vec<String>
+}
+
+fn main() {
+    let blog = Blog {
+        id: 1,
+        abs: "hello rust".to_string(),
+        tags: vec!["rust".to_string()]
+    };
+    println!("{}", blog.abs);
+}
+```
+
+需要注意的是初始化结构体时，<text style="color:red">每个字段都必须初始化</text>
+
+#### 枚举和模式匹配
 
 #### 动态数组 Vector
 
 #### HashMap
 
-### 模式匹配
+
 
 ### 泛型和特征
 
