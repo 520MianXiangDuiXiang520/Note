@@ -511,6 +511,121 @@ fn main() {
 
 需要注意的是初始化结构体时，<text style="color:red">每个字段都必须初始化</text>
 
+Rust 不允许将结构体中某个单独的字段标识为可变的，如果想要修改某个字段，则要求整个结构体都是可变的。
+
+某些情况下，我们不关心结构体中的字段名，这时，你可以声明一个类似元组的结构体，称为 `tuple struct`:
+
+```rust
+struct Vector(f64, f64, f64);
+
+fn main() {
+    let _p = Vector(1.0, 0.0, 1.0);
+}
+```
+
+当然，类似于 unit 你也可以声明一个没有任何字段的结构体，这在需要实现某些特征时会很有用：
+
+```rust
+struct Empty;
+
+fn main() {
+    let _e = Empty;
+}
+```
+
+##### 语法糖
+
+1. 当使用函数初始化结构体时，如果函数参数和结构体字段名相同，初始化时可以省略字段名：
+
+```rust
+struct Pet {
+    id: i32,
+    pet_type: i32,
+    level: u32,
+}
+
+fn new_pet(id: i32, tp: i32, level: u32) -> Pet {
+    Pet {
+        id,
+        pet_type: tp,
+        level,
+    }
+}
+
+fn main() {
+    let _pet = new_pet(1, 1, 1);
+}
+```
+
+2. 当你用一个结构体实例更新另一个结构体实例时，如果只是要改其中的某几个字段，可以使用结构体更新语法：
+
+```rust
+fn main() {
+    let pet1 = new_pet(1, 1, 1);
+    let pet2 = Pet{
+        id: 2,
+        ..pet1
+    };
+    assert_eq!(pet2.id, 2);
+}
+```
+
+##### 方法
+
+Rust 中，结构体方法是写在 `impl` 块中的：
+
+```rust
+impl Pet {
+    fn new(id: i32, tp: i32, level: u32) -> Self {
+        Pet {
+            id,
+            pet_type: tp,
+            level,
+        }
+    }
+
+    fn upgrade(&mut self) -> u32 {
+        self.level += 1;
+        self.level
+    }
+}
+
+fn main() {
+    let _e = Empty;
+
+    let _p = Vector(1.0, 0.0, 1.0);
+
+    let mut pet1 = Pet::new(1, 1, 1);
+    pet1.upgrade();
+    assert_eq!(2, pet1.level);
+}
+```
+
+注意，在 `impl` 块中，你可以使用 `Self` 指代结构体类型（如上面 new 函数的返回值），使用 `self` 指代结构体的具体实例（如 upgrade 函数的入参）。
+
+只有第一个参数是 `self` 的函数才是结构体的方法，其他写在 impl 块中的，例如 new 这样的函数称为 **结构体的关联函数** 类似于其他语言中的静态方法，关联函数需要使用 `::` 调用。
+
+Rust 允许方法名和字段名相同，这样的方法一般称为 `getter` 常用来隐藏私有字段。
+
+并不是一个结构体只能对应一个 impl 块，你可以按功能需求，将结构体方法组织在不同的块中。
+
+也可以为元组结构体添加方法：
+
+```rust
+struct RGB(u16,u16,u16);
+
+impl RGB {
+    fn to_hex(&self)->String {
+        format!("#{:02X}{:02X}{:02X}", self.0, self.1, self.2)
+    }
+}
+
+fn main() {
+    let red = RGB(215, 0, 58);
+    println!("{}", red.to_hex());
+}
+```
+
 #### 枚举和模式匹配
 
 #### 动态数组 Vector

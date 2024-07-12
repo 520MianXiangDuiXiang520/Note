@@ -26,7 +26,6 @@
 //     assert_eq!([a, b, c, d, e], [1, 2, 1, 6, 99]);
 // }
 
-
 // fn main() {
 //     let v = {
 //         let x = 1;
@@ -61,7 +60,6 @@
 //     println!("{}", (0.0/0.0f32).is_nan());
 // }
 
-
 // fn main() {
 //     let mut s = String::from("hello");
 //     append_world(&mut s);
@@ -93,14 +91,13 @@
 //     s.clear();
 // }
 
-
 // fn array_exercise() {
 //     let  list:[String;5] = std::array::from_fn(|_i| String::from("value"));
 //     let  _list0:&[String] =  &list[0..3];
-    // println!("{:?}", list);
-    // list0.clear();
-    // println!("{}", list0);
-    // println!("{:?}", list);
+// println!("{:?}", list);
+// list0.clear();
+// println!("{}", list0);
+// println!("{:?}", list);
 // }
 
 // fn array_exercise1() {
@@ -119,32 +116,80 @@
 //     assert_eq!(x, 1)
 // }
 
+// fn main() {
+//     let s = String::from("holla中国人नमस्ते");
+//     for char in s.chars() {
+//         println!("{char}");
+//     }
 
-fn main() {
-    let s = String::from("holla中国人नमस्ते");
-    for char in s.chars() {
-        println!("{char}");
+//     let mut tup:(f64,i32,i16) =(1.0, 2, 3);
+//     tup.0 = 2.0;
+//     println!("{}", tup.0);
+//     let (x,y,z) = tup;
+//     println!("{}, {}, {}", x, y, z);
+
+//     let _u: () = ();
+
+//     let blog = Blog {
+//         id: 1,
+//         abs: "hello rust".to_string(),
+//         tags: vec!["rust".to_string()]
+//     };
+
+//     println!("{}", blog.abs);
+// }
+
+// struct Blog {
+//     id: u64,
+//     abs: String,
+//     tags: Vec<String>
+// }
+
+struct Empty;
+
+struct Vector(f64, f64, f64);
+
+struct Pet {
+    id: i32,
+    pet_type: i32,
+    level: u32,
+}
+
+impl Pet {
+    fn new(id: i32, tp: i32, level: u32) -> Self {
+        Pet {
+            id,
+            pet_type: tp,
+            level,
+        }
     }
 
-    let mut tup:(f64,i32,i16) =(1.0, 2, 3);
-    tup.0 = 2.0;
-    println!("{}", tup.0);
-    let (x,y,z) = tup;
-    println!("{}, {}, {}", x, y, z);
-
-    let _u: () = ();
-
-    let blog = Blog {
-        id: 1,
-        abs: "hello rust".to_string(),
-        tags: vec!["rust".to_string()]
-    };
-
-    println!("{}", blog.abs);
+    fn upgrade(&mut self) -> u32 {
+        self.level += 1;
+        self.level
+    }
 }
 
-struct Blog {
-    id: u64,
-    abs: String,
-    tags: Vec<String>
+struct RGB(u16,u16,u16);
+
+impl RGB {
+    fn to_hex(&self)->String {
+        format!("#{:02X}{:02X}{:02X}", self.0, self.1, self.2)
+    }
 }
+
+fn main() {
+    let red = RGB(215, 0, 58);
+    println!("{}", red.to_hex());
+
+    let _e = Empty;
+
+    let _p = Vector(1.0, 0.0, 1.0);
+
+    let mut pet1 = Pet::new(1, 1, 1);
+    pet1.upgrade();
+    assert_eq!(2, pet1.level);
+    let pet2 = Pet { id: 2, ..pet1 };
+    assert_eq!(pet2.id, 2);
+}
+
