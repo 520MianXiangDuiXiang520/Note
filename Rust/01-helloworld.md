@@ -626,11 +626,183 @@ fn main() {
 }
 ```
 
-#### 枚举和模式匹配
+##### 结构体解构
+
+```rust
+struct Vector {
+    x: f64,
+    y: f64,
+}
+
+fn struct_test() {
+    // 结构体解构
+    let pos = Vector{x: 1.0, y: 2.0};
+    let Vector{x: a, y: b} = pos;
+    assert_eq!(a, 1.0);
+    assert_eq!(b, 2.0);
+
+    let red = RGB(215, 0, 58);
+    let RGB(r, g, b) = red;
+    assert!(r == red.0 && g == red.1 && b == red.2);
+}
+```
 
 #### 动态数组 Vector
 
 #### HashMap
+
+### 枚举和模式匹配
+
+枚举常用在表示**有限**的状态或选项中，它可以将有限的这些状态和选项抽象成同一种类型，方便统一处理。
+
+```rust
+enum Order {
+    Attack,
+    Demolition,
+    Reinforce,
+    Build
+}
+
+fn is_hostile(order: Order)-> bool {
+    match order {
+        Order::Attack | Order::Demolition => true,
+        _ => false
+    }
+}
+```
+
+Rust 的枚举值可以携带数据：
+
+```rust
+struct Square {
+    id: i64
+}
+struct Building {}
+
+enum Order {
+    Attack(Square),
+    Demolition(Building),
+    Reinforce(Building),
+    Build(Building)
+}
+
+fn main() {
+    let order = Order::Attack(Square{id: 1});
+    match order {
+        Order::Attack(sq) => println!("attack -> {}", sq.id),
+        _ => println!("not attack")
+    }
+}
+```
+
+你也可以为枚举实现方法：
+
+```rust
+impl Order {
+    fn is_hostile(&self)-> bool {
+        match self {
+            Order::Attack(_) | Order::Demolition(_) => true,
+            _ => false
+        }
+    } 
+}
+
+fn main() {
+    let order = Order::Attack(Square{id: 1});
+    assert!(order.is_hostile());
+}
+```
+
+#### 模式匹配
+
+当我们在谈论 **模式匹配** 时，我们首先需要知道 「模式」是什么！在 Rust 中，模式（Patterns）是一种特殊的语法，它描述的其实是数据的「形状」，按照模式描述的这种形状，程序将值与数据进行匹配，以此更好地控制程序流程。
+
+模式一般由以下内容组合而成：
+
+* 字面量
+* 解构的数组，枚举，结构体或元组
+* 变量
+* 通配符
+* 占位符
+
+考虑最简单的一条赋值语句：
+
+```rust
+let _x = 5;
+```
+
+这也是一种模式匹配，其中 `_x` 是变量名，一种变量模式，`let` 指示将匹配到的值 `5` 绑定到对应的变量上。
+
+`let` 的语法为：
+
+```rust
+let PATTERN = EXPRESSION;
+```
+
+因此，由上面说的几种内容组合成的模式都可以作为表达式的赋值对象：
+
+```rust
+enum OnlyOne {
+    One(i32)
+}
+
+let _ = 1; // 占位符
+let (_a, _b, _c) = (1, 2, 3); // 解构的元组
+let [_a, _b, _c] = [1, 2, 3]; // 解构的数组
+let Vector { x: _a, y: _b } = Vector { x: 1.0, y: 2.0 }; // 解构的结构体
+let OnlyOne::One(_x) = OnlyOne::One(1); // 解构的枚举
+let ([_a, _b], _c) = ([1, 2], 3); // 组合
+```
+
+比较特殊的是枚举，因为要求匹配枚举必须穷尽所有可能，所以我们一般使用不会直接使用 let 匹配，除非像上例一样枚举类型中只有一个枚举值，一般我们会选择使用 `if let` 或 `match` 来匹配枚举类型：
+
+```rust
+let x = Some(1);
+if let Some(_v) = x {
+    println!("x")
+}
+
+match x {
+    Some(_) => println!("x"),
+    _ => ()
+}
+```
+
+由于 Option 枚举包含两个枚举值，None 和 Some 所以我们不能直接使用 `let` 匹配，上例中 `if let` 和 `match` 的效果是一样的，在只处理其中一个类型，忽略其他类型时，我们一般使用 `if let`
+
+与 `if let` 相似的还有 `while let`
+
+```rust
+let mut stack = vec![1, 2, 3];
+while let Some(x) = stack.pop() {
+    println!("{}", x)
+}
+```
+
+`stack.pop()` 返回值是一个 `Option<T>` 我们使用 `while let` 将其与解构的枚举模式进行匹配，匹配到除 `Some` 外的类型时，跳出循环。
+
+`if let` 和 `while let` 这种只关心其中一种值，而忽略其他的模式匹配被称为 「可驳模式匹配」
+
+除此之外，在 `for` 循环中也有模式匹配的影子：
+
+```rust
+for (i, v) in stack.iter().enumerate() {
+    println!("{},{}", i, v)
+}
+```
+
+`enumerate` 方法返回的是一个迭代器，每次循环都会返回一个元组，这里其实是解构的元组模式匹配。
+
+最后，这种模式匹配在函数参数中也是适用的：
+
+```rust
+fn foo((x, y):(i32, i32)) {
+    println!("{}, {}", x, y);
+}
+foo((1, 2));
+```
+
+#### 模式匹配的一些补充总结
 
 
 
