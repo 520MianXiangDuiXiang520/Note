@@ -226,6 +226,7 @@ impl RGB {
 //     assert_eq!(pet2.id, 2);
 // }
 
+#[derive(Debug)]
 struct Vector {
     x: f64,
     y: f64,
@@ -304,6 +305,63 @@ fn match_test() {
         println!("{}, {}", x, y);
     }
     foo((1, 2));
+
+    let x = 1;
+    match x {
+        1 | 2 => println!("{}", x),
+        _ => ()
+    }
+
+    match x {
+        1..=5 => println!("{} in [1,5]", x),
+        _ => ()
+    }
+
+    match x {
+        1..=20 if x != 7 => println!("{} in [1,20] not 7", x),
+        _ => ()
+    }
+
+    let pos = Vector{x: 1.0, y: 2.0};
+    match pos {
+        Vector{x: vx, y: 0.0} => println!("{}", vx),
+        Vector{x: 0.0, y: vy} => println!("{}", vy),
+        Vector{x: vx, y: vy} => println!("{} {}", vx, vy)
+    }
+
+    match pos {
+        Vector{y: vy, ..} => println!("{}", vy),
+        Vector{x: _, y: vy} => println!("{}", vy),
+    }
+
+    let array = [1_i32;20];
+    match array {
+        [x,..] => println!("first: {}", x),
+        [.., x] => println!("last: {}", x)
+    }
+
+    let s = Some(1);
+    match s {
+        Some(tmp @ 0..=3) => println!("{}", tmp),
+        _ => ()
+    }
+
+    match 1 {
+        num @ (1 | 2) => println!("{}", num),
+        _ => ()
+    }
+
+    if let num @ (1 | 2) = 1 {
+        println!("{}", num)
+    }
+
+    let pos = Vector{x: 1.0, y: 2.0};
+    if let p @ Vector{x: 1.0, ..} = pos {
+        println!("match {:?}", p)
+    } else {
+        println!("unmatch")
+    }
+
 }
 
 fn main() {
