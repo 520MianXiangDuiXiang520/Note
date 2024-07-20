@@ -650,7 +650,89 @@ fn struct_test() {
 
 #### 动态数组 Vector
 
+创建动态数组
+
+```rust
+let mut stack:Vec<i32> = Vec::new();
+stack.push(1);
+println!("{}", stack[0]);
+
+// 宏
+let _stack = vec![1, 2, 3];
+```
+
+如果你能预估数组的大小，可以使用 `Vec::with_capactiy(cap)` 来创建，避免扩容导致性能问题
+
+读取元素：可以使用下标或者 get 方法，后者返回 Option 可以避免边界溢出
+
+由于 Vector 会扩容，这个过程中会涉及其中元素的拷贝，因此 Vector 中元素的作用域和 vector 的作用域是相同的，不能在持有其中某个元素的不可变引用时去尝试获取它的可变引用，如以下代码时无法编译通过的：
+
+```rust
+let mut x = vec![1, 2, 3];
+let first = x.get(0);
+x.push(4);
+if let Some(v) = first {
+    println!("{v}")
+}
+```
+
+可以使用 for-in 遍历 Vector 中的元素
+
+```rust
+for i in &mut x {
+    *i += 10;
+}
+```
+
+
 #### HashMap
+
+```rust
+use std::collections::HashMap;
+
+let mut dict:HashMap<&str, i32> = HashMap::new();
+dict.insert("a", 1);
+let a = dict.get("a");
+if let Some(x) = a {
+    println!("{x}")
+}
+```
+
+* HashMap 不包含在 prelude 中，需要手动引入
+* 和其他类型一样，如果写入 HashMap 的键值实现了 `Copy` 特征，写入 HashMap 时该键值会被拷贝一份复制进去，否则所有权就会被移交给 HashMap
+
+```rust
+let mut dict = HashMap::new();
+let key = String::from("key");
+dict.entry(key).or_insert(1);
+println!("{key}"); // borrow of moved value: `key`!!
+```
+
+* 和 Vector 一样，HashMap 中元素的作用域和 HashMap 的作用域一致：
+
+```rust
+let val = dict.get(&k2);
+dict.insert("ss".to_string(), 1);
+if let Some(x) = val {
+    println!("{x}")
+}
+```
+
+* 修改和遍历 HashMap：
+
+```rust
+let mut map = HashMap::with_capacity(2);
+let text = "let mut dict = HashMap::new();";
+for word in text.split_ascii_whitespace(){
+    let count = map.entry(word).or_insert(0);
+    *count +=1 ;
+}
+for (k, v )in map.iter(){
+    println!("{k}: {v}")
+}
+```
+
+* HashMap 的 key 要求实现 `Eq` 特征，因此浮点数不可以做 Key
 
 ### 枚举和模式匹配
 

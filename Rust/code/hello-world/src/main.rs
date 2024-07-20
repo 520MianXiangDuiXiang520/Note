@@ -364,7 +364,76 @@ fn match_test() {
 
 }
 
+
+fn vector_test() {
+    let mut stack:Vec<i32> = Vec::new();
+    stack.push(1);
+    println!("{}", stack[0]);
+
+    let _stack = vec![1, 2, 3];
+
+    let mut x = vec![1, 2, 3];
+    let first = x.get(0);
+    // x.push(4);
+    if let Some(v) = first {
+        println!("{v}")
+    }
+
+    for i in &mut x {
+        *i += 10;
+    }
+}
+
+fn hash_map_test() {
+    use std::collections::HashMap;
+
+    let mut dict:HashMap<&str, i32> = HashMap::new();
+    dict.insert("a", 1);
+    let a = dict.get("a");
+    if let Some(x) = a {
+        println!("{x}")
+    }
+
+    let mut dict = HashMap::new();
+    let key = String::from("key");
+    let k2 = key.clone();
+    dict.entry(key).or_insert(1);
+    // println!("{key}");
+
+    // let val = dict.get(&k2);
+    // dict.insert("ss".to_string(), 1);
+    // if let Some(x) = val {
+    //     println!("{x}")
+    // }
+
+    let mut map = HashMap::with_capacity(2);
+    let text = "let mut dict = HashMap::new();";
+    for word in text.split_ascii_whitespace(){
+        let count = map.entry(word).or_insert(0);
+        *count +=1 ;
+    }
+    for (k, v )in map.iter(){
+        println!("{k}: {v}")
+    }
+    let random_stat_buff = 1;
+    map.entry("key").or_insert_with(|| random_stat_buff);
+
+    let teams = [
+        ("Chinese Team", 100),
+        ("American Team", 10),
+        ("France Team", 50),
+    ];
+    let teams_map2:HashMap<&str, i32> = teams.into_iter().collect();
+    println!("{:?}", teams_map2);
+    println!("{:?}", teams);
+
+    println!("----------------- hash map -------------------")
+}
+
 fn main() {
+    hash_map_test();
+    vector_test();
+
     struct_test();
 
     match_test();
