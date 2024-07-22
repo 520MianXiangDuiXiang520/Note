@@ -1,10 +1,12 @@
 package main
 
 import (
+	"io"
 	"slices"
 )
 
 func accountsMerge(accounts [][]string) (ans [][]string) {
+	io.ReadWriter
 	mailDict := make(map[string]struct{})
 	mails := make([]string, 0)
 	email2idx := make(map[string]int32)

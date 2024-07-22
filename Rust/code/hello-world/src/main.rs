@@ -145,6 +145,12 @@
 //     tags: Vec<String>
 // }
 
+use std::{
+    fmt::{Display, Error},
+    fs::File,
+    io, os,
+};
+
 struct Empty;
 
 // struct Vector(f64, f64, f64);
@@ -245,7 +251,7 @@ fn struct_test() {
 }
 
 enum OnlyOne {
-    One(i32)
+    One(i32),
 }
 
 fn match_test() {
@@ -287,7 +293,7 @@ fn match_test() {
 
     match x {
         Some(_) => println!("x"),
-        _ => ()
+        _ => (),
     }
 
     // while let
@@ -301,7 +307,7 @@ fn match_test() {
         println!("{},{}", i, v)
     }
 
-    fn foo((x, y):(i32, i32)) {
+    fn foo((x, y): (i32, i32)) {
         println!("{}, {}", x, y);
     }
     foo((1, 2));
@@ -309,64 +315,62 @@ fn match_test() {
     let x = 1;
     match x {
         1 | 2 => println!("{}", x),
-        _ => ()
+        _ => (),
     }
 
     match x {
         1..=5 => println!("{} in [1,5]", x),
-        _ => ()
+        _ => (),
     }
 
     match x {
         1..=20 if x != 7 => println!("{} in [1,20] not 7", x),
-        _ => ()
+        _ => (),
     }
 
-    let pos = Vector{x: 1.0, y: 2.0};
+    let pos = Vector { x: 1.0, y: 2.0 };
     match pos {
-        Vector{x: vx, y: 0.0} => println!("{}", vx),
-        Vector{x: 0.0, y: vy} => println!("{}", vy),
-        Vector{x: vx, y: vy} => println!("{} {}", vx, vy)
+        Vector { x: vx, y: 0.0 } => println!("{}", vx),
+        Vector { x: 0.0, y: vy } => println!("{}", vy),
+        Vector { x: vx, y: vy } => println!("{} {}", vx, vy),
     }
 
     match pos {
-        Vector{y: vy, ..} => println!("{}", vy),
-        Vector{x: _, y: vy} => println!("{}", vy),
+        Vector { y: vy, .. } => println!("{}", vy),
+        Vector { x: _, y: vy } => println!("{}", vy),
     }
 
-    let array = [1_i32;20];
+    let array = [1_i32; 20];
     match array {
-        [x,..] => println!("first: {}", x),
-        [.., x] => println!("last: {}", x)
+        [x, ..] => println!("first: {}", x),
+        [.., x] => println!("last: {}", x),
     }
 
     let s = Some(1);
     match s {
         Some(tmp @ 0..=3) => println!("{}", tmp),
-        _ => ()
+        _ => (),
     }
 
     match 1 {
         num @ (1 | 2) => println!("{}", num),
-        _ => ()
+        _ => (),
     }
 
     if let num @ (1 | 2) = 1 {
         println!("{}", num)
     }
 
-    let pos = Vector{x: 1.0, y: 2.0};
-    if let p @ Vector{x: 1.0, ..} = pos {
+    let pos = Vector { x: 1.0, y: 2.0 };
+    if let p @ Vector { x: 1.0, .. } = pos {
         println!("match {:?}", p)
     } else {
         println!("unmatch")
     }
-
 }
 
-
 fn vector_test() {
-    let mut stack:Vec<i32> = Vec::new();
+    let mut stack: Vec<i32> = Vec::new();
     stack.push(1);
     println!("{}", stack[0]);
 
@@ -387,7 +391,7 @@ fn vector_test() {
 fn hash_map_test() {
     use std::collections::HashMap;
 
-    let mut dict:HashMap<&str, i32> = HashMap::new();
+    let mut dict: HashMap<&str, i32> = HashMap::new();
     dict.insert("a", 1);
     let a = dict.get("a");
     if let Some(x) = a {
@@ -408,29 +412,144 @@ fn hash_map_test() {
 
     let mut map = HashMap::with_capacity(2);
     let text = "let mut dict = HashMap::new();";
-    for word in text.split_ascii_whitespace(){
+    for word in text.split_ascii_whitespace() {
         let count = map.entry(word).or_insert(0);
-        *count +=1 ;
+        *count += 1;
     }
-    for (k, v )in map.iter(){
+    for (k, v) in map.iter() {
         println!("{k}: {v}")
     }
     let random_stat_buff = 1;
     map.entry("key").or_insert_with(|| random_stat_buff);
 
-    let teams = [
-        ("Chinese Team", 100),
-        ("American Team", 10),
-        ("France Team", 50),
-    ];
-    let teams_map2:HashMap<&str, i32> = teams.into_iter().collect();
-    println!("{:?}", teams_map2);
-    println!("{:?}", teams);
+    // let teams = [
+    //     ("Chinese Team", 100),
+    //     ("American Team", 10),
+    //     ("France Team", 50),
+    // ];
+    // let teams_map2: HashMap<_, _> = teams.into_iter().collect();
+    // println!("{:?}", teams_map2);
+    // println!("{:?}", teams);
 
     println!("----------------- hash map -------------------")
 }
 
+fn generics_test() {
+    struct Point<T, U> {
+        x: T,
+        y: U,
+    }
+
+    impl<T> Point<T, T> {
+        // 实现 mixup，不要修改其它代码！
+        fn mixup<E, M>(self, p: Point<E, M>) -> Point<T, M> {
+            Point { x: self.x, y: p.y }
+        }
+    }
+
+    let p1 = Point { x: 5, y: 10 };
+    let p2 = Point {
+        x: "Hello",
+        y: '中',
+    };
+
+    let p3 = p1.mixup(p2);
+
+    assert_eq!(p3.x, 5);
+    assert_eq!(p3.y, '中');
+}
+
+fn trait_test() {
+    use std::io::Result;
+    trait ReadWriter {
+        fn read(&mut self, p: &mut [u8]) -> Result<usize> {
+            Result::Ok(0)
+        }
+        fn write(&mut self, p: &[u8]) -> Result<usize> {
+            Result::Ok(0)
+        }
+    }
+
+    struct Buffer {
+        buf: [u8],
+    }
+
+    impl ReadWriter for Buffer {
+        fn read(&mut self, p: &mut [u8]) -> Result<usize> {
+            todo!()
+        }
+
+        fn write(&mut self, p: &[u8]) -> Result<usize> {
+            todo!()
+        }
+    }
+
+    fn new_client(reader: &mut (impl ReadWriter + Display)) -> Result<()> {
+        let mut bf = [0; 10];
+        let _n = reader.read(&mut bf[..])?;
+        Ok(())
+    }
+
+    fn new_client2<T: ReadWriter + Display>(reader: &mut T) -> Result<()> {
+        let mut bf = [0; 10];
+        let _n = reader.read(&mut bf[..])?;
+        Ok(())
+    }
+
+    fn new_client3<T>(reader: &mut T) -> Result<()>
+    where
+        T: ReadWriter + Display,
+    {
+        let mut bf = [0; 10];
+        let _n = reader.read(&mut bf[..])?;
+        Ok(())
+    }
+
+    struct Page<T> {
+        data:T,
+    }
+    impl <T: ReadWriter> Page<T> {
+        fn show(&mut self) -> Result<()>{
+            let mut bf = [0; 10];
+            self.data.read(&mut bf[..])?;
+            Ok(())
+        }
+    }
+
+    struct Score {
+        source_score: u32,
+        time: u32,
+    }
+
+    impl Score {
+        fn new(source_score: u32, time: u32) -> Self {
+            Self{source_score, time}
+        }
+
+        fn to_score(&self) -> u64 {
+            (self.source_score as u64) << 32 | (self.time as u64)
+        }
+
+        fn parse(s: u64) -> Self {
+            Self { source_score: (s  >> 32) as u32, time: (s & (1_u64 << 32) -1) as u32 }
+        }
+    }
+
+    impl Display for Score {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "(source_score: {}, time:{}, score:{})", self.source_score, self.time, self.to_score())
+        }
+    }
+
+    let sc = Score::new(1, 12);
+    println!("{}", sc);
+
+    println!("------------- trait_test end ----------------")
+}
+
 fn main() {
+    trait_test();
+    generics_test();
     hash_map_test();
     vector_test();
 

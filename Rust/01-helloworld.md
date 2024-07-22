@@ -991,6 +991,147 @@ Rust 是一门安全的语言，任何未定义的和非预期行为都不被允
 
 ### 泛型和特征
 
+#### 特征
+
+特征类似于其他语言中的 接口，使用 `trait` 定义
+
+```rust
+trait ReadWriter {
+    fn read(&mut self, p: &mut [u8])->Result<usize, Error>;
+    fn write(&mut self, p: &[u8]) -> Result<usize, Error>;
+}
+```
+
+使用 `impl-for` 为类型实现特征：
+
+```rust
+struct Buffer {
+    buf: [u8],
+}
+
+impl ReadWriter for Buffer {
+    fn read(&mut self, p: &mut [u8])->Result<usize, Error> {
+        todo!()
+    }
+
+    fn write(&mut self, p: &[u8]) -> Result<usize, Error> {
+        todo!()
+    }
+} 
+```
+
+**为类型实现特征时，类型和特征至少有一个需要在当前作用域下。**
+
+特征可以有默认实现：
+
+```rust
+trait ReadWriter {
+    fn read(&mut self, p: &mut [u8])->Result<usize, Error>{
+        Result::Ok(0)
+    }
+    fn write(&mut self, p: &[u8]) -> Result<usize, Error>{
+        Result::Ok(0)
+    }
+}
+```
+
+特征作为函数参数时，使用 `impl` 关键字标识：
+
+```rust
+fn new_client(reader: &mut impl ReadWriter) -> Result<()>{
+    let mut  bf = [0;10];
+    let _n = reader.read(&mut bf[..])?;
+    Ok(())
+}
+```
+
+也可以有多重约束：
+
+```rust
+fn new_client(reader: &mut(impl ReadWriter + Display)) -> Result<()>{
+    let mut  bf = [0;10];
+    let _n = reader.read(&mut bf[..])?;
+    Ok(())
+}
+```
+
+`impl trait` 实际上是特征约束的语法糖，等价于下面的函数：`T: ReadWriter + Display` 就称为特征约束,这种原始形式在一些复杂的场景下更有用
+
+```rust
+fn new_client2<T: ReadWriter + Display>(reader: &mut T) -> Result<()> {
+    let mut  bf = [0;10];
+    let _n = reader.read(&mut bf[..])?;
+    Ok(())
+}
+```
+
+当约束条件特别多时，可以使用 where 约束：
+
+```rust
+fn new_client3<T>(reader: &mut T) -> Result<()>
+where
+    T: ReadWriter + Display,
+{
+    let mut bf = [0; 10];
+    let _n = reader.read(&mut bf[..])?;
+    Ok(())
+}
+```
+
+##### 特征妙用
+
+1. 有条件地为类型实现方法
+
+```rust
+struct Page<T> {
+    data:T,
+}
+impl <T: ReadWriter> Page<T> {
+    fn show(&mut self) -> Result<()>{
+        let mut bf = [0; 10];
+        self.data.read(&mut bf[..])?;
+        Ok(())
+    }
+}
+```
+
+##### 特征实例
+
+1. 自定义输出
+
+```rust
+struct Score {
+    source_score: u32,
+    time: u32,
+}
+
+impl Score {
+    fn new(source_score: u32, time: u32) -> Self {
+        Self{source_score, time}
+    }
+
+    fn to_score(&self) -> u64 {
+        (self.source_score as u64) << 32 | (self.time as u64)
+    }
+
+    fn parse(s: u64) -> Self {
+        Self { source_score: (s  >> 32) as u32, time: (s & (1_u64 << 32) -1) as u32 }
+    }
+}
+
+impl Display for Score {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "(source_score: {}, time:{}, score:{})", self.source_score, self.time, self.to_score())
+    }
+}
+
+fn main() {
+    let sc = Score::new(1, 12);
+    println!("{}", sc);
+}
+
+```
+
 ### 生命周期
 
 ### 包和模块
