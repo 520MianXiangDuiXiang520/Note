@@ -2,7 +2,7 @@
 
 url=$1
 curl -s -o tmp "$url"
-no=$(< tmp awk -F'questionId":"' '{print $2}' | awk -F\" '{print $1}'| grep '\d')
+no=$(< tmp awk -F'questionFrontendId":"' '{print $2}' | awk -F\" '{print $1}'| grep '\d')
 name=$(< tmp awk -F'titleSlug":"' '{print $2}' | awk -F\" '{print $1}'| grep '\w')
 echo "$no"
 echo "$name"
