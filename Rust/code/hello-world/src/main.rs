@@ -544,6 +544,13 @@ fn trait_test() {
     let sc = Score::new(1, 12);
     println!("{}", sc);
 
+    trait MoveOperator {
+        fn move_to_pos(&self);
+    }
+
+    let moves:Vec<&dyn MoveOperator> = Vec::new();
+    
+
     println!("------------- trait_test end ----------------")
 }
 
